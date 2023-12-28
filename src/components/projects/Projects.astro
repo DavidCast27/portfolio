@@ -1,0 +1,18 @@
+---
+import { PROJECTS } from "../../data/projects.data";
+---
+
+{
+  PROJECTS.map(({ title, description, tags, image }) => (
+    <article>
+      <h4>{title}</h4>
+      <p>{description}</p>
+      <ul>
+        {tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+      <img src={image} alt={`imagen de ${title} `} />
+    </article>
+  ))
+}

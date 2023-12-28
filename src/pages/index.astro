@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Experience from "../components/experiencies/Experience.astro";
+import Projects from "../components/projects/Projects.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import LaptopIcon from "../components/icons/LaptopIcon.astro";
+import CodeIcon from "../components/icons/CodeIcon.astro";
+import AboutMe from "../components/about/AboutMe.astro";
+---
+
+<Layout
+  title="Portfolio David Castrillon- Desarrollador Web"
+  description="Portfolio David Castrillon- Desarrollador Web - HTML, CSS, JavaScript, TypeScript, React"
+>
+  <main class="px-8">
+    <SectionContainer
+      id="about"
+      class="py-10 pb-8 md:py-20 md:pb-10 lg:py-32 lg:pb-14"
+    >
+      <AboutMe />
+    </SectionContainer>
+    <SectionContainer
+      id="experience"
+      title="Experiencia laboral"
+      class="py-5 pb-4 md:py-10 md:pb-5 lg:py-16 lg:pb-7"
+    >
+      <LaptopIcon class="size-8" slot="icon" />
+      <Experience />
+    </SectionContainer>
+
+    <SectionContainer
+      id="projects"
+      title="Proyectos"
+      class="py-5 pb-4 md:py-10 md:pb-5 lg:py-16 lg:pb-7"
+    >
+      <CodeIcon class="size-8" slot="icon" />
+      <Projects />
+    </SectionContainer>
+  </main>
+</Layout>

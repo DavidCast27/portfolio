@@ -1,0 +1,30 @@
+---
+import Badge from "../ui/Badge.astro";
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  actual: boolean;
+}
+const { title, description, date, actual } = Astro.props;
+---
+
+<div
+  class="absolute size-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"
+>
+</div>
+
+<h4
+  class="flex items-center mb-4 text-base md:text-lg font-semibold text-white gap-4"
+>
+  {title}
+  {actual && <Badge color="yellow">Actualmente</Badge>}
+</h4>
+<time
+  class="block mb-2 text-sm md:text-base lg:text-lg leading-none text-gray-500"
+>
+  {date}
+</time>
+<p class="mb-4 text-xs md:text-sm lg:text-base text-gray-400 text-pretty">
+  {description}
+</p>
