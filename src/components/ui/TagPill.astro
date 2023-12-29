@@ -1,0 +1,12 @@
+---
+interface Props {
+  className: string;
+}
+const { className } = Astro.props;
+---
+
+<span
+  class={`flex gap-2 rounded-full text-sm py-1 px-1 md:py-1 md:px-2  opacity-75 items-center ${className}`}
+>
+  <slot />
+</span>
