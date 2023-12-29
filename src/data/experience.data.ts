@@ -8,7 +8,7 @@ export const EXPERIENCES = [
   {
     date: "Marzo 2021 - Agosto 2021",
     title: "Mercado libre - Software Development SSr Analyst",
-    description: "Desarrollador Frontend utilizando HTML, CSS, TypeScript, React y Node Js. se colaboro en la migración de la aplicacion de seguros de la compañia",
+    description: "Desarrollador Frontend utilizando HTML, CSS, TypeScript, React y Node Js. participando en la migración de la aplicacion de seguros de la compañia",
     actual: false,
   },
   {
