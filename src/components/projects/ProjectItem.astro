@@ -1,19 +1,39 @@
 ---
 import type { JSX } from "astro/jsx-runtime";
 import TagPill from "../ui/TagPill.astro";
+import SocialPill from "../ui/SocialPill.astro";
+import BoxSeamIcon from "../icons/BoxSeamIcon.astro";
+import CodeIcon from "../icons/CodeIcon.astro";
+
 interface Props {
   title: string;
   description: string;
   tags: Array<{ name: string; className: string; Icon: JSX.Element }>;
   image: string;
+  codeURL: string;
+  webSiteURL?: string;
 }
-const { title, description, tags, image } = Astro.props;
+const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
 ---
 
 <article class="mb-6 md:mb-12">
-  <h4 class="mb-4 text-base md:text-lg font-semibold text-green-100/80 gap-4">
-    {title}
-  </h4>
+  <div class="flex items-center gap-4 mb-4">
+    <h4 class="text-base md:text-lg font-semibold text-green-100/80">
+      {title}
+    </h4>
+    <SocialPill href={codeURL}>
+      <CodeIcon class="size-4" />
+      <span class="hidden md:inline opacity-75 text-xs">Codigo</span>
+    </SocialPill>
+    {
+      webSiteURL && (
+        <SocialPill href={webSiteURL}>
+          <BoxSeamIcon class="size-4" />
+          <span class="hidden md:inline opacity-75 text-xs">Sitio web</span>
+        </SocialPill>
+      )
+    }
+  </div>
   <p class="mb-4 text-xs md:text-sm lg:text-base text-gray-400 text-pretty">
     {description}
   </p>
@@ -21,8 +41,8 @@ const { title, description, tags, image } = Astro.props;
     {
       tags.map(({ name, Icon, className }) => (
         <TagPill className={className}>
-          <Icon class="size-6" />
-          <span class="hidden md:inline">{name}</span>
+          <Icon class="size-5" />
+          <span class="hidden md:inline text-xs">{name}</span>
         </TagPill>
       ))
     }

@@ -1,4 +1,5 @@
 ---
+import DownloadIcon from "../icons/DownloadIcon.astro";
 import GitHubIcon from "../icons/GitHubIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
 import MailIcon from "../icons/MailIcon.astro";
@@ -65,5 +66,9 @@ import SocialPill from "../ui/SocialPill.astro";
     <span class="hidden md:inline opacity-75 text-xs"
       >david.cast27@gmail.com</span
     >
+  </SocialPill>
+  <SocialPill href="/CV-ES-david-castrillon.pdf">
+    <DownloadIcon class="size-4 lg:size-6" />
+    <span class="hidden md:inline opacity-75 text-xs">Curriculum vitae</span>
   </SocialPill>
 </nav>
