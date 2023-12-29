@@ -1,0 +1,76 @@
+---
+import DownloadIcon from "../icons/DownloadIcon.astro";
+import GitHubIcon from "../icons/GitHubIcon.astro";
+import LinkedInIcon from "../icons/LinkedInIcon.astro";
+import MailIcon from "../icons/MailIcon.astro";
+import Badge from "../ui/Badge.astro";
+import SocialPill from "../ui/SocialPill.astro";
+---
+
+<div class="flex flex-row gap-x-4 pb-4 md:pb-6 lg:pb-8">
+  <img
+    class="rounded-full size-24 md:size-28 lg:size-32"
+    src="https://avatars.githubusercontent.com/u/17658533?s=400&u=720a1f13ac78e3220db618daa33e15d11130747b&v=4"
+    alt="portfolio photo"
+  />
+  <div class="flex flex-col gap-y-2">
+    <h1
+      class="text-white text-2xl md:text-4xl lg:text-5xl font-bold opacity-85"
+    >
+      David Castrillón Gonzales
+    </h1>
+    <h2 class="text-xl md:text-2xl lg:text-3xl opacity-60 text-wrap">
+      Desarrollador Web
+    </h2>
+    <a
+      href="https://www.linkedin.com/in/davidcastrillongonzales/"
+      target="_blank"
+      rel="noopener"
+    >
+      <Badge color="green">Siempre disponible</Badge>
+    </a>
+  </div>
+</div>
+<p
+  class="text-yellow-100/90 text-sm md:text-base lg:text-lg text-pretty mb-4 lg:mb-6"
+>
+  <strong>+7 años de experiencia</strong>
+</p>
+<p
+  class="text-sm md:text-base lg:text-lg mb-4 lg:mb-6 text-wrap md:max-w-[600px] lg:max-w-[740px] opacity-85"
+>
+  Desarrollador web enfocado en FrontEnd usando <span class="text-yellow-100/90"
+    >HTML, CSS, JavaScript, TypeScript, React</span
+  > todo un crack construyendo aplicaciones web para empresas lideres del
+  sector.
+</p>
+<p
+  class="text-xs md:text-sm lg:text-base opacity-60 mb-4 lg:mb-6 text-wrap md:max-w-[600px] lg:max-w-[740px]"
+>
+  Adicionalmente +2 años de experiencia en <span class="text-green-100/90"
+    >GO, NodeJS y JAVA</span
+  > y +3 años de experiencia en automatizacion de pruebas usando <span
+    class="text-green-100/90">Selenium y Appium</span
+  >
+</p>
+
+<nav class="flex gap-4 mt-4 lg:mt-8 justify-center md:justify-start">
+  <SocialPill href="https://github.com/DavidCast27">
+    <GitHubIcon class="size-4 lg:size-6" />
+    <span class="hidden md:inline opacity-75 text-xs">GitHub</span>
+  </SocialPill>
+  <SocialPill href="https://www.linkedin.com/in/davidcastrillongonzales/">
+    <LinkedInIcon class="size-4 lg:size-6" />
+    <span class="hidden md:inline opacity-75 text-xs">LinkedIn</span>
+  </SocialPill>
+  <SocialPill href="mailto:david.cast27@gmail.com">
+    <MailIcon class="size-4 lg:size-6" />
+    <span class="hidden md:inline opacity-75 text-xs"
+      >david.cast27@gmail.com</span
+    >
+  </SocialPill>
+  <SocialPill href="/CV-ES-david-castrillon.pdf">
+    <DownloadIcon class="size-4 lg:size-6" />
+    <span class="hidden md:inline opacity-75 text-xs">Descargar CV</span>
+  </SocialPill>
+</nav>

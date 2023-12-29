@@ -4,6 +4,7 @@ import TagPill from "../ui/TagPill.astro";
 import SocialPill from "../ui/SocialPill.astro";
 import BoxSeamIcon from "../icons/BoxSeamIcon.astro";
 import CodeIcon from "../icons/CodeIcon.astro";
+import Paragraph from "../ui/Paragraph.astro";
 
 interface Props {
   title: string;
@@ -17,27 +18,31 @@ const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
 ---
 
 <article class="mb-6 md:mb-12">
-  <div class="flex items-center gap-4 mb-4">
-    <h4 class="text-base md:text-lg font-semibold text-green-100/80">
+  <header
+    class="flex flex-col gap-2 items-start sm:flex-row sm:items-center sm:gap-4 mb-4"
+  >
+    <h4 class="text-lg md:text-xl font-semibold text-green-100/80">
       {title}
     </h4>
-    <SocialPill href={codeURL}>
-      <CodeIcon class="size-4" />
-      <span class="hidden md:inline opacity-75 text-xs">Codigo</span>
-    </SocialPill>
-    {
-      webSiteURL && (
-        <SocialPill href={webSiteURL}>
-          <BoxSeamIcon class="size-4" />
-          <span class="hidden md:inline opacity-75 text-xs">Sitio web</span>
-        </SocialPill>
-      )
-    }
-  </div>
-  <p class="mb-4 text-xs md:text-sm lg:text-base text-gray-400 text-pretty">
-    {description}
-  </p>
-  <ul class="flex gap-2 md:gap-4 flex-row mb-4 flex-wrap">
+    <div class="flex gap-2 md:gap-4">
+      <SocialPill href={codeURL}>
+        <CodeIcon class="size-4" />
+        <span class="hidden md:inline opacity-75 text-xs">Codigo</span>
+      </SocialPill>
+      {
+        webSiteURL && (
+          <SocialPill href={webSiteURL}>
+            <BoxSeamIcon class="size-4" />
+            <span class="hidden md:inline opacity-75 text-xs">Sitio web</span>
+          </SocialPill>
+        )
+      }
+    </div>
+  </header>
+  <Paragraph>{description}</Paragraph>
+  <ul
+    class="flex gap-2 md:gap-4 flex-row mb-4 md:mb-8 flex-wrap justify-center lg:justify-start"
+  >
     {
       tags.map(({ name, Icon, className }) => (
         <TagPill className={className}>

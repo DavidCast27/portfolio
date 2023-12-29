@@ -1,7 +1,7 @@
 export const EXPERIENCES = [
   {
     date: "Agosto 2021",
-    title: "Contekta - Sr Frontend Developer",
+    title: "Conekta - Sr Frontend Developer",
     description: "Desarrollador Fullstack utilizando tecnologias frontent como React, Material UI, Chakra UI, TypeScript y en backend GO y Node.js, se ha llevado a acabo un proceso de mantenimiento y soporte de la aplicacion de backoffice de la compañia, como tambien se agregan nuevas funcionalidades",
     actual: true,
   },
