@@ -1,0 +1,16 @@
+---
+import { HEADER_ITEMS } from "../constants/nav.constants";
+---
+
+<nav class="flex flex-row gap-2 lg:gap-8 justify-center items-center mx-auto">
+  {
+    HEADER_ITEMS.map(({ label, href }) => (
+      <a
+        class="text-xs md:text-sm lg:text-base hover:bg-gray-300 dark:hover:bg-gray-800 rounded-lg px-1 py-2 md:px-4 transition hover:scale-110 opacity-80"
+        href={href}
+      >
+        {label}
+      </a>
+    ))
+  }
+</nav>

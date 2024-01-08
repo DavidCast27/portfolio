@@ -12,7 +12,10 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+  lang="en"
+  class="dark bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -30,8 +33,6 @@ const { description, title } = Astro.props;
   <style is:global>
     :root {
       color-scheme: light dark;
-      background-color: rgb(17 24 39);
-      color: rgba(156 163 175, 0.9);
     }
     html {
       font-family: "Onest", sans-serif;
@@ -44,11 +45,6 @@ const { description, title } = Astro.props;
     }
     @media (prefers-reduced-motion: reduce) {
       scroll-behavior: auto;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-      }
     }
   </style>
 </html>

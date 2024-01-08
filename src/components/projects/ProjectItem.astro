@@ -19,23 +19,23 @@ const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
 
 <article class="mb-6 md:mb-12">
   <header
-    class="flex flex-col gap-2 items-start sm:flex-row sm:items-center sm:gap-4 mb-4"
+    class="flex flex-col gap-2 items-start sm:flex-row sm:items-center sm:gap-4 mb-6"
   >
-    <h4 class="text-lg md:text-xl font-semibold text-green-100/80">
+    <h4
+      class="text-lg md:text-xl font-semibold text-green-800/80 dark:text-green-100/80"
+    >
       {title}
     </h4>
     <div class="flex gap-2 md:gap-4">
       <SocialPill href={codeURL}>
-        <CodeIcon class="size-4 text-white/75" />
-        <span class="hidden md:inline text-white/75 text-xs">Codigo</span>
+        <CodeIcon class="size-4" />
+        <span class="hidden md:inline text-xs">Codigo</span>
       </SocialPill>
       {
         webSiteURL && (
           <SocialPill href={webSiteURL}>
-            <BoxSeamIcon class="size-4 text-white/75" />
-            <span class="hidden md:inline text-white/75 text-xs">
-              Sitio web
-            </span>
+            <BoxSeamIcon class="size-4" />
+            <span class="hidden md:inline text-xs">Sitio web</span>
           </SocialPill>
         )
       }
@@ -43,7 +43,7 @@ const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
   </header>
   <Paragraph>{description}</Paragraph>
   <ul
-    class="flex gap-2 md:gap-4 flex-row mb-4 md:mb-8 flex-wrap justify-center lg:justify-start"
+    class="flex gap-2 md:gap-4 flex-row my-4 md:my-8 flex-wrap justify-center lg:justify-start"
   >
     {
       tags.map(({ name, Icon, className }) => (
@@ -55,7 +55,7 @@ const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
     }
   </ul>
   <img
-    class="rounded shadow-2xl shadow-white/15 w-full"
+    class="rounded shadow-2xl shadow-black/20 dark:shadow-white/15 w-full"
     src={image}
     alt={`imagen de ${title} `}
   />
