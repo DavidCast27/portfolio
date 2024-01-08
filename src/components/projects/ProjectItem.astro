@@ -27,13 +27,13 @@ const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
       {title}
     </h4>
     <div class="flex gap-2 md:gap-4">
-      <SocialPill href={codeURL}>
+      <SocialPill href={codeURL} title="code">
         <CodeIcon class="size-4" />
         <span class="hidden md:inline text-xs">Codigo</span>
       </SocialPill>
       {
         webSiteURL && (
-          <SocialPill href={webSiteURL}>
+          <SocialPill href={webSiteURL} title="web">
             <BoxSeamIcon class="size-4" />
             <span class="hidden md:inline text-xs">Sitio web</span>
           </SocialPill>

@@ -17,7 +17,7 @@ import SocialPill from "../ui/SocialPill.astro";
     <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold">
       David Castrillón Gonzales
     </h1>
-    <h2 class="opacity-80 text-xl md:text-2xl lg:text-3xl text-wrap">
+    <h2 class="opacity-90 text-xl md:text-2xl lg:text-3xl text-wrap">
       Desarrollador Web
     </h2>
     <a
@@ -30,40 +30,43 @@ import SocialPill from "../ui/SocialPill.astro";
   </div>
 </div>
 <p
-  class="text-yellow-600/90 dark:text-yellow-100/90 text-sm md:text-base lg:text-lg text-pretty mb-4 lg:mb-6"
+  class="text-yellow-800/90 dark:text-yellow-100/90 text-sm md:text-base lg:text-lg text-pretty mb-4 lg:mb-6"
 >
   <strong>+7 años de experiencia</strong>
 </p>
 <p
-  class="text-sm md:text-base lg:text-lg mb-4 lg:mb-6 text-wrap text-gray-500 dark:text-gray-400"
+  class="text-sm md:text-base lg:text-lg mb-4 lg:mb-6 text-wrap text-gray-600 dark:text-gray-400"
 >
   Desarrollador web enfocado en FrontEnd usando <span
-    class="text-yellow-600/90 dark:text-yellow-100/90"
+    class="text-yellow-800/90 dark:text-yellow-100/90"
     >HTML, CSS, JavaScript, TypeScript, React</span
   > todo un crack construyendo aplicaciones web para empresas lideres del sector.
 </p>
-<p class="text-xs md:text-sm lg:text-base mb-4 lg:mb-6 text-wrap opacity-60">
+<p class="text-xs md:text-sm lg:text-base mb-4 lg:mb-6 text-wrap opacity-90">
   Adicionalmente +2 años de experiencia en <span
-    class="text-green-600/90 dark:text-green-100/90">GO, NodeJS y JAVA</span
+    class="text-green-700/90 dark:text-green-100/90">GO, NodeJS y JAVA</span
   > y +3 años de experiencia en automatizacion de pruebas usando <span
-    class="text-green-600/90 dark:text-green-100/90">Selenium y Appium</span
+    class="text-green-700/90 dark:text-green-100/90">Selenium y Appium</span
   >
 </p>
 
 <nav class="flex gap-4 mt-4 lg:mt-8 justify-center md:justify-start">
-  <SocialPill href="https://github.com/DavidCast27">
+  <SocialPill href="https://github.com/DavidCast27" title="GitHub">
     <GitHubIcon class="size-4 lg:size-6" />
     <span class="hidden md:inline text-xs">GitHub</span>
   </SocialPill>
-  <SocialPill href="https://www.linkedin.com/in/davidcastrillongonzales/">
+  <SocialPill
+    href="https://www.linkedin.com/in/davidcastrillongonzales/"
+    title="LinkedIn"
+  >
     <LinkedInIcon class="size-4 lg:size-6" />
     <span class="hidden md:inline text-xs">LinkedIn</span>
   </SocialPill>
-  <SocialPill href="mailto:david.cast27@gmail.com">
+  <SocialPill href="mailto:david.cast27@gmail.com" title="email">
     <MailIcon class="size-4 lg:size-6" />
     <span class="hidden md:inline text-xs">david.cast27@gmail.com</span>
   </SocialPill>
-  <SocialPill href="/CV-ES-david-castrillon.pdf">
+  <SocialPill href="/CV-ES-david-castrillon.pdf" title="DownLoadCV">
     <DownloadIcon class="size-4 lg:size-6" />
     <span class="hidden md:inline text-xs">Descargar CV</span>
   </SocialPill>

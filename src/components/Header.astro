@@ -1,12 +1,15 @@
 ---
 import Nav from "./Nav.astro";
 import MoonIcon from "./icons/MoonIcon.astro";
+import DarkModeButton from "./ui/DarkModeButton.astro";
 ---
 
 <header
   class="bg-gray-200 dark:bg-gray-900 p-4 fixed w-full z-20 mx-auto flex inset-x-0 sm:w-[600px] lg:w-[740px] gap-2"
 >
   <Nav />
+
+  <DarkModeButton />
 
   <!-- <button
     id="theme-toggle"
