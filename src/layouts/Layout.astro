@@ -12,10 +12,7 @@ const { description, title } = Astro.props;
 ---
 
 <!doctype html>
-<html
-  lang="en"
-  class="dark bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
->
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -24,7 +21,7 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-400">
     <Header />
     <slot />
     <Footer />
