@@ -2,7 +2,6 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "@fontsource/onest";
-import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -22,28 +21,28 @@ const { currentLocale } = Astro;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-400">
     <Header />
     <slot />
     <Footer />
-    <style is:global>
-      :root {
-        color-scheme: light dark;
-      }
-      html {
-        font-family: "Onest", sans-serif;
-        scroll-behavior: smooth;
-      }
-      body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        scroll-behavior: auto;
-      }
-    </style>
   </body>
+
+  <style is:global>
+    :root {
+      color-scheme: light dark;
+    }
+    html {
+      font-family: "Onest", sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
+  </style>
 </html>
