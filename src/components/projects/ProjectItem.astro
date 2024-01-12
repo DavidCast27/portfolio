@@ -5,6 +5,7 @@ import SocialPill from "../ui/SocialPill.astro";
 import BoxSeamIcon from "../icons/BoxSeamIcon.astro";
 import CodeIcon from "../icons/CodeIcon.astro";
 import Paragraph from "../ui/Paragraph.astro";
+import { getI18N } from "../../i18n";
 
 interface Props {
   title: string;
@@ -15,6 +16,9 @@ interface Props {
   webSiteURL?: string;
 }
 const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
 <article class="mb-6 md:mb-12">
@@ -29,13 +33,17 @@ const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
     <div class="flex gap-2 md:gap-4">
       <SocialPill href={codeURL} title="code">
         <CodeIcon class="size-4" />
-        <span class="hidden md:inline text-xs">Codigo</span>
+        <span class="hidden md:inline text-xs">
+          {i18n.projects.links.code}
+        </span>
       </SocialPill>
       {
         webSiteURL && (
           <SocialPill href={webSiteURL} title="web">
             <BoxSeamIcon class="size-4" />
-            <span class="hidden md:inline text-xs">Sitio web</span>
+            <span class="hidden md:inline text-xs">
+              {i18n.projects.links.web}
+            </span>
           </SocialPill>
         )
       }

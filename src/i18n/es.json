@@ -29,7 +29,11 @@
     }
   },
   "projects": {
-    "title": "Proyectos"
+    "title": "Proyectos",
+    "links": {
+      "code": "Codigo",
+      "web": "Sitio web"
+    }
   },
   "about": {
     "title": "Sobre mí",
