@@ -1,22 +1,18 @@
 ---
+import { getI18N } from "../../i18n";
 import Paragraph from "../ui/Paragraph.astro";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
 <Paragraph>
-  Me apasiona la programación y aprender constantemente sobre nuevas
-  tecnologías. Creo firmemente en que el conocimiento es de todos y para todos,
-  por lo cual disfruto del aprendizaje colaborativo y de aplicar lo aprendido en
-  el ámbito laboral a través de la enseñanza.
+  {i18n.about.first_paragraph}
 </Paragraph>
 <Paragraph>
-  Soy una persona que disfruta de trabajar en equipo, que le encantan los retos
-  y se caracteriza por estar calmado al momento de tomar decisiones en aras de
-  ayudar a buscar soluciones a los problemas que se presenten en un entorno
-  laboral.
+  {i18n.about.second_paragraph}
 </Paragraph>
 
 <Paragraph>
-  Comprometido en utilizar mi experiencia y conocimiento en la calidad del
-  software para mejorar las aplicaciones, y así generar más valor a los
-  clientes.
+  {i18n.about.third_paragraph}
 </Paragraph>

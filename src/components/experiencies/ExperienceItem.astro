@@ -1,4 +1,5 @@
 ---
+import { getI18N } from "../../i18n";
 import Badge from "../ui/Badge.astro";
 import Paragraph from "../ui/Paragraph.astro";
 interface Props {
@@ -8,6 +9,9 @@ interface Props {
   actual: boolean;
 }
 const { title, description, date, actual } = Astro.props;
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
 <div
@@ -22,7 +26,7 @@ const { title, description, date, actual } = Astro.props;
   >
     {title}
   </h4>
-  {actual && <Badge color="yellow">Actualmente</Badge>}
+  {actual && <Badge color="yellow"> {i18n.experience.status.current}</Badge>}
 </header>
 <time
   class="block mb-2 text-sm md:text-base lg:text-lg leading-none text-gray-500/80 dark:text-gray-400/80"

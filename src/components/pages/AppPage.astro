@@ -1,13 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Experience from "../components/experiencies/Experience.astro";
-import Projects from "../components/projects/Projects.astro";
-import SectionContainer from "../components/SectionContainer.astro";
-import LaptopIcon from "../components/icons/LaptopIcon.astro";
-import CodeIcon from "../components/icons/CodeIcon.astro";
-import Home from "../components/home/Home.astro";
-import AboutMe from "../components/about/AboutMe.astro";
-import UserSquareRoundedIcon from "../components/icons/UserSquareRoundedIcon.astro";
+import Layout from "../../layouts/Layout.astro";
+import Experience from "../../components/experiencies/Experience.astro";
+import Projects from "../../components/projects/Projects.astro";
+import SectionContainer from "../../components/SectionContainer.astro";
+import LaptopIcon from "../../components/icons/LaptopIcon.astro";
+import CodeIcon from "../../components/icons/CodeIcon.astro";
+import Home from "../../components/home/Home.astro";
+import AboutMe from "../../components/about/AboutMe.astro";
+import UserSquareRoundedIcon from "../../components/icons/UserSquareRoundedIcon.astro";
+import { getI18N } from "../../i18n";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
 <Layout
@@ -20,7 +24,7 @@ import UserSquareRoundedIcon from "../components/icons/UserSquareRoundedIcon.ast
     </SectionContainer>
     <SectionContainer
       id="experience"
-      title="Experiencia laboral"
+      title={i18n.experience.title}
       class="pt-20 pb-4 md:pb-5 lg:pb-7"
     >
       <LaptopIcon class="size-8" slot="icon" />
@@ -29,7 +33,7 @@ import UserSquareRoundedIcon from "../components/icons/UserSquareRoundedIcon.ast
 
     <SectionContainer
       id="projects"
-      title="Proyectos"
+      title={i18n.projects.title}
       class="pt-20 pb-4 md:pb-5 lg:pb-7"
     >
       <CodeIcon class="size-8" slot="icon" />
@@ -37,7 +41,7 @@ import UserSquareRoundedIcon from "../components/icons/UserSquareRoundedIcon.ast
     </SectionContainer>
     <SectionContainer
       id="about-me"
-      title="Sobre mi"
+      title={i18n.about.title}
       class="pt-20 pb-4 md:pb-5 lg:pb-7"
     >
       <UserSquareRoundedIcon class="size-8" slot="icon" />

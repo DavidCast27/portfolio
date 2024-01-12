@@ -5,6 +5,10 @@ import LinkedInIcon from "../icons/LinkedInIcon.astro";
 import MailIcon from "../icons/MailIcon.astro";
 import Badge from "../ui/Badge.astro";
 import SocialPill from "../ui/SocialPill.astro";
+import { getI18N } from "../../i18n/";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
 <div class="flex flex-row gap-x-4 pb-4 md:pb-6 lg:pb-8">
@@ -15,59 +19,52 @@ import SocialPill from "../ui/SocialPill.astro";
   />
   <div class="flex flex-col gap-y-2">
     <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold">
-      David Castrillón Gonzales
+      {i18n.home.name}
     </h1>
     <h2 class="opacity-90 text-xl md:text-2xl lg:text-3xl text-wrap">
-      Desarrollador Web
+      {i18n.home.role}
     </h2>
     <a
       href="https://www.linkedin.com/in/davidcastrillongonzales/"
       target="_blank"
       rel="noopener"
     >
-      <Badge color="green">Disponible</Badge>
+      <Badge color="green">{i18n.home.status.available}</Badge>
     </a>
   </div>
 </div>
 <p
   class="text-yellow-800/90 dark:text-yellow-100/90 text-sm md:text-base lg:text-lg text-pretty mb-4 lg:mb-6"
 >
-  <strong>+7 años de experiencia</strong>
+  <strong>{i18n.home.years_of_experience}</strong>
 </p>
 <p
   class="text-sm md:text-base lg:text-lg mb-4 lg:mb-6 text-wrap text-gray-600 dark:text-gray-400"
 >
-  Desarrollador web enfocado en FrontEnd usando <span
-    class="text-yellow-800/90 dark:text-yellow-100/90"
-    >HTML, CSS, JavaScript, TypeScript, React</span
-  > todo un crack construyendo aplicaciones web para empresas lideres del sector.
+  <Fragment set:html={i18n.home.main_paragraph} />
 </p>
 <p class="text-xs md:text-sm lg:text-base mb-4 lg:mb-6 text-wrap opacity-90">
-  Adicionalmente +2 años de experiencia en <span
-    class="text-green-700/90 dark:text-green-100/90">GO, NodeJS y JAVA</span
-  > y +3 años de experiencia en automatizacion de pruebas usando <span
-    class="text-green-700/90 dark:text-green-100/90">Selenium y Appium</span
-  >
+  <Fragment set:html={i18n.home.second_paragraph} />
 </p>
 
 <nav class="flex gap-4 mt-4 lg:mt-8 justify-center md:justify-start">
   <SocialPill href="https://github.com/DavidCast27" title="GitHub">
     <GitHubIcon class="size-4 lg:size-6" />
-    <span class="hidden md:inline text-xs">GitHub</span>
+    <span class="hidden md:inline text-xs">{i18n.home.social.github}</span>
   </SocialPill>
   <SocialPill
     href="https://www.linkedin.com/in/davidcastrillongonzales/"
     title="LinkedIn"
   >
     <LinkedInIcon class="size-4 lg:size-6" />
-    <span class="hidden md:inline text-xs">LinkedIn</span>
+    <span class="hidden md:inline text-xs">{i18n.home.social.linkedin}</span>
   </SocialPill>
   <SocialPill href="mailto:david.cast27@gmail.com" title="email">
     <MailIcon class="size-4 lg:size-6" />
-    <span class="hidden md:inline text-xs">david.cast27@gmail.com</span>
+    <span class="hidden md:inline text-xs">{i18n.home.social.mail}</span>
   </SocialPill>
   <SocialPill href="/CV-ES-david-castrillon.pdf" title="DownLoadCV">
     <DownloadIcon class="size-4 lg:size-6" />
-    <span class="hidden md:inline text-xs">Descargar CV</span>
+    <span class="hidden md:inline text-xs">{i18n.home.social.download_cv}</span>
   </SocialPill>
 </nav>

@@ -1,6 +1,11 @@
 ---
 import { PROJECTS } from "../../data/projects.data.astro";
 import ProjectItem from "./ProjectItem.astro";
+const { currentLocale } = Astro;
 ---
 
-{PROJECTS.map((project) => <ProjectItem {...project} />)}
+{
+  PROJECTS[currentLocale as "es" | "en"].map((project) => (
+    <ProjectItem {...project} />
+  ))
+}

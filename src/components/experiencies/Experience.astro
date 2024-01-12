@@ -1,11 +1,12 @@
 ---
 import ExperienceItem from "../experiencies/ExperienceItem.astro";
 import { EXPERIENCES } from "../../data/experience.data";
+const { currentLocale } = Astro;
 ---
 
 <ol class="relative border-s border-gray-700 dark:border-white ml-4">
   {
-    EXPERIENCES.map((Experience) => (
+    EXPERIENCES[currentLocale as "es" | "en"].map((Experience) => (
       <li class="mb-10 ms-4">
         <ExperienceItem {...Experience} />{" "}
       </li>

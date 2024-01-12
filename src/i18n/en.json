@@ -1,0 +1,40 @@
+{
+  "menu": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "about": "About"
+  },
+  "copyright": "©️ no copyright",
+  "home": {
+    "name": "David Castrillón Gonzales",
+    "role": "Web developer",
+    "status": {
+      "available": "Available"
+    },
+    "years_of_experience": "+7 years of experience",
+    "main_paragraph": "Web developer focused on FrontEnd using <span class='text-yellow-800/90 dark:text-yellow-100/90'>HTML, CSS, JavaScript, TypeScript, React.</span> I'm a crack at building web applications for leading companies in the sector.",
+    "second_paragraph": "Additionally +2 years of experience in <span class='text-green-700/90 dark:text-green-100/90'>GO, NodeJS y JAVA</span> and +3 years of experience in test automation using <span class='text-green-700/90 dark:text-green-100/90'>Selenium y Appium</span>",
+    "social": {
+      "github": "Github",
+      "linkedin": "LinkedIn",
+      "mail": "david.cast27@gmail.com",
+      "download_cv": "Download CV"
+    }
+  },
+  "experience": {
+    "title": "Work Experience",
+    "status": {
+      "current": "Present"
+    }
+  },
+  "projects": {
+    "title": "Projects"
+  },
+  "about": {
+    "title": "About me",
+    "first_paragraph": "I am passionate about programming and constantly learning about new technologies. I firmly believe that knowledge is for everyone, and I enjoy collaborative learning and applying what I've learned in the workplace through teaching.",
+    "second_paragraph": "I am someone who enjoys working in a team, loves challenges, and is known for remaining calm when making decisions to help find solutions to problems in a work environment.",
+    "third_paragraph": "Committed to using my experience and knowledge in software quality to improve applications and generate more value for customers."
+  }
+}

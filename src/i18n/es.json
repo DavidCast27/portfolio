@@ -1,0 +1,40 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "about": "Sobre mí"
+  },
+  "copyright": "©️ Aca no reservamos nada",
+  "home": {
+    "name": "David Castrillón Gonzales",
+    "role": "Desarrollador web",
+    "status": {
+      "available": "Disponible"
+    },
+    "years_of_experience": "+7 años de experiencia",
+    "main_paragraph": "Desarrollador web enfocado en FrontEnd usando <span class='text-yellow-800/90 dark:text-yellow-100/90'>HTML, CSS, JavaScript, TypeScript, React</span> todo un crack construyendo aplicaciones web para empresas lideres del sector.",
+    "second_paragraph": "Adicionalmente +2 años de experiencia en <span class='text-green-700/90 dark:text-green-100/90'>GO, NodeJS y JAVA</span> y +3 años de experiencia en automatizacion de pruebas usando <span class='text-green-700/90 dark:text-green-100/90'>Selenium y Appium</span>",
+    "social": {
+      "github": "Github",
+      "linkedin": "LinkedIn",
+      "mail": "david.cast27@gmail.com",
+      "download_cv": "Descargar CV"
+    }
+  },
+  "experience": {
+    "title": "Experiencia laboral",
+    "status": {
+      "current": "Actualmente"
+    }
+  },
+  "projects": {
+    "title": "Proyectos"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "first_paragraph": "Me apasiona la programación y aprender constantemente sobre nuevas tecnologías. Creo firmemente en que el conocimiento es de todos y para todos, por lo cual disfruto del aprendizaje colaborativo y de aplicar lo aprendido en el ámbito laboral a través de la enseñanza.",
+    "second_paragraph": "Soy una persona que disfruta de trabajar en equipo, que le encantan los retos y se caracteriza por estar calmado al momento de tomar decisiones en aras de ayudar a buscar soluciones a los problemas que se presenten en un entorno laboral.",
+    "third_paragraph": "Comprometido en utilizar mi experiencia y conocimiento en la calidad del software para mejorar las aplicaciones, y así generar más valor a los clientes."
+  }
+}

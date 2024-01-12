@@ -1,7 +1,12 @@
 ---
 import { HEADER_ITEMS } from "../constants/nav.constants";
+import { getI18N } from "../i18n";
 import MenuIcon from "./icons/MenuIcon.astro";
 import DarkModeButton from "./ui/DarkModeButton.astro";
+import LenguageSelector from "./ui/LenguageSelector.astro";
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
 <header
@@ -28,7 +33,7 @@ import DarkModeButton from "./ui/DarkModeButton.astro";
             class="menu-item text-xl hover:bg-gray-300 dark:hover:bg-gray-800 rounded-lg px-1 py-2 sm:px-4 transition hover:scale-110 "
             aria-current="page"
           >
-            {label}
+            {i18n.menu[label]}
           </a>
         ))
       }
@@ -42,11 +47,12 @@ import DarkModeButton from "./ui/DarkModeButton.astro";
             class="text-sm lg:text-base hover:bg-gray-300 dark:hover:bg-gray-800 rounded-lg px-1 py-2 md:px-4 transition hover:scale-110 "
             aria-current="page"
           >
-            {label}
+            {i18n.menu[label]}
           </a>
         ))
       }
     </nav>
+    <LenguageSelector />
     <DarkModeButton />
   </div>
 </header>

@@ -1,6 +1,6 @@
-export const HEADER_ITEMS = [
-  { label: "Inicio", href: "#home" },
-  { label: "Experiecia", href: "#experience" },
-  { label: "Proyectos", href: "#projects" },
-  { label: "Sobre mi", href: "#about-me" },
+export const HEADER_ITEMS: Array<{ label: "home" | "experience" | "projects" | "about", href: string }> = [
+  { label: "home", href: "#home" },
+  { label: "experience", href: "#experience" },
+  { label: "projects", href: "#projects" },
+  { label: "about", href: "#about-me" },
 ];

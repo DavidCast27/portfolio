@@ -1,7 +1,7 @@
 ---
 import { TAGS } from "../constants/tags.constants.astro";
 
-export const PROJECTS = [
+export const PROJECTS_ES = [
   {
     title: "Acme Dashboard - curso de Next.js ",
     description:
@@ -20,4 +20,29 @@ export const PROJECTS = [
     tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.NETLYFY],
   },
 ];
+
+export const PROJECTS_EN = [
+  {
+    title: "Acme Dashboard - Next.js Course",
+    description:
+      "The Next.js application routing course was my first approach to using Next.js, version 14. I had wanted to learn this technology for a while, and finally found the time to do so. I learned the basic concepts of Next.js, how it works in routing according to folders, and how to create an SSR application. If you want to learn, too, you can check the course curriculum on the Next.js website.",
+    codeURL: "https://github.com/DavidCast27/nextjs-dashboard",
+    webSiteURL: "https://dashboard-example-castri.vercel.app/",
+    image: "/projects/dashboard-example.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL],
+  },
+  {
+    title: "Portfolio",
+    description:
+      "This is my portfolio, created to explore and learn Astro and Tailwind CSS. I learned the basic concepts of Astro and finally fell in love with Tailwind CSS. If you want to learn, too, you can follow the video 'How to create a Portfolio Web with Astro, HTML, CSS, and TailwindCSS' on Midudev's YouTube channel.",
+    codeURL: "https://github.com/DavidCast27/portfolio",
+    image: "/projects/portfolio.webp",
+    tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.NETLYFY],
+  },
+];
+
+export const PROJECTS = {
+  en: [...PROJECTS_EN],
+  es: [...PROJECTS_ES],
+};
 ---
