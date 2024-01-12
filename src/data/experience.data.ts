@@ -35,13 +35,13 @@ export const EXPERIENCES_EN = [
   {
     date: "August 2021",
     title: "Conekta - Sr Frontend Developer",
-    description: "Full-stack developer using frontend technologies such as React, Material UI, Chakra UI, TypeScript, and backend technologies GO and Node.js. Conducted maintenance and support for the company's back-office application, along with the addition of new functionalities.",
+    description: "Full-stack developer using frontend technologies such as React, Material UI, Chakra UI, TypeScript, and backend technologies like GO and Node.js. Conducted maintenance and support for the company's back-office application, along with the addition of new functionalities.",
     actual: true,
   },
   {
     date: "March 2021 - August 2021",
     title: "Mercado Libre - Software Development SSr Analyst",
-    description: "Frontend Developer using HTML, CSS, TypeScript, React, and Node.js. Participated in the migration of the company's insurance application.",
+    description: "Frontend Developer using HTML, CSS, TypeScript, React, and Node.js. Participated in the company's insurance application migration.",
     actual: false,
   },
   {
@@ -59,7 +59,7 @@ export const EXPERIENCES_EN = [
   {
     date: "August 2016 - November 2017",
     title: "Tenebit - Frontend Developer",
-    description: "Web application developer using Ionic, AngularJs to manage and customize customer experiences in using a CRM.",
+    description: "Web application developer using Ionic and AngularJs to manage/customize the end user's experience using a CRM.",
     actual: false,
   },
 ];
