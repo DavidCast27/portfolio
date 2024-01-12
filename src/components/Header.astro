@@ -12,7 +12,7 @@ const i18n = getI18N({ currentLocale });
 <header
   class="bg-gray-200 dark:bg-gray-900 py-4 px-8 md:px-0 fixed w-full z-20 inset-x-0 gap-2 dark:border-gray-600"
 >
-  <div class="flex justify-between sm:w-[600px] lg:w-[740px] mx-auto">
+  <div class="flex justify-between sm:w-[600px] lg:w-[740px] mx-auto gap-x-2">
     <button
       id="menu-toggle"
       type="button"
@@ -24,35 +24,36 @@ const i18n = getI18N({ currentLocale });
     <!-- Menú de navegación móvil para pantallas pequeñas -->
     <nav
       id="mobile-menu"
-      class="bg-gray-200/90 dark:bg-gray-900/90 -translate-y-full transition-transform sm:hidden w-full flex flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center"
+      class="bg-gray-200/90 dark:bg-gray-900/90 -translate-y-full transition-transform sm:hidden w-full flex flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center gap-2"
     >
       {
         HEADER_ITEMS.map(({ label, href }) => (
           <a
             href={href}
-            class="menu-item text-xl hover:bg-gray-300 dark:hover:bg-gray-800 rounded-lg px-1 py-2 sm:px-4 transition hover:scale-110 "
+            class="menu-item text-xl hover:bg-gray-300 dark:hover:bg-gray-800 rounded px-1 py-2  transition hover:scale-110 "
             aria-current="page"
           >
             {i18n.menu[label]}
           </a>
         ))
       }
+      <LenguageSelector />
     </nav>
-
-    <nav class="items-center justify-between hidden sm:flex space-x-8">
+    <nav class="items-center justify-between hidden sm:flex w-full">
       {
         HEADER_ITEMS.map(({ label, href }) => (
           <a
             href={href}
-            class="text-sm lg:text-base hover:bg-gray-300 dark:hover:bg-gray-800 rounded-lg px-1 py-2 md:px-4 transition hover:scale-110 "
+            class="text-sm lg:text-base hover:bg-gray-300 dark:hover:bg-gray-800 rounded px-1 py-2  transition hover:scale-110 "
             aria-current="page"
           >
             {i18n.menu[label]}
           </a>
         ))
       }
+      <LenguageSelector />
     </nav>
-    <LenguageSelector />
+
     <DarkModeButton />
   </div>
 </header>

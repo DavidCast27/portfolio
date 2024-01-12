@@ -32,7 +32,7 @@ const currentPath = url.pathname.replace(currentLocaleData.href, "");
 
 <div class="relative inline-block text-left">
   <div
-    class="group text-white rounded-md text-xs font-semibold bg-black/30 hover:bg-black/70 transition-all"
+    class="group rounded text-sm font-semibold transition-all hover:bg-gray-300 dark:hover:bg-gray-800 border-2 border-black/10 dark:border-white/10"
   >
     <button
       type="button"
@@ -42,16 +42,16 @@ const currentPath = url.pathname.replace(currentLocaleData.href, "");
     >
       <currentLocaleData.flag class="size-4" />
       {currentLocaleData.name}
-      <ChevronIcon class="size-4 text-white -mr-1" />
+      <ChevronIcon class="size-4 -mr-1" />
     </button>
     <ul
-      class="group-hover:block group-hover:animate-fade-down group-hover:animate-duration-200 hidden pt-0.5 absolute w-full"
+      class="group-hover:block group-hover:animate-fade-down group-hover:animate-duration-200 hidden absolute w-full"
     >
       {
         otherLocales.map((locale) => (
           <li class="">
             <a
-              class="rounded-md bg-black/30 hover:bg-black/70 whitespace-no-wrap inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
+              class="rounded hover:bg-gray-300 dark:hover:bg-gray-800 border-2 -mx-0.5 border-black/10 dark:border-white/10 whitespace-no-wrap inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
               href={`${locale.href}${currentPath}`}
             >
               <locale.flag class="size-4" />
