@@ -58,21 +58,27 @@ const i18n = getI18N({ currentLocale });
   </div>
 </header>
 
-<script is:inline>
-  const menuToggle = document.getElementById("menu-toggle");
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const menuToggle = document.getElementById("menu-toggle") as HTMLElement;
 
-  const mobileMenu = document.getElementById("mobile-menu");
-  const menuItems = document.querySelectorAll(".menu-item");
+    const mobileMenu = document.getElementById("mobile-menu") as HTMLElement;
+    const menuItems = document.querySelectorAll(".menu-item");
 
-  menuToggle.addEventListener("click", () => {
-    document.body.classList.toggle("overflow-hidden");
-    mobileMenu.classList.toggle("translate-y-0");
-  });
+    if (!menuToggle || !mobileMenu || !menuItems) {
+      return;
+    }
 
-  menuItems.forEach((elem) => {
-    elem.addEventListener("click", function () {
+    menuToggle.addEventListener("click", () => {
       document.body.classList.toggle("overflow-hidden");
       mobileMenu.classList.toggle("translate-y-0");
+    });
+
+    menuItems.forEach((elem) => {
+      elem.addEventListener("click", function () {
+        document.body.classList.toggle("overflow-hidden");
+        mobileMenu.classList.toggle("translate-y-0");
+      });
     });
   });
 </script>

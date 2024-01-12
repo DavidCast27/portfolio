@@ -13,13 +13,15 @@ import SunIcon from "../icons/SunIcon.astro";
 </button>
 
 <script>
-  const darkModeButtons = document.querySelectorAll(".dark-mode-button");
-  const modeIcons = document.querySelectorAll(".mode-icon");
+  document.addEventListener("astro:page-load", () => {
+    const darkModeButtons = document.querySelectorAll(".dark-mode-button");
+    const modeIcons = document.querySelectorAll(".mode-icon");
 
-  darkModeButtons.forEach((button) =>
-    button.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-      modeIcons.forEach((el) => el.classList.toggle("hidden"));
-    }),
-  );
+    darkModeButtons.forEach((button) =>
+      button.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        modeIcons.forEach((el) => el.classList.toggle("hidden"));
+      }),
+    );
+  });
 </script>
