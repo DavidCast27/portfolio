@@ -1,27 +1,11 @@
 ---
-import ColombiaFlag from "../icons/flags/ColombiaFlag.astro";
-
-import UniteStatesFlag from "../icons/flags/UniteStatesFlag.astro";
 import ChevronIcon from "../icons/ChevronIcon.astro";
+import {
+  DEFAULT_LENGUAGE,
+  LOCALES,
+} from "../../constants/i18n.constants.astro";
 
-const { currentLocale = "es", url } = Astro;
-const LOCALES: Record<
-  string,
-  { code: string; name: string; href: string; flag: typeof ColombiaFlag }
-> = {
-  en: {
-    code: "en",
-    href: `/en`,
-    name: "English",
-    flag: UniteStatesFlag,
-  },
-  es: {
-    code: "es",
-    href: "/es",
-    name: "Español",
-    flag: ColombiaFlag,
-  },
-};
+const { currentLocale = DEFAULT_LENGUAGE, url } = Astro;
 
 const currentLocaleData = LOCALES[currentLocale];
 const otherLocales = Object.values(LOCALES).filter(

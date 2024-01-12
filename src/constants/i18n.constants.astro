@@ -1,0 +1,25 @@
+---
+import ColombiaFlag from "../components/icons/flags/ColombiaFlag.astro";
+import UniteStatesFlag from "../components/icons/flags/UniteStatesFlag.astro";
+
+export const DEFAULT_LENGUAGE = "en";
+type Locale = Record<
+  string,
+  { code: string; name: string; href: string; flag: typeof ColombiaFlag }
+>;
+
+export const LOCALES: Locale = {
+  en: {
+    code: "en",
+    href: `/en`,
+    name: "English",
+    flag: UniteStatesFlag,
+  },
+  es: {
+    code: "es",
+    href: "/es",
+    name: "Español",
+    flag: ColombiaFlag,
+  },
+};
+---
