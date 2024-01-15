@@ -14,10 +14,7 @@ const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
-<Layout
-  title="Portfolio David Castrillon- Desarrollador Web"
-  description="Portfolio David Castrillon- Desarrollador Web - HTML, CSS, JavaScript, TypeScript, React"
->
+<Layout title={i18n.seo.title} description={i18n.seo.description}>
   <main class="px-8">
     <SectionContainer id="home" class="py-28 pb-8 md:py-40 md:pb-10 lg:pb-14">
       <Home />

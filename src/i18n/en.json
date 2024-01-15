@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "David Castrillon Portfolio - Web developer",
+    "description": "David Castrillon Portfolio - Web developer - HTML, CSS, JavaScript, TypeScript, React"
+  },
   "menu": {
     "home": "Home",
     "experience": "Experience",

@@ -22,6 +22,27 @@ const { currentLocale } = Astro;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://castri.dev/en" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:image"
+      content="https://opengraph.b-cdn.net/production/documents/2df9b46a-b1e0-4306-b331-f47ba2c2a293.png?token=w7X2obgizZ57k5Q4xm3Xg1CtsdCp4xZJqTziNOra7wU&height=496&width=771&expires=33241264526"
+    />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="castri.dev" />
+    <meta property="twitter:url" content="https://castri.dev/en" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content="https://opengraph.b-cdn.net/production/documents/2df9b46a-b1e0-4306-b331-f47ba2c2a293.png?token=w7X2obgizZ57k5Q4xm3Xg1CtsdCp4xZJqTziNOra7wU&height=496&width=771&expires=33241264526"
+    />
     <ViewTransitions />
   </head>
   <body class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-400">
