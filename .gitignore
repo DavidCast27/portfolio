@@ -252,3 +252,6 @@ modules.xml
 *.ipr
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm,webstorm+all,webstorm+iml
+
+.idea/codeStyles
+
