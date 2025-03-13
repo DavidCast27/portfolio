@@ -1,9 +1,15 @@
 export const EXPERIENCES_ES = [
   {
-    date: "Agosto 2021",
+    date: "Octubre 2024",
+    title: "Yuno - Sr Frontend Developer",
+    description: "Desarrollador Fullstack utilizando tecnologias frontent como React, Material UI, TypeScript, single-spa y en backend usando Kotlin, se implemento el modulo de conciliacion dentro de el dashboard utilizando microfrontend para hacer una aplicacion mucho mas escalable",
+    actual: true,
+  },
+  {
+    date: "Agosto 2021 - Septiembre 2024",
     title: "Conekta - Sr Frontend Developer",
     description: "Desarrollador Fullstack utilizando tecnologias frontent como React, Material UI, Chakra UI, TypeScript y en backend GO y Node.js, se ha llevado a acabo un proceso de mantenimiento y soporte de la aplicacion de backoffice de la compañia, como tambien se agregan nuevas funcionalidades",
-    actual: true,
+    actual: false,
   },
   {
     date: "Marzo 2021 - Agosto 2021",
@@ -33,10 +39,16 @@ export const EXPERIENCES_ES = [
 
 export const EXPERIENCES_EN = [
   {
-    date: "August 2021",
-    title: "Conekta - Sr Frontend Developer",
-    description: "Full-stack developer using frontend technologies such as React, Material UI, Chakra UI, TypeScript, and backend technologies like GO and Node.js. Conducted maintenance and support for the company's back-office application, along with the addition of new functionalities.",
+    date: "October 2024",
+    title: "Yuno - Sr Frontend Developer",
+    description: "Fullstack developer using frontend technologies such as React, Material UI, TypeScript, single-spa and backend using Kotlin. The reconciliation module was implemented within the dashboard using microfrontend to make a much more scalable application.",
     actual: true,
+  },
+  {
+    date: "August 2021 - September 2024",
+    title: "Conekta - Sr Frontend Developer",
+    description: "Fullstack developer using frontend technologies such as React, Material UI, Chakra UI, TypeScript, and backend technologies like GO and Node.js. Conducted maintenance and support for the company's back-office application, along with the addition of new functionalities.",
+    actual: false,
   },
   {
     date: "March 2021 - August 2021",
