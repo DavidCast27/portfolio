@@ -21,6 +21,7 @@ const { currentLocale } = Astro;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="google-adsense-account" content="ca-pub-4053310127194983" />
     <title>{title}</title>
 
     <!-- Facebook Meta Tags -->
@@ -43,6 +44,13 @@ const { currentLocale } = Astro;
       name="twitter:image"
       content="https://opengraph.b-cdn.net/production/documents/2df9b46a-b1e0-4306-b331-f47ba2c2a293.png?token=w7X2obgizZ57k5Q4xm3Xg1CtsdCp4xZJqTziNOra7wU&height=496&width=771&expires=33241264526"
     />
+    {import.meta.env.PROD && (
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4053310127194983"
+        crossorigin="anonymous"
+      ></script>
+    )}
     <ViewTransitions />
   </head>
   <body class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-400">
