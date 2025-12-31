@@ -17,8 +17,8 @@
       "available": "Disponible"
     },
     "years_of_experience": "+8 años de experiencia",
-    "main_paragraph": "Desarrollador web enfocado en FrontEnd usando <span class='text-yellow-800/90 dark:text-yellow-100/90'>HTML, CSS, JavaScript, TypeScript, React</span> todo un crack construyendo aplicaciones web para empresas lideres del sector.",
-    "second_paragraph": "Adicionalmente +2 años de experiencia en <span class='text-green-700/90 dark:text-green-100/90'>GO, NodeJS y JAVA</span> y +3 años de experiencia en automatizacion de pruebas usando <span class='text-green-700/90 dark:text-green-100/90'>Selenium y Appium</span>",
+    "main_paragraph": "Desarrollador web enfocado en FrontEnd usando <span class='text-accent/90'>HTML, CSS, JavaScript, TypeScript, React</span> todo un crack construyendo aplicaciones web para empresas lideres del sector.",
+    "second_paragraph": "+2 años de experiencia en <span class='text-brand/90'>GO, NodeJS y JAVA</span> y +3 años en automatización de pruebas usando <span class='text-brand/90'>Selenium y Appium</span>",
     "social": {
       "github": "Github",
       "linkedin": "LinkedIn",

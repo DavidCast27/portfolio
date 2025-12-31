@@ -17,6 +17,18 @@ const { currentLocale } = Astro;
 <!doctype html>
 <html lang={currentLocale}>
   <head>
+    <script is:inline>
+      // Set theme class ASAP to avoid flashes
+      const stored = typeof localStorage !== "undefined" ? localStorage.getItem("theme") : null;
+      const prefersDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = stored ?? (prefersDark ? "dark" : "light");
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      try { localStorage.setItem("theme", theme); } catch {}
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
@@ -54,7 +66,9 @@ const { currentLocale } = Astro;
     )}
     <ViewTransitions />
   </head>
-  <body class="bg-gray-200 dark:bg-gray-900 text-gray-600 dark:text-gray-400">
+  <body class="bg-bg text-fg">
+    <!-- Safelist utilities used inside i18n HTML strings -->
+    <div class="hidden text-accent/90 text-brand/90"></div>
     <Header />
     <slot />
     <Footer />
@@ -76,26 +90,5 @@ const { currentLocale } = Astro;
       }
     </style>
 
-    <script is:inline>
-      const theme = (() => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      })();
-
-      if (theme === "light") {
-        document.documentElement.classList.remove("dark");
-      } else {
-        document.documentElement.classList.add("dark");
-      }
-      window.localStorage.setItem("theme", theme);
-    </script>
   </body>
 </html>

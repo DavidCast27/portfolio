@@ -21,14 +21,13 @@ export default function ThemeToggle() {
   };
 
   const Icon = isLight ? MoonIcon : SunIcon
-  const classesColor = isLight ? "text-slate-900" : "text-green-300"
+  const classesColor = isLight ? "text-fg" : "text-brand"
 
   return (
-    <button class={`hover:bg-gray-300 dark:hover:bg-gray-800 rounded transition hover:scale-110 p-1 border-2 border-black/10 dark:border-white/10 ${classesColor}`}
+    <button class={`hover:bg-hover rounded transition hover:scale-110 p-1 border-2 border-border ${classesColor}`}
       aria-label="Theme toggle"
       onClick={handleClick}>
       <span dangerouslySetInnerHTML={{ __html: Icon }} />
     </button>
   )
 }
-

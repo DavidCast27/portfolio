@@ -1,2 +1,35 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tailwind v4 design tokens */
+@theme {
+  /* Semantic colors (light) */
+  --color-bg: #e5e7eb;            /* gray-200 */
+  --color-fg: #4b5563;            /* gray-600 */
+  --color-border: #d1d5db;        /* gray-300 */
+  --color-hover: #d1d5db;         /* gray-300 */
+
+  /* Brand (light) */
+  --color-brand: #15803d;         /* green-700 */
+  --color-brand-foreground: #dcfce7; /* green-100 */
+
+  /* Accent (light) */
+  --color-accent: #854d0e;        /* yellow-800 */
+
+  /* Radius & spacing */
+  --radius-card: 0.75rem;         /* 12px */
+  --spacing-container: 2rem;      /* 32px */
+}
+
+/* Dark mode overrides on .dark (e.g., <html class="dark">) */
+.dark {
+  --color-bg: #111827;            /* gray-900 */
+  --color-fg: #9ca3af;            /* gray-400 */
+  --color-border: #4b5563;        /* gray-600 */
+  --color-hover: #1f2937;         /* gray-800 */
+
+  --color-brand: #86efac;         /* green-300 */
+  --color-brand-foreground: #064e3b; /* green-900 */
+  --color-accent: #fde68a;        /* yellow-300 */
+}
