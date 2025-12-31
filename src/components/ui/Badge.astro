@@ -1,11 +1,13 @@
 ---
-interface Props { color?: "green" | "yellow" | "neutral" }
+interface Props { color?: "green" | "yellow" | "neutral" | "info" | "destructive" }
 const { color = "neutral" } = Astro.props;
 
 const COLOR_MAP: Record<Required<Props>["color"], string> = {
-  green: "text-brand border-border",
-  yellow: "text-accent border-border",
-  neutral: "text-fg border-border",
+  green: "bg-success text-success-foreground border-transparent dark:border-border",
+  yellow: "bg-warning text-warning-foreground border-transparent dark:border-border",
+  info: "bg-info text-info-foreground border-transparent dark:border-border",
+  destructive: "bg-destructive text-destructive-foreground border-transparent dark:border-border",
+  neutral: "bg-muted text-muted-foreground border-transparent dark:border-border",
 };
 
 const className = `text-xs font-medium me-2 px-2.5 py-0.5 rounded border ${COLOR_MAP[color]}`;
