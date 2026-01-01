@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import MoonIcon from "../icons/MoonIcon.astro?raw";
 import SunIcon from "../icons/SunIcon.astro?raw";
-import { Themes } from "../../constants/theme.constants";
+import { Themes } from "@/constants/theme.constants";
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ?? Themes.LIGHT);

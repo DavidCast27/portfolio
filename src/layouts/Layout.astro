@@ -12,7 +12,7 @@ interface Props {
 
 const { description, title } = Astro.props;
 const { currentLocale } = Astro;
-const baseUrl = 'https://castri.dev';
+const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : Astro.url.origin;
 const localePath = currentLocale === 'en' ? '/en' : '';
 const pageUrl = `${baseUrl}${localePath}`;
 const altEsUrl = `${baseUrl}`;
@@ -55,15 +55,17 @@ const altEnUrl = `${baseUrl}/en`;
     <link rel="alternate" hrefLang="en" href={altEnUrl} />
     <ClientRouter />
 
-    <!-- Facebook Meta Tags -->
+    <!-- Open Graph -->
     <meta property="og:url" content={pageUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta
-      property="og:image"
-      content="https://opengraph.b-cdn.net/production/documents/2df9b46a-b1e0-4306-b331-f47ba2c2a293.png?token=w7X2obgizZ57k5Q4xm3Xg1CtsdCp4xZJqTziNOra7wU&height=496&width=771&expires=33241264526"
-    />
+    <!-- OG/Twitter image (PNG for compatibility) -->
+    <meta property="og:image" content={`${baseUrl}/og.png`} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -71,10 +73,8 @@ const altEnUrl = `${baseUrl}/en`;
     <meta property="twitter:url" content={pageUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content="https://opengraph.b-cdn.net/production/documents/2df9b46a-b1e0-4306-b331-f47ba2c2a293.png?token=w7X2obgizZ57k5Q4xm3Xg1CtsdCp4xZJqTziNOra7wU&height=496&width=771&expires=33241264526"
-    />
+    <meta name="twitter:image" content={`${baseUrl}/og.png`} />
+    <meta name="twitter:image:alt" content={title} />
     {
       import.meta.env.PROD && (
         <script

@@ -4,13 +4,14 @@ import SocialPill from "../ui/SocialPill.astro";
 import BoxSeamIcon from "../icons/BoxSeamIcon.astro";
 import CodeIcon from "../icons/CodeIcon.astro";
 import Paragraph from "../ui/Paragraph.astro";
-import { getI18N } from "../../i18n";
+import { getI18N } from "@/i18n";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
   description: string;
   tags: Array<{ name: string; className: string; Icon: any }>;
-  image: string;
+  image: any;
   codeURL: string;
   webSiteURL?: string;
 }
@@ -24,9 +25,7 @@ const i18n = getI18N({ currentLocale });
   <header
     class="flex flex-col gap-2 items-start sm:flex-row sm:items-center sm:gap-4 mb-6"
   >
-    <h3
-      class="text-lg md:text-xl font-semibold text-primary"
-    >
+    <h3 class="text-lg md:text-xl font-semibold text-primary">
       {title}
     </h3>
     <nav class="flex gap-2 md:gap-4">
@@ -61,10 +60,12 @@ const i18n = getI18N({ currentLocale });
       ))
     }
   </ul>
-  <img
-    class="rounded shadow-2xl shadow-foreground/20 w-full"
+  <Image
     src={image}
     alt={`${i18n.projects.image_alt_prefix} ${title}`}
+    widths={[480, 768, 1024, 1440]}
+    sizes="(min-width: 1024px) 768px, 100vw"
+    class="rounded shadow-2xl shadow-foreground/20 w-full h-auto"
     loading="lazy"
     decoding="async"
   />
