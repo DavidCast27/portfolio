@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "@fontsource/onest";
@@ -44,6 +44,7 @@ const { currentLocale } = Astro;
     <meta name="generator" content={Astro.generator} />
     <meta name="google-adsense-account" content="ca-pub-4053310127194983" />
     <title>{title}</title>
+    <ClientRouter />
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://castri.dev/en" />
@@ -74,14 +75,10 @@ const { currentLocale } = Astro;
         />
       )
     }
-    <ViewTransitions />
   </head>
-  <body class="bg-background text-foreground">
-    <!-- Safelist utilities used inside i18n HTML strings -->
-    <!-- <div class="hidden text-accent/90 text-primary/90"></div> -->
+  <body class="bg-background text-foreground w-full md:max-w-4xl mx-auto">
     <Header />
     <slot />
     <Footer />
-
   </body>
 </html>

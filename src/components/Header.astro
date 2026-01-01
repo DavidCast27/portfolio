@@ -9,53 +9,53 @@ const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
-<header class="bg-background py-4 px-8 md:px-0 fixed w-full z-20 inset-x-0 gap-2">
-  <div class="flex justify-between sm:w-full md:max-w-3xl mx-auto gap-x-2">
-    <button
-      id="menu-toggle"
-      type="button"
-      class="z-50 inline-flex sm:hidden hover:bg-accent/20 rounded transition hover:scale-110 p-1 border-2 border-border"
-      aria-label="Menu"
-    >
-      <MenuIcon class="size-6" />
-    </button>
+<header
+  class="bg-background py-4 px-8 md:px-0 fixed z-20 inset-x-0 gap-2 w-full md:max-w-4xl mx-auto flex justify-between sm:gap-x-2"
+>
+  <button
+    id="menu-toggle"
+    type="button"
+    class="z-50 inline-flex sm:hidden hover:bg-accent/20 rounded transition hover:scale-110 p-1 border-2 border-border"
+    aria-label="Menu"
+  >
+    <MenuIcon class="size-6" />
+  </button>
 
-    <!-- Menú de navegación móvil para pantallas pequeñas -->
-    <nav
-      id="mobile-menu"
-      class="bg-background/90 -translate-y-full transition-transform sm:hidden w-full flex flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center gap-2"
-    >
-      {
-        HEADER_ITEMS.map(({ label, href }) => (
-          <a
-            href={href}
-            class="menu-item text-xl hover:bg-accent/20 rounded px-1 py-2 transition hover:scale-110"
-            aria-current="page"
-          >
-            {i18n.menu[label]}
-          </a>
-        ))
-      }
-      <LenguageSelector />
-    </nav>
+  <!-- Menú de navegación móvil para pantallas pequeñas -->
+  <nav
+    id="mobile-menu"
+    class="bg-background/90 -translate-y-full transition-transform sm:hidden w-full flex flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center gap-2"
+  >
+    {
+      HEADER_ITEMS.map(({ label, href }) => (
+        <a
+          href={href}
+          class="menu-item text-xl hover:bg-accent/20 rounded px-1 py-2 transition hover:scale-110"
+          aria-current="page"
+        >
+          {i18n.menu[label]}
+        </a>
+      ))
+    }
+    <LenguageSelector />
+  </nav>
 
-    <nav class="items-center justify-between hidden sm:flex w-full">
-      {
-        HEADER_ITEMS.map(({ label, href }) => (
-          <a
-            href={href}
-            class="text-sm lg:text-base hover:bg-accent/20 rounded px-2 py-2 transition hover:scale-110"
-            aria-current="page"
-          >
-            {i18n.menu[label]}
-          </a>
-        ))
-      }
-      <LenguageSelector />
-    </nav>
+  <nav class="items-center justify-between hidden sm:flex w-full">
+    {
+      HEADER_ITEMS.map(({ label, href }) => (
+        <a
+          href={href}
+          class="text-sm lg:text-base hover:bg-accent/20 rounded px-2 py-2 transition hover:scale-110"
+          aria-current="page"
+        >
+          {i18n.menu[label]}
+        </a>
+      ))
+    }
+    <LenguageSelector />
+  </nav>
 
-    <ThemeToggle client:only />
-  </div>
+  <ThemeToggle client:only />
 </header>
 
 <script>

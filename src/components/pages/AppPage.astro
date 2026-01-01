@@ -15,32 +15,20 @@ const i18n = getI18N({ currentLocale });
 ---
 
 <Layout title={i18n.seo.title} description={i18n.seo.description}>
-  <main class="px-8">
-    <SectionContainer id="home" class="py-28 pb-8 md:py-40 md:pb-10 lg:pb-14">
+  <main class="mt-28 md:mt-40 px-8 md:px-0">
+    <SectionContainer id="home">
       <Home />
     </SectionContainer>
-    <SectionContainer
-      id="experience"
-      title={i18n.experience.title}
-      class="pt-12 pb-4 md:pb-5 lg:pb-7"
-    >
+    <SectionContainer id="experience" title={i18n.experience.title}>
       <LaptopIcon class="size-8" slot="icon" />
       <Experience />
     </SectionContainer>
 
-    <SectionContainer
-      id="projects"
-      title={i18n.projects.title}
-      class="pt-12 pb-4 md:pb-5 lg:pb-7"
-    >
+    <SectionContainer id="projects" title={i18n.projects.title}>
       <CodeIcon class="size-8" slot="icon" />
       <Projects />
     </SectionContainer>
-    <SectionContainer
-      id="about-me"
-      title={i18n.about.title}
-      class="pt-12 pb-4 md:pb-5 lg:pb-7"
-    >
+    <SectionContainer id="about-me" title={i18n.about.title}>
       <UserSquareRoundedIcon class="size-8" slot="icon" />
       <AboutMe />
     </SectionContainer>
