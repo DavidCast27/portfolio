@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://castri.dev/sitemap.xml
-
+Sitemap: https://castri.dev/sitemap-index.xml
