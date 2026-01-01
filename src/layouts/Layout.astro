@@ -12,6 +12,11 @@ interface Props {
 
 const { description, title } = Astro.props;
 const { currentLocale } = Astro;
+const baseUrl = 'https://castri.dev';
+const localePath = currentLocale === 'en' ? '/en' : '';
+const pageUrl = `${baseUrl}${localePath}`;
+const altEsUrl = `${baseUrl}`;
+const altEnUrl = `${baseUrl}/en`;
 ---
 
 <!doctype html>
@@ -39,15 +44,19 @@ const { currentLocale } = Astro;
     </script>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="google-adsense-account" content="ca-pub-4053310127194983" />
     <title>{title}</title>
+    <link rel="canonical" href={pageUrl} />
+    <link rel="alternate" hrefLang="x-default" href={altEsUrl} />
+    <link rel="alternate" hrefLang="es" href={altEsUrl} />
+    <link rel="alternate" hrefLang="en" href={altEnUrl} />
     <ClientRouter />
 
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://castri.dev/en" />
+    <meta property="og:url" content={pageUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -59,7 +68,7 @@ const { currentLocale } = Astro;
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:domain" content="castri.dev" />
-    <meta property="twitter:url" content="https://castri.dev/en" />
+    <meta property="twitter:url" content={pageUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta

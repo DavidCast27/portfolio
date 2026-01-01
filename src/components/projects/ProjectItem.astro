@@ -65,6 +65,8 @@ const i18n = getI18N({ currentLocale });
   <img
     class="rounded shadow-2xl shadow-foreground/20 w-full"
     src={image}
-    alt={`imagen de ${title} `}
+    alt={`${i18n.projects.image_alt_prefix} ${title}`}
+    loading="lazy"
+    decoding="async"
   />
 </article>

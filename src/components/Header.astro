@@ -2,7 +2,7 @@
 import { HEADER_ITEMS } from "../constants/nav.constants";
 import { getI18N } from "../i18n";
 import MenuIcon from "./icons/MenuIcon.astro";
-import LenguageSelector from "./ui/LenguageSelector.astro";
+import LanguageSelector from "./ui/LanguageSelector.astro";
 import ThemeToggle from "./ui/ThemeToggle";
 
 const { currentLocale } = Astro;
@@ -10,13 +10,14 @@ const i18n = getI18N({ currentLocale });
 ---
 
 <header
-  class="bg-background py-4 px-8 md:px-0 fixed z-20 inset-x-0 gap-2 w-full md:max-w-4xl mx-auto flex justify-between sm:gap-x-2"
+  class="bg-background py-4 px-8 fixed z-20 inset-x-0 gap-2 w-full md:max-w-4xl mx-auto flex justify-between sm:gap-x-2"
 >
   <button
     id="menu-toggle"
     type="button"
     class="z-50 inline-flex sm:hidden hover:bg-accent/20 rounded transition hover:scale-110 p-1 border-2 border-border"
     aria-label="Menu"
+    aria-expanded="false"
   >
     <MenuIcon class="size-6" />
   </button>
@@ -26,33 +27,39 @@ const i18n = getI18N({ currentLocale });
     id="mobile-menu"
     class="bg-background/90 -translate-y-full transition-transform sm:hidden w-full flex flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center gap-2"
   >
-    {
-      HEADER_ITEMS.map(({ label, href }) => (
-        <a
-          href={href}
-          class="menu-item text-xl hover:bg-accent/20 rounded px-1 py-2 transition hover:scale-110"
-          aria-current="page"
-        >
-          {i18n.menu[label]}
-        </a>
-      ))
-    }
-    <LenguageSelector />
+    <ul>
+      {
+        HEADER_ITEMS.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="menu-item text-xl hover:bg-accent/20 rounded px-1 py-2 transition hover:scale-110"
+            >
+              {i18n.menu[label]}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <LanguageSelector />
   </nav>
 
   <nav class="items-center justify-between hidden sm:flex w-full">
-    {
-      HEADER_ITEMS.map(({ label, href }) => (
-        <a
-          href={href}
-          class="text-sm lg:text-base hover:bg-accent/20 rounded px-2 py-2 transition hover:scale-110"
-          aria-current="page"
-        >
-          {i18n.menu[label]}
-        </a>
-      ))
-    }
-    <LenguageSelector />
+    <ul class="flex gap-2">
+      {
+        HEADER_ITEMS.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="text-sm lg:text-base hover:bg-accent/20 rounded px-2 py-2 transition hover:scale-110"
+            >
+              {i18n.menu[label]}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <LanguageSelector />
   </nav>
 
   <ThemeToggle client:only />
@@ -60,25 +67,69 @@ const i18n = getI18N({ currentLocale });
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const menuToggle = document.getElementById("menu-toggle") as HTMLElement;
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuItems = document.querySelectorAll<HTMLElement>(".menu-item");
 
-    const mobileMenu = document.getElementById("mobile-menu") as HTMLElement;
-    const menuItems = document.querySelectorAll(".menu-item");
+    if (!menuToggle || !mobileMenu) return;
 
-    if (!menuToggle || !mobileMenu || !menuItems) {
-      return;
-    }
+    const setMenuOpen = (open) => {
+      mobileMenu.classList.toggle("translate-y-0", open);
+      mobileMenu.classList.toggle("-translate-y-full", !open);
+      document.body.classList.toggle("overflow-hidden", open);
+      menuToggle.setAttribute("aria-expanded", String(open));
+    };
+
+    let isOpen = false;
 
     menuToggle.addEventListener("click", () => {
-      document.body.classList.toggle("overflow-hidden");
-      mobileMenu.classList.toggle("translate-y-0");
+      isOpen = !isOpen;
+      setMenuOpen(isOpen);
     });
 
     menuItems.forEach((elem) => {
-      elem.addEventListener("click", function () {
-        document.body.classList.toggle("overflow-hidden");
-        mobileMenu.classList.toggle("translate-y-0");
+      elem.addEventListener("click", () => {
+        isOpen = false;
+        setMenuOpen(false);
       });
     });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen) {
+        isOpen = false;
+        setMenuOpen(false);
+      }
+    });
+
+    // Scroll spy: aria-current al link de la sección visible
+    const links = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('nav a[href^="#"]')
+    );
+    const sections = links
+      .map((a) =>
+        document.querySelector<HTMLElement>(a.getAttribute("href") || "")
+      )
+      .filter(Boolean) as HTMLElement[];
+
+    const updateActive = () => {
+      let current: HTMLElement | null = null;
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom > 120) {
+          current = section;
+          break;
+        }
+      }
+      links.forEach((a) => a.removeAttribute("aria-current"));
+      if (current) {
+        const id = `#${current.id}`;
+        links
+          .filter((a) => a.getAttribute("href") === id)
+          .forEach((a) => a.setAttribute("aria-current", "true"));
+      }
+    };
+
+    updateActive();
+    document.addEventListener("scroll", updateActive, { passive: true });
   });
 </script>

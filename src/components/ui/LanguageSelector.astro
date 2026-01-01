@@ -1,15 +1,15 @@
 ---
 import ChevronIcon from "../icons/ChevronIcon.astro";
 import {
-  DEFAULT_LENGUAGE,
+  DEFAULT_LANGUAGE,
   LOCALES,
 } from "../../constants/i18n.constants.astro";
 
-const { currentLocale = DEFAULT_LENGUAGE, url } = Astro;
+const { currentLocale = DEFAULT_LANGUAGE, url } = Astro;
 
 const currentLocaleData = LOCALES[currentLocale];
 const otherLocales = Object.values(LOCALES).filter(
-  (locale) => locale.code !== currentLocale,
+  (locale) => locale.code !== currentLocale
 );
 const currentPath = url.pathname.replace(currentLocaleData.href, "");
 ---

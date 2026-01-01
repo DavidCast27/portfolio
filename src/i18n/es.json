@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Porfolio de David Castrillon- Desarrollador Web",
-    "description": "Porfolio de David Castrillon- Desarrollador Web - HTML, CSS, JavaScript, TypeScript, React"
+    "title": "Portfolio de David Castrillón - Desarrollador Web",
+    "description": "Portfolio de David Castrillón - Desarrollador Web · HTML, CSS, JavaScript, TypeScript, React"
   },
   "menu": {
     "home": "Inicio",
@@ -9,22 +9,23 @@
     "projects": "Proyectos",
     "about": "Sobre mí"
   },
-  "copyright": "©️ Aca no reservamos nada",
+  "copyright": "© Acá no reservamos nada",
   "home": {
-    "name": "David Castrillón Gonzales",
+    "name": "David Castrillón Gonzáles",
     "role": "Desarrollador web",
     "status": {
       "available": "Disponible"
     },
     "years_of_experience": "+8 años de experiencia",
-    "main_paragraph": "Desarrollador web enfocado en FrontEnd usando <span class='text-primary'>HTML, CSS, JavaScript, TypeScript, React</span> todo un crack construyendo aplicaciones web para empresas lideres del sector.",
-    "second_paragraph": "+2 años de experiencia en <span class='text-primary'>GO, NodeJS y JAVA</span> y +3 años en automatización de pruebas usando <span class='text-primary'>Selenium y Appium</span>",
+    "main_paragraph": "Desarrollador web enfocado en FrontEnd usando <span class='text-primary'>HTML, CSS, JavaScript, TypeScript, React</span>, todo un crack construyendo aplicaciones web para empresas líderes del sector.",
+    "second_paragraph": "+2 años de experiencia en <span class='text-primary'>Go, Node.js y Java</span> y +3 años en automatización de pruebas usando <span class='text-primary'>Selenium y Appium</span>",
     "social": {
       "github": "Github",
       "linkedin": "LinkedIn",
       "mail": "david.cast27@gmail.com",
       "download_cv": "Descargar CV"
-    }
+    },
+    "avatar_alt": "Foto de perfil"
   },
   "experience": {
     "title": "Experiencia laboral",
@@ -35,9 +36,10 @@
   "projects": {
     "title": "Proyectos",
     "links": {
-      "code": "Codigo",
+      "code": "Código",
       "web": "Sitio web"
-    }
+    },
+    "image_alt_prefix": "Imagen de"
   },
   "about": {
     "title": "Sobre mí",

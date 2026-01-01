@@ -11,7 +11,7 @@
   },
   "copyright": "©️ no copyright",
   "home": {
-    "name": "David Castrillón Gonzales",
+    "name": "David Castrillón Gonzáles",
     "role": "Web developer",
     "status": {
       "available": "Available"
@@ -24,7 +24,8 @@
       "linkedin": "LinkedIn",
       "mail": "david.cast27@gmail.com",
       "download_cv": "Download CV"
-    }
+    },
+    "avatar_alt": "Profile photo"
   },
   "experience": {
     "title": "Work Experience",
@@ -36,8 +37,9 @@
     "title": "Projects",
     "links": {
       "code": "Code",
-      "web": "Webside"
-    }
+      "web": "Website"
+    },
+    "image_alt_prefix": "Screenshot of"
   },
   "about": {
     "title": "About me",
