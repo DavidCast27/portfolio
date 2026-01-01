@@ -145,3 +145,18 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
+:root {
+  color-scheme: light dark;
+}
+html {
+  font-family: "Onest", sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+@media (prefers-reduced-motion: reduce) {
+  scroll-behavior: auto;
+}

@@ -11,7 +11,7 @@ const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
-<div class="flex flex-row gap-x-4 pb-4 md:pb-6 lg:pb-8">
+<section class="flex flex-row gap-x-4 pb-4 md:pb-6 lg:pb-8">
   <img
     class="rounded-full size-24 md:size-28 lg:size-32"
     src="https://avatars.githubusercontent.com/u/17658533?s=400&u=720a1f13ac78e3220db618daa33e15d11130747b&v=4"
@@ -32,7 +32,7 @@ const i18n = getI18N({ currentLocale });
       <Badge color="green">{i18n.home.status.available}</Badge>
     </a>
   </div>
-</div>
+</section>
 <p
   class="text-primary/80 text-sm md:text-base lg:text-lg text-pretty mb-4 lg:mb-6"
 >

@@ -19,15 +19,23 @@ const { currentLocale } = Astro;
   <head>
     <script is:inline>
       // Set theme class ASAP to avoid flashes
-      const stored = typeof localStorage !== "undefined" ? localStorage.getItem("theme") : null;
-      const prefersDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const stored =
+        typeof localStorage !== "undefined"
+          ? localStorage.getItem("theme")
+          : null;
+      const prefersDark =
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
       const theme = stored ?? (prefersDark ? "dark" : "light");
       if (theme === "dark") {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
       }
-      try { localStorage.setItem("theme", theme); } catch {}
+      try {
+        localStorage.setItem("theme", theme);
+      } catch {}
     </script>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -57,38 +65,23 @@ const { currentLocale } = Astro;
       name="twitter:image"
       content="https://opengraph.b-cdn.net/production/documents/2df9b46a-b1e0-4306-b331-f47ba2c2a293.png?token=w7X2obgizZ57k5Q4xm3Xg1CtsdCp4xZJqTziNOra7wU&height=496&width=771&expires=33241264526"
     />
-    {import.meta.env.PROD && (
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4053310127194983"
-        crossorigin="anonymous"
-      ></script>
-    )}
+    {
+      import.meta.env.PROD && (
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4053310127194983"
+          crossorigin="anonymous"
+        />
+      )
+    }
     <ViewTransitions />
   </head>
   <body class="bg-background text-foreground">
     <!-- Safelist utilities used inside i18n HTML strings -->
-    <div class="hidden text-accent/90 text-primary/90"></div>
+    <!-- <div class="hidden text-accent/90 text-primary/90"></div> -->
     <Header />
     <slot />
     <Footer />
-    <style is:global>
-      :root {
-        color-scheme: light dark;
-      }
-      html {
-        font-family: "Onest", sans-serif;
-        scroll-behavior: smooth;
-      }
-      body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        scroll-behavior: auto;
-      }
-    </style>
 
   </body>
 </html>
