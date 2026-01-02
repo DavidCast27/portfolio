@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "David Castrillon Portfolio - Web developer",
-    "description": "David Castrillon Portfolio - Web developer - HTML, CSS, JavaScript, TypeScript, React"
+    "title": "David Castrillón · Full-stack Developer (Frontend-focused)",
+    "description": "Full-stack developer focused on Frontend, specialized in React and TypeScript. I build fast, accessible, and maintainable interfaces. 8+ years across fintech and e‑commerce."
   },
   "menu": {
     "home": "Home",
@@ -9,18 +9,18 @@
     "projects": "Projects",
     "about": "About"
   },
-  "copyright": "©️ no copyright",
+  "copyright": "© David Castrillón Gonzales",
   "home": {
-    "name": "David Castrillón Gonzáles",
-    "role": "Web developer",
+    "name": "David Castrillón Gonzales",
+    "role": "Full-stack Developer",
     "status": {
       "available": "Available"
     },
-    "years_of_experience": "+8 years of experience",
-    "main_paragraph": "Web developer focused on FrontEnd using <span class='text-primary'>HTML, CSS, JavaScript, TypeScript, React.</span> I'm a crack at building web applications for leading companies in the sector.",
-    "second_paragraph": "+2 years of experience in <span class='text-primary'>GO, NodeJS and JAVA</span> and +3 years in test automation using <span class='text-primary'>Selenium and Appium</span>",
+    "years_of_experience": "8+ years of experience",
+    "main_paragraph": "Full-stack developer specialized in frontend with <span class='text-primary'>React and TypeScript</span>. I design and build fast, accessible, and maintainable user interfaces.",
+    "second_paragraph": "Also experienced with <span class='text-primary'>Go, Node.js, and Java</span> and test automation using <span class='text-primary'>Selenium and Appium</span>, enabling end-to-end collaboration.",
     "social": {
-      "github": "Github",
+      "github": "GitHub",
       "linkedin": "LinkedIn",
       "mail": "david.cast27@gmail.com",
       "download_cv": "Download CV"
@@ -43,8 +43,8 @@
   },
   "about": {
     "title": "About me",
-    "first_paragraph": "I am passionate about programming and constantly learning about new technologies. I firmly believe that knowledge is for everyone, and I enjoy collaborative learning and applying what I've learned in the workplace through teaching.",
-    "second_paragraph": "I am someone who enjoys working in a team, loves challenges, and is known for remaining calm when making decisions to help find solutions to problems in a work environment.",
-    "third_paragraph": "Committed to using my experience and knowledge in software quality to improve applications and generate more value for customers."
+    "first_paragraph": "I am passionate about programming and continuous learning. I believe knowledge should be shared, and I enjoy learning with others and teaching what I learn.",
+    "second_paragraph": "I work well in teams, embrace challenges, and remain calm when making decisions to find effective solutions.",
+    "third_paragraph": "Committed to improving software quality and delivering real value to customers."
   }
 }

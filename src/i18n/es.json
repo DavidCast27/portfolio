@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "Portfolio de David Castrillón - Desarrollador Web",
-    "description": "Portfolio de David Castrillón - Desarrollador Web · HTML, CSS, JavaScript, TypeScript, React"
+    "title": "David Castrillón · Desarrollador Fullstack (enfocado en Frontend)",
+    "description": "Desarrollador Fullstack enfocado en Frontend, especializado en React y TypeScript. Construyo interfaces rápidas, accesibles y mantenibles. Más de 8 años en fintech y e‑commerce."
   },
   "menu": {
     "home": "Inicio",
@@ -9,18 +9,18 @@
     "projects": "Proyectos",
     "about": "Sobre mí"
   },
-  "copyright": "© Acá no reservamos nada",
+  "copyright": "© David Castrillón Gonzales",
   "home": {
-    "name": "David Castrillón Gonzáles",
-    "role": "Desarrollador web",
+    "name": "David Castrillón Gonzales",
+    "role": "Desarrollador Fullstack",
     "status": {
       "available": "Disponible"
     },
-    "years_of_experience": "+8 años de experiencia",
-    "main_paragraph": "Desarrollador web enfocado en FrontEnd usando <span class='text-primary'>HTML, CSS, JavaScript, TypeScript, React</span>, todo un crack construyendo aplicaciones web para empresas líderes del sector.",
-    "second_paragraph": "+2 años de experiencia en <span class='text-primary'>Go, Node.js y Java</span> y +3 años en automatización de pruebas usando <span class='text-primary'>Selenium y Appium</span>",
+    "years_of_experience": "Más de 8 años de experiencia",
+    "main_paragraph": "Desarrollador fullstack especializado en frontend con <span class='text-primary'>React y TypeScript</span>. Diseño y construyo interfaces rápidas, accesibles y mantenibles para productos digitales.",
+    "second_paragraph": "También cuento con experiencia en <span class='text-primary'>Go, Node.js y Java</span> y en automatización de pruebas con <span class='text-primary'>Selenium y Appium</span>, lo que me permite colaborar de extremo a extremo.",
     "social": {
-      "github": "Github",
+      "github": "GitHub",
       "linkedin": "LinkedIn",
       "mail": "david.cast27@gmail.com",
       "download_cv": "Descargar CV"
@@ -39,12 +39,12 @@
       "code": "Código",
       "web": "Sitio web"
     },
-    "image_alt_prefix": "Imagen de"
+    "image_alt_prefix": "Captura de"
   },
   "about": {
     "title": "Sobre mí",
-    "first_paragraph": "Me apasiona la programación y aprender constantemente sobre nuevas tecnologías. Creo firmemente en que el conocimiento es de todos y para todos, por lo cual disfruto del aprendizaje colaborativo y de aplicar lo aprendido en el ámbito laboral a través de la enseñanza.",
-    "second_paragraph": "Soy una persona que disfruta de trabajar en equipo, que le encantan los retos y se caracteriza por estar calmado al momento de tomar decisiones en aras de ayudar a buscar soluciones a los problemas que se presenten en un entorno laboral.",
-    "third_paragraph": "Comprometido en utilizar mi experiencia y conocimiento en la calidad del software para mejorar las aplicaciones, y así generar más valor a los clientes."
+    "first_paragraph": "Me apasiona la programación y el aprendizaje continuo. Creo que el conocimiento es de todos y disfruto aprender en comunidad y compartir lo aprendido.",
+    "second_paragraph": "Trabajo bien en equipo, me gustan los retos y mantengo la calma al decidir para encontrar soluciones efectivas.",
+    "third_paragraph": "Comprometido con mejorar la calidad del software y aportar valor real a los clientes."
   }
 }
