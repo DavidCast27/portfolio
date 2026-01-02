@@ -11,7 +11,7 @@ const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
-<section class="flex flex-row gap-x-4 pb-4">
+<section class="flex flex-row gap-x-4 pb-4 justify-between lg:justify-center">
   <img
     class="rounded-full size-24 md:size-28 lg:size-32"
     src="https://avatars.githubusercontent.com/u/17658533?s=400&u=720a1f13ac78e3220db618daa33e15d11130747b&v=4"
@@ -20,22 +20,27 @@ const i18n = getI18N({ currentLocale });
     height="128"
     decoding="async"
   />
-  <div class="flex flex-col gap-y-2">
-    <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold">
+  <div class="flex flex-col gap-y-2 justify-center">
+    <h1 class="text-xl md:text-4xl lg:text-5xl font-bold">
       {i18n.home.name}
     </h1>
-    <h2 class="opacity-90 text-xl md:text-2xl lg:text-3xl text-wrap">
-      {i18n.home.role}
-    </h2>
-    <a
-      href="https://www.linkedin.com/in/davidcastrillongonzales/"
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
+      class="flex flex-col lg:flex-row gap-2 items-start lg:items-center justify-between"
     >
-      <Badge color="green">{i18n.home.status.available}</Badge>
-    </a>
+      <h2 class="opacity-90 text-xl md:text-2xl lg:text-3xl text-wrap">
+        {i18n.home.role}
+      </h2>
+      <a
+        href="https://www.linkedin.com/in/davidcastrillongonzales/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Badge color="green">{i18n.home.status.available}</Badge>
+      </a>
+    </div>
   </div>
 </section>
+
 <p
   class="text-primary/80 text-sm md:text-base lg:text-lg text-pretty mb-4 lg:mb-6"
 >
