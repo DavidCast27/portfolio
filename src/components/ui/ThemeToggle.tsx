@@ -4,7 +4,7 @@ import SunIcon from "../icons/SunIcon.astro?raw";
 import { Themes } from "@/constants/theme.constants";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? Themes.LIGHT);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? Themes.DARK);
   const isLight = theme === Themes.LIGHT
 
   useEffect(() => {

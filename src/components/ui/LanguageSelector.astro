@@ -8,7 +8,17 @@ const currentLocaleData = LOCALES[currentLocale];
 const otherLocales = Object.values(LOCALES).filter(
   (locale) => locale.code !== currentLocale
 );
-const currentPath = url.pathname.replace(currentLocaleData.href, "");
+
+// Normaliza la ruta eliminando cualquier prefijo de locale al inicio (p. ej. "/es" o "/en")
+// para evitar casos como "/en/es" cuando se navega desde "/es" en desarrollo.
+const pathname = url.pathname;
+const [, maybeLocale, ...rest] = pathname.split("/");
+const knownLocales = Object.keys(LOCALES);
+const stripped = knownLocales.includes(maybeLocale)
+  ? `/${rest.join("/")}`
+  : pathname;
+// En raíz, no añadimos "/" para que el href quede exactamente "/en" o "/es"
+const currentPath = stripped === "/" ? "" : stripped;
 ---
 
 <div class="relative inline-block text-left">
@@ -21,7 +31,6 @@ const currentPath = url.pathname.replace(currentLocaleData.href, "");
       aria-expanded="true"
       aria-haspopup="true"
     >
-      <currentLocaleData.flag class="size-4" />
       {currentLocaleData.name}
       <ChevronIcon class="size-4 -mr-1" />
     </button>
@@ -35,7 +44,6 @@ const currentPath = url.pathname.replace(currentLocaleData.href, "");
               class="rounded hover:bg-accent/20 border-2 -mx-0.5 border-border whitespace-no-wrap inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
               href={`${locale.href}${currentPath}`}
             >
-              <locale.flag class="size-4" />
               {locale.name}
             </a>
           </li>

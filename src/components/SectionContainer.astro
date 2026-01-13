@@ -2,10 +2,10 @@
 const { class: className, id, title } = Astro.props;
 ---
 
-<section id={id} class={` pb-12 ${className}`}>
+<section id={id} class={`scroll-mt-20 pb-12 md:pb-16 ${className}`}>
   {
     title && (
-      <h2 class="text-2xl lg:text-3xl font-semibold mb-4 md:mb-6 lg:mb-8 flex flex-row gap-x-2 items-center">
+      <h2 class="text-2xl lg:text-3xl font-semibold mb-6 md:mb-8 flex flex-row gap-x-2 items-center">
         <slot name="icon" />
         {title}
       </h2>

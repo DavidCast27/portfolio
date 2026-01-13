@@ -60,13 +60,15 @@ const i18n = getI18N({ currentLocale });
       ))
     }
   </ul>
-  <Image
-    src={image}
-    alt={`${i18n.projects.image_alt_prefix} ${title}`}
-    widths={[480, 768, 1024, 1440]}
-    sizes="(min-width: 1024px) 768px, 100vw"
-    class="rounded shadow-2xl shadow-foreground/20 w-full h-auto"
-    loading="lazy"
-    decoding="async"
-  />
+  <div class="relative rounded overflow-hidden shadow-2xl shadow-foreground/20 aspect-video">
+    <Image
+      src={image}
+      alt={`${i18n.projects.image_alt_prefix} ${title}`}
+      widths={[480, 768, 1024, 1440]}
+      sizes="(min-width: 1024px) 768px, 100vw"
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
 </article>

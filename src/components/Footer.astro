@@ -6,20 +6,20 @@ const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
-<footer
-  class="mb-8 flex items-center md:gap-2 flex-col md:flex-row justify-between"
->
-  <span class="text-sm lg:text-base"> {i18n.copyright}</span>
-  <nav class="flex flex-row gap-2 lg:gap-8 justify-center items-center mx-auto">
-    {
-      HEADER_ITEMS.map(({ label, href }) => (
-        <a
-          class="text-xs md:text-sm lg:text-base hover:bg-accent/20 rounded px-1 py-2 md:px-4 transition hover:scale-110 "
-          href={href}
-        >
-          {i18n.menu[label]}
-        </a>
-      ))
-    }
-  </nav>
+<footer class="mb-8">
+  <div class="mx-auto max-w-4xl px-6 w-full flex items-center md:gap-2 flex-col md:flex-row justify-between">
+    <span class="text-sm lg:text-base"> {i18n.copyright}</span>
+    <nav aria-label="Footer navigation" class="flex flex-row gap-2 lg:gap-8 justify-center items-center mx-auto">
+      {
+        HEADER_ITEMS.map(({ label, href }) => (
+          <a
+            class="text-xs md:text-sm lg:text-base hover:bg-accent/20 rounded px-3 md:px-4 min-h-11 inline-flex items-center transition hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            href={href}
+          >
+            {i18n.menu[label]}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
 </footer>

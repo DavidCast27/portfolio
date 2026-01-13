@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import { LOCALES } from "../constants/i18n.constants.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import "@fontsource/onest";
@@ -11,12 +12,18 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
-const { currentLocale } = Astro;
-const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : Astro.url.origin;
-const localePath = currentLocale === 'en' ? '/en' : '';
-const pageUrl = `${baseUrl}${localePath}`;
-const altEsUrl = `${baseUrl}`;
-const altEnUrl = `${baseUrl}/en`;
+const { currentLocale, url } = Astro;
+const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : url.origin;
+// Canonical: base + ruta completa actual (respetando trailingSlash de la app)
+const pageUrl = `${baseUrl}${url.pathname}`;
+
+// Alternates: generamos el mismo "resto" del path con prefijos /es o /en
+const [, maybeLocale, ...rest] = url.pathname.split("/");
+const knownLocales = Object.keys(LOCALES);
+const restPath = knownLocales.includes(maybeLocale) ? `/${rest.join("/")}` : url.pathname;
+const altRest = restPath === "/" ? "" : restPath;
+const altEsUrl = `${baseUrl}${LOCALES.es.href}${altRest}`;
+const altEnUrl = `${baseUrl}${LOCALES.en.href}${altRest}`;
 ---
 
 <!doctype html>
@@ -28,11 +35,8 @@ const altEnUrl = `${baseUrl}/en`;
         typeof localStorage !== "undefined"
           ? localStorage.getItem("theme")
           : null;
-      const prefersDark =
-        typeof window !== "undefined" &&
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const theme = stored ?? (prefersDark ? "dark" : "light");
+      // Default to dark when no stored preference. User choice persists.
+      const theme = stored ?? "dark";
       if (theme === "dark") {
         document.documentElement.classList.add("dark");
       } else {

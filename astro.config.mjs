@@ -6,6 +6,10 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    "/": "/es"
+  },
+  trailingSlash: 'never',
   site: 'https://castri.dev',
   integrations: [preact(), sitemap()],
   vite: {
@@ -15,7 +19,7 @@ export default defineConfig({
     defaultLocale: 'es',
     locales: ['es', 'en'],
     routing: {
-      prefixDefaultLocale: false
+      prefixDefaultLocale: true
     }
   },
   viewTransitions: true
