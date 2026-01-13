@@ -10,25 +10,31 @@ const i18n = getI18N({ currentLocale });
 ---
 
 <header class="bg-background fixed inset-x-0 z-20">
-  <div class="mx-auto max-w-4xl px-6 py-4 flex justify-between items-center sm:gap-x-2">
+  <div
+    class="mx-auto max-w-4xl px-6 py-4 flex justify-between items-center sm:gap-x-2"
+  >
     <button
       id="menu-toggle"
       type="button"
       class="z-50 inline-flex sm:hidden hover:bg-accent/20 rounded transition hover:scale-110 p-1 border-2 border-border"
       aria-label="Menu"
       aria-expanded="false"
+      aria-controls="mobile-menu"
     >
       <MenuIcon class="size-6" />
     </button>
 
-    <nav aria-label="Main navigation" class="items-center justify-between hidden sm:flex w-full">
+    <nav
+      aria-label={i18n.a11y.nav.main}
+      class="items-center justify-between hidden sm:flex w-full"
+    >
       <ul class="flex gap-2">
         {
           HEADER_ITEMS.map(({ label, href }) => (
             <li>
               <a
                 href={href}
-                class="text-sm lg:text-base hover:bg-accent/20 rounded px-2 py-2 transition hover:scale-110"
+                class="text-sm lg:text-base hover:bg-accent/20 rounded px-2 py-2 transition hover:scale-110 aria-current:text-primary aria-current:underline aria-current:underline-offset-4"
               >
                 {i18n.menu[label]}
               </a>
@@ -44,9 +50,9 @@ const i18n = getI18N({ currentLocale });
 
   <!-- Menú de navegación móvil para pantallas pequeñas -->
   <nav
-    aria-label="Main navigation"
+    aria-label={i18n.a11y.nav.main}
     id="mobile-menu"
-    class="bg-background/90 -translate-y-full transition-transform sm:hidden w-full flex flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center gap-2"
+    class="bg-background/80 backdrop-blur-sm -translate-y-full transition-transform sm:hidden w-full flex flex-col items-center text-center text-2xl fixed top-0 left-0 right-0 h-dvh place-content-center gap-2"
   >
     <ul>
       {
@@ -54,7 +60,7 @@ const i18n = getI18N({ currentLocale });
           <li>
             <a
               href={href}
-              class="menu-item text-xl hover:bg-accent/20 rounded px-1 py-2 transition hover:scale-110"
+              class="menu-item text-xl hover:bg-accent/20 rounded px-1 py-2 transition hover:scale-110 aria-current:text-primary aria-current:underline aria-current:underline-offset-4"
             >
               {i18n.menu[label]}
             </a>

@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import { LOCALES } from "../constants/i18n.constants.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import { getI18N } from "@/i18n";
 import "@fontsource/onest";
 import "../styles/global.css";
 
@@ -13,6 +14,7 @@ interface Props {
 
 const { description, title } = Astro.props;
 const { currentLocale, url } = Astro;
+const i18n = getI18N({ currentLocale });
 const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : url.origin;
 // Canonical: base + ruta completa actual (respetando trailingSlash de la app)
 const pageUrl = `${baseUrl}${url.pathname}`;
@@ -29,6 +31,7 @@ const altEnUrl = `${baseUrl}${LOCALES.en.href}${altRest}`;
 <!doctype html>
 <html lang={currentLocale}>
   <head>
+    <meta id="meta-theme-color" name="theme-color" content="#0b0b0c" />
     <script is:inline>
       // Set theme class ASAP to avoid flashes
       const stored =
@@ -42,6 +45,11 @@ const altEnUrl = `${baseUrl}${LOCALES.en.href}${altRest}`;
       } else {
         document.documentElement.classList.remove("dark");
       }
+      // Update theme-color for address bar to match theme
+      try {
+        const meta = document.getElementById("meta-theme-color");
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#0b0b0c" : "#fafafe");
+      } catch {}
       try {
         localStorage.setItem("theme", theme);
       } catch {}
@@ -54,10 +62,24 @@ const altEnUrl = `${baseUrl}${LOCALES.en.href}${altRest}`;
     <meta name="google-adsense-account" content="ca-pub-4053310127194983" />
     <title>{title}</title>
     <link rel="canonical" href={pageUrl} />
-    <link rel="alternate" hrefLang="x-default" href={altEsUrl} />
-    <link rel="alternate" hrefLang="es" href={altEsUrl} />
-    <link rel="alternate" hrefLang="en" href={altEnUrl} />
+    <link rel="alternate" hreflang="x-default" href={altEsUrl} />
+    <link rel="alternate" hreflang="es" href={altEsUrl} />
+    <link rel="alternate" hreflang="en" href={altEnUrl} />
     <ClientRouter />
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: i18n.home.name,
+        jobTitle: i18n.home.role,
+        url: baseUrl,
+        sameAs: [
+          "https://github.com/DavidCast27",
+          "https://www.linkedin.com/in/davidcastrillongonzales/",
+          "mailto:david.cast27@gmail.com"
+        ]
+      })}
+    </script>
 
     <!-- Open Graph -->
     <meta property="og:url" content={pageUrl} />
@@ -90,6 +112,9 @@ const altEnUrl = `${baseUrl}${LOCALES.en.href}${altRest}`;
     }
   </head>
   <body class="bg-background text-foreground w-full md:max-w-4xl mx-auto">
+    <a href="#home" class="sr-only focus:not-sr-only fixed top-4 left-4 z-50 bg-background text-foreground border-2 border-border rounded px-3 py-2 shadow">
+      {i18n.a11y.skip_to_content}
+    </a>
     <Header />
     <slot />
     <Footer />

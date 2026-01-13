@@ -14,6 +14,9 @@ export default function ThemeToggle() {
       document.documentElement.classList.remove(Themes.DARK);
     }
     localStorage.setItem("theme", theme);
+    // sync theme-color meta for address bar
+    const meta = document.getElementById("meta-theme-color");
+    if (meta) meta.setAttribute("content", theme === Themes.DARK ? "#0b0b0c" : "#fafafe");
   }, [theme]);
 
   const handleClick = () => {

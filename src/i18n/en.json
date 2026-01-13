@@ -46,5 +46,12 @@
     "first_paragraph": "I am passionate about programming and continuous learning. I believe knowledge should be shared, and I enjoy learning with others and teaching what I learn.",
     "second_paragraph": "I work well in teams, embrace challenges, and remain calm when making decisions to find effective solutions.",
     "third_paragraph": "Committed to improving software quality and delivering real value to customers."
+  },
+  "a11y": {
+    "skip_to_content": "Skip to content",
+    "nav": {
+      "main": "Main navigation",
+      "social": "Social links"
+    }
   }
 }
