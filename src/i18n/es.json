@@ -39,7 +39,19 @@
       "code": "Código",
       "web": "Sitio web"
     },
-    "image_alt_prefix": "Captura de"
+    "image_alt_prefix": "Captura de",
+    "detail": {
+      "view_more": "Ver más",
+      "back_to_projects": "Volver a proyectos",
+      "breadcrumb": "Proyectos",
+      "role": "Rol",
+      "stack": "Stack técnico",
+      "features": "Características",
+      "ai_usage": "Uso de IA",
+      "yes": "Sí",
+      "no": "No",
+      "tags": "Etiquetas"
+    }
   },
   "about": {
     "title": "Sobre mí",

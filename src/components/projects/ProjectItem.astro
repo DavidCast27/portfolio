@@ -1,13 +1,15 @@
 ---
 import TagPill from "../ui/TagPill.astro";
-import SocialPill from "../ui/SocialPill.astro";
 import BoxSeamIcon from "../icons/BoxSeamIcon.astro";
 import CodeIcon from "../icons/CodeIcon.astro";
 import Paragraph from "../ui/Paragraph.astro";
+import Button from "../ui/Button.astro";
 import { getI18N } from "@/i18n";
 import { Image } from "astro:assets";
+import ChevronIcon from "../icons/ChevronIcon.astro";
 
 interface Props {
+  slug: string;
   title: string;
   description: string;
   tags: Array<{ name: string; className: string; Icon: any }>;
@@ -15,7 +17,8 @@ interface Props {
   codeURL: string;
   webSiteURL?: string;
 }
-const { title, description, tags, image, codeURL, webSiteURL } = Astro.props;
+const { slug, title, description, tags, image, codeURL, webSiteURL } =
+  Astro.props;
 
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
@@ -29,22 +32,43 @@ const i18n = getI18N({ currentLocale });
       {title}
     </h3>
     <nav class="flex gap-2 md:gap-4">
-      <SocialPill href={codeURL} title="code">
+      <Button
+        href={codeURL}
+        variant="outline"
+        size="sm"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <CodeIcon class="size-4" />
         <span class="hidden md:inline text-xs">
           {i18n.projects.links.code}
         </span>
-      </SocialPill>
+      </Button>
       {
         webSiteURL && (
-          <SocialPill href={webSiteURL} title="web">
+          <Button
+            href={webSiteURL}
+            variant="outline"
+            size="sm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <BoxSeamIcon class="size-4" />
             <span class="hidden md:inline text-xs">
               {i18n.projects.links.web}
             </span>
-          </SocialPill>
+          </Button>
         )
       }
+      <Button
+        href={`/${currentLocale}/projects/${slug}`}
+        variant="default"
+        size="sm"
+        aria-label={`${i18n.projects.detail.view_more} ${title}`}
+      >
+        {i18n.projects.detail.view_more}
+        <ChevronIcon class="size-4 ml-2" />
+      </Button>
     </nav>
   </header>
   <Paragraph>{description}</Paragraph>
@@ -60,7 +84,9 @@ const i18n = getI18N({ currentLocale });
       ))
     }
   </ul>
-  <div class="relative rounded overflow-hidden shadow-2xl shadow-foreground/20 aspect-video">
+  <div
+    class="relative rounded overflow-hidden shadow-2xl shadow-foreground/20 aspect-video"
+  >
     <Image
       src={image}
       alt={`${i18n.projects.image_alt_prefix} ${title}`}

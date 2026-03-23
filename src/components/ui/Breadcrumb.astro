@@ -1,0 +1,35 @@
+---
+interface Props {
+  items: Array<{ label: string; href?: string }>;
+}
+
+const { items } = Astro.props;
+import ChevronIcon from "../icons/ChevronIcon.astro";
+---
+
+<nav aria-label="Breadcrumb" class="mb-8">
+  <ol class="flex items-center space-x-2 text-sm text-muted-foreground">
+    {
+      items.map((item, index) => (
+        <>
+          <li>
+            {item.href ? (
+              <a href={item.href} class="hover:text-primary transition-colors">
+                {item.label}
+              </a>
+            ) : (
+              <span class="text-foreground font-medium" aria-current="page">
+                {item.label}
+              </span>
+            )}
+          </li>
+          {index < items.length - 1 && (
+            <li>
+              <ChevronIcon class="size-4 rotate-90" />
+            </li>
+          )}
+        </>
+      ))
+    }
+  </ol>
+</nav>

@@ -1,0 +1,179 @@
+---
+import DetailLayout from "@/layouts/DetailLayout.astro";
+import Breadcrumb from "@/components/ui/Breadcrumb.astro";
+import { PROJECTS } from "@/data/projects.data.astro";
+import { staticPathsForSlugs } from "@/lib/lang";
+import { getI18N } from "@/i18n";
+import { Image } from "astro:assets";
+import Button from "@/components/ui/Button.astro";
+import TagPill from "@/components/ui/TagPill.astro";
+import Paragraph from "@/components/ui/Paragraph.astro";
+import CodeIcon from "@/components/icons/CodeIcon.astro";
+import BoxSeamIcon from "@/components/icons/BoxSeamIcon.astro";
+
+export async function getStaticPaths() {
+  return staticPathsForSlugs(async (lang) => PROJECTS[lang]);
+}
+
+const { lang, slug } = Astro.params as { lang: string; slug: string };
+const i18n = getI18N({ currentLocale: lang });
+
+const project = PROJECTS[lang as "es" | "en"].find((p) => p.slug === slug);
+if (!project) {
+  throw new Error(`Project not found: ${slug}`);
+}
+
+const title = `${project.title} · ${i18n.seo.title}`;
+const description = project.summary;
+const breadcrumbItems = [
+  { label: i18n.menu.home, href: `/${lang}` },
+  { label: i18n.projects.detail.breadcrumb, href: `/${lang}#projects` },
+  { label: project.title }
+];
+---
+
+<DetailLayout
+  title={title}
+  description={description}
+  currentLocale={lang}
+>
+  <Breadcrumb items={breadcrumbItems} />
+
+  <!-- Header -->
+  <header class="mb-8">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary">
+        {project.title}
+      </h1>
+      <div class="flex gap-2">
+        <Button
+          href={project.codeURL}
+          variant="outline"
+          size="sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <CodeIcon class="size-4" />
+          <span class="hidden sm:inline text-xs">
+            {i18n.projects.links.code}
+          </span>
+        </Button>
+        {
+          project.webSiteURL && (
+            <Button
+              href={project.webSiteURL}
+              variant="outline"
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BoxSeamIcon class="size-4" />
+              <span class="hidden sm:inline text-xs">
+                {i18n.projects.links.web}
+              </span>
+            </Button>
+          )
+        }
+      </div>
+    </div>
+  </header>
+
+  <!-- Image -->
+  <div class="relative rounded overflow-hidden shadow-2xl shadow-foreground/20 aspect-video mb-8">
+    <Image
+      src={project.image}
+      alt={`${i18n.projects.image_alt_prefix} ${project.title}`}
+      widths={[480, 768, 1024, 1440]}
+      sizes="(min-width: 1024px) 768px, 100vw"
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <!-- Summary -->
+  <section class="mb-8">
+    <Paragraph class="text-lg leading-relaxed">
+      {project.summary}
+    </Paragraph>
+  </section>
+
+  <!-- Details Grid -->
+  <div class="grid gap-8 md:grid-cols-2">
+    <!-- Role -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4 text-primary">
+        {i18n.projects.detail.role}
+      </h2>
+      <p class="text-foreground/80">{project.role}</p>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4 text-primary">
+        {i18n.projects.detail.stack}
+      </h2>
+      <ul class="space-y-2">
+        {project.stack.map(({ name, version }) => (
+          <li class="flex items-center gap-2 text-foreground/80">
+            <span class="font-medium">{name}</span>
+            {version && <span class="text-sm text-muted-foreground">v{version}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Features -->
+    <section class="md:col-span-2">
+      <h2 class="text-xl font-semibold mb-4 text-primary">
+        {i18n.projects.detail.features}
+      </h2>
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {project.features.map((feature) => (
+          <li class="flex items-center gap-2">
+            <div class="size-2 rounded-full bg-primary shrink-0"></div>
+            <span class="text-foreground/80">{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- AI Usage -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4 text-primary">
+        {i18n.projects.detail.ai_usage}
+      </h2>
+      <p class="text-foreground/80">
+        {project.aiUsage.used ? i18n.projects.detail.yes : i18n.projects.detail.no}
+        {project.aiUsage.description && (
+          <span class="block mt-2 text-sm">{project.aiUsage.description}</span>
+        )}
+      </p>
+    </section>
+
+    <!-- Tags -->
+    <section>
+      <h2 class="text-xl font-semibold mb-4 text-primary">
+        {i18n.projects.detail.tags}
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        {project.tags.map(({ name, Icon, className }) => (
+          <TagPill className={className}>
+            <Icon class="size-5" />
+            <span class="hidden md:inline text-xs">{name}</span>
+          </TagPill>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <!-- Back Button -->
+  <div class="mt-12 pt-8 border-t border-border">
+    <Button href={`/${lang}#projects`} variant="outline">
+      <svg class="size-4 rotate-180 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+      {i18n.projects.detail.back_to_projects}
+    </Button>
+  </div>
+</DetailLayout>

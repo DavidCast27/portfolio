@@ -39,7 +39,19 @@
       "code": "Code",
       "web": "Website"
     },
-    "image_alt_prefix": "Screenshot of"
+    "image_alt_prefix": "Screenshot of",
+    "detail": {
+      "view_more": "View more",
+      "back_to_projects": "Back to projects",
+      "breadcrumb": "Projects",
+      "role": "Role",
+      "stack": "Tech stack",
+      "features": "Features",
+      "ai_usage": "AI usage",
+      "yes": "Yes",
+      "no": "No",
+      "tags": "Tags"
+    }
   },
   "about": {
     "title": "About me",

@@ -1,0 +1,96 @@
+---
+import Footer from "../components/Footer.astro";
+import "@fontsource/onest";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  currentLocale: string;
+}
+
+const { title, description, currentLocale } = Astro.props as Props;
+const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : Astro.url.origin;
+const pageUrl = `${baseUrl}${Astro.url.pathname}`;
+---
+
+<!doctype html>
+<html lang={currentLocale}>
+  <head>
+    <meta id="meta-theme-color" name="theme-color" content="#0b0b0c" />
+    <script is:inline>
+      // Set theme class ASAP to avoid flashes
+      const stored =
+        typeof localStorage !== "undefined"
+          ? localStorage.getItem("theme")
+          : null;
+      // Default to dark when no stored preference. User choice persists.
+      const theme = stored ?? "dark";
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      // Update theme-color for address bar to match theme
+      try {
+        const meta = document.getElementById("meta-theme-color");
+        if (meta) meta.setAttribute("content", theme === "dark" ? "#0b0b0c" : "#fafafe");
+      } catch {}
+      try {
+        localStorage.setItem("theme", theme);
+      } catch {}
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="google-adsense-account" content="ca-pub-4053310127194983" />
+    <title>{title}</title>
+    <link rel="canonical" href={pageUrl} />
+    <link rel="alternate" hreflang="x-default" href={pageUrl.replace(`/${currentLocale}`, "/es")} />
+    <link rel="alternate" hreflang="es" href={pageUrl.replace(`/${currentLocale}`, "/es")} />
+    <link rel="alternate" hreflang="en" href={pageUrl.replace(`/${currentLocale}`, "/en")} />
+
+    <!-- Open Graph -->
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <!-- OG/Twitter image (PNG for compatibility) -->
+    <meta property="og:image" content={`${baseUrl}/og.png`} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="castri.dev" />
+    <meta property="twitter:url" content={pageUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${baseUrl}/og.png`} />
+    <meta name="twitter:image:alt" content={title} />
+    {
+      import.meta.env.PROD && (
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4053310127194983"
+          crossorigin="anonymous"
+        />
+      )
+    }
+  </head>
+  <body class="bg-background text-foreground w-full md:max-w-4xl mx-auto">
+    <a href="#main-content" class="sr-only focus:not-sr-only fixed top-4 left-4 z-50 bg-background text-foreground border-2 border-border rounded px-3 py-2 shadow">
+      Saltar al contenido
+    </a>
+
+    <main id="main-content" class="mt-8 mx-auto max-w-4xl px-6 md:px-8 w-full">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

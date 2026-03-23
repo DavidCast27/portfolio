@@ -6,27 +6,85 @@ import PortfolioImg from "@/assets/projects/portfolio.webp";
 
 export const PROJECTS_ES = [
 	{
+		slug: "info-colombia",
 		title: "Info Colombia",
 		description:
 			"Proyecto open source que consume API Colombia para explorar geografía, historia, atractivos turísticos y presidentes del país, con foco en rendimiento y accesibilidad.",
+		summary: "Aplicación web que integra la API de Colombia para proporcionar información detallada sobre la geografía, historia, atractivos turísticos y presidentes del país. Desarrollado con énfasis en el rendimiento y la accesibilidad, utilizando técnicas de optimización de carga y diseño inclusivo.",
+		stack: [
+			{ name: "Next.js", version: "14" },
+			{ name: "React", version: "18" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "Vercel", version: "" },
+			{ name: "Shadcn/ui", version: "" },
+		],
+		features: [
+			"Integración con API Colombia",
+			"Información geográfica interactiva",
+			"Historia y presidentes",
+			"Atractivos turísticos destacados",
+			"Optimización de rendimiento",
+			"Diseño accesible",
+		],
+		aiUsage: { used: false, description: "" },
+		role: "Desarrollador principal",
 		codeURL: "https://github.com/DavidCast27/colombia-info",
 		webSiteURL: "https://colombia-info.vercel.app/",
 		image: ColombiaInfoImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL, TAGS.SHADCN],
 	},
 	{
+		slug: "acme-dashboard",
 		title: "Acme Dashboard - Curso de Next.js",
 		description:
 		  "Dashboard de ejemplo siguiendo el curso oficial de Next.js 14: enrutado por sistema de archivos, SSR y UI reutilizable con Tailwind CSS y TypeScript.",
+		summary: "Dashboard educativo basado en el curso oficial de Next.js 14. Implementa conceptos avanzados como enrutado por sistema de archivos, renderizado del lado del servidor (SSR), y componentes de UI reutilizables. Construido con TypeScript para mayor robustez y Tailwind CSS para el diseño.",
+		stack: [
+			{ name: "Next.js", version: "14" },
+			{ name: "React", version: "18" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "Vercel", version: "" },
+		],
+		features: [
+			"Enrutado por sistema de archivos",
+			"Renderizado SSR",
+			"Componentes UI reutilizables",
+			"TypeScript para tipado fuerte",
+			"Estilos con Tailwind CSS",
+			"Despliegue en Vercel",
+		],
+		aiUsage: { used: false, description: "" },
+		role: "Desarrollador principal",
 		codeURL: "https://github.com/DavidCast27/nextjs-dashboard",
 		webSiteURL: "https://dashboard-example-castri.vercel.app/",
 		image: DashboardExampleImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL],
 	},
 	{
+		slug: "portfolio",
 		title: "Portfolio",
 		description:
 		  "Portfolio ligero y accesible construido con Astro y Tailwind CSS, con despliegue continuo en Netlify.",
+		summary: "Sitio web personal desarrollado con Astro para un rendimiento óptimo y Tailwind CSS para un diseño consistente. Incluye internacionalización (i18n) para soporte en español e inglés, y se despliega automáticamente en Netlify con integración continua.",
+		stack: [
+			{ name: "Astro", version: "4" },
+			{ name: "Preact", version: "10" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Netlify", version: "" },
+		],
+		features: [
+			"Rendimiento optimizado con Astro",
+			"Internacionalización (i18n)",
+			"Diseño accesible",
+			"Despliegue continuo",
+			"Componentes reutilizables",
+			"SEO optimizado",
+		],
+		aiUsage: { used: false, description: "" },
+		role: "Desarrollador principal",
 		codeURL: "https://github.com/DavidCast27/portfolio",
 		image: PortfolioImg,
 		tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.NETLIFY, TAGS.PREACT],
@@ -35,35 +93,98 @@ export const PROJECTS_ES = [
 
 export const PROJECTS_EN = [
 	{
+		slug: "info-colombia",
 		title: "Info Colombia",
 		description:
 			"Open-source project consuming API Colombia to explore the country's geography, history, tourist attractions, and presidents, with a focus on performance and accessibility.",
+		summary: "Web application integrating the Colombia API to provide detailed information about the country's geography, history, tourist attractions, and presidents. Developed with emphasis on performance and accessibility, using load optimization techniques and inclusive design.",
+		stack: [
+			{ name: "Next.js", version: "14" },
+			{ name: "React", version: "18" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "Vercel", version: "" },
+			{ name: "Shadcn/ui", version: "" },
+		],
+		features: [
+			"Colombia API integration",
+			"Interactive geographical information",
+			"History and presidents",
+			"Featured tourist attractions",
+			"Performance optimization",
+			"Accessible design",
+		],
+		aiUsage: { used: false, description: "" },
+		role: "Lead developer",
 		codeURL: "https://github.com/DavidCast27/colombia-info",
 		webSiteURL: "https://colombia-info.vercel.app/",
 		image: ColombiaInfoImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL, TAGS.SHADCN],
 	},
 	{
+		slug: "acme-dashboard",
 		title: "Acme Dashboard - Next.js Course",
 		description:
 		  "Example dashboard following the official Next.js 14 course: file-system routing, SSR, and reusable UI with Tailwind CSS and TypeScript.",
+		summary: "Educational dashboard based on the official Next.js 14 course. Implements advanced concepts like file-system routing, server-side rendering (SSR), and reusable UI components. Built with TypeScript for greater robustness and Tailwind CSS for styling.",
+		stack: [
+			{ name: "Next.js", version: "14" },
+			{ name: "React", version: "18" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "Vercel", version: "" },
+		],
+		features: [
+			"File-system routing",
+			"SSR rendering",
+			"Reusable UI components",
+			"Strong typing with TypeScript",
+			"Styling with Tailwind CSS",
+			"Deployment on Vercel",
+		],
+		aiUsage: { used: false, description: "" },
+		role: "Lead developer",
 		codeURL: "https://github.com/DavidCast27/nextjs-dashboard",
 		webSiteURL: "https://dashboard-example-castri.vercel.app/",
 		image: DashboardExampleImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL],
 	},
 	{
+		slug: "portfolio",
 		title: "Portfolio",
 		description:
 		  "Lightweight, accessible portfolio built with Astro and Tailwind CSS, deployed with continuous delivery on Netlify.",
+		summary: "Personal website developed with Astro for optimal performance and Tailwind CSS for consistent design. Includes internationalization (i18n) for Spanish and English support, and automatically deploys to Netlify with continuous integration.",
+		stack: [
+			{ name: "Astro", version: "4" },
+			{ name: "Preact", version: "10" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Netlify", version: "" },
+		],
+		features: [
+			"Optimized performance with Astro",
+			"Internationalization (i18n)",
+			"Accessible design",
+			"Continuous deployment",
+			"Reusable components",
+			"SEO optimization",
+		],
+		aiUsage: { used: false, description: "" },
+		role: "Lead developer",
 		codeURL: "https://github.com/DavidCast27/portfolio",
 		image: PortfolioImg,
-		tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.NETLIFY],
+		tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.NETLIFY, TAGS.PREACT],
 	},
 ];
 
 export const PROJECTS = {
-  en: [...PROJECTS_EN],
-  es: [...PROJECTS_ES],
-};
+   en: [...PROJECTS_EN],
+   es: [...PROJECTS_ES],
+ };
+
+// Helper to get project by slug and lang
+export function getProjectBySlug(slug: string, lang: "en" | "es") {
+  return PROJECTS[lang].find((project) => project.slug === slug);
+}
 ---
