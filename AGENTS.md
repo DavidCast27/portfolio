@@ -90,6 +90,8 @@
 - For localized pages, use `staticPathsForLang` from `src/lib/lang.ts`.
 - Keep locale routing intact; avoid breaking `/es` default paths.
 
+- Alternates: `x-default` apunta a EN por defecto (alineado con la landing), salvo decisión contraria.
+
 ### Error Handling & Resilience
 - Guard browser-only APIs to avoid SSR crashes.
 - Prefer `try/catch` around localStorage or window-dependent code.
@@ -102,21 +104,27 @@
 - Use `aria-current` for active navigation states when appropriate.
 - Ensure color contrast remains legible after styling changes.
 
+- Language selector accesible: botón con `aria-haspopup="menu"`, `aria-expanded`, cierre con Escape/click fuera y navegación por teclado (↑/↓/Home/End). Evitar menús activados por hover.
+
 ### Data & Content
 - Prefer data-driven rendering (map over arrays) for navs and lists.
 - Keep content strings in i18n files; avoid hardcoded text in components.
 - External links should use `rel="noopener noreferrer"` with `target="_blank"`.
 
 ### SEO & Metadata
-- Layout handles canonical/alternate/OG tags; extend there if needed.
-- Ensure new pages set `title` and `description` via `Layout` props.
-- Update `public/og.png` or SEO data only when intentional.
+- SEO centralizado en `src/components/SEO.astro` (alineado con landing): canonical, `hreflang` alternates (incluye `x-default`), OG/Twitter, `robots` y JSON‑LD.
+- `Layout.astro` y `DetailLayout.astro` inyectan `SEO` y añaden JSON‑LD de `Person` por defecto (combinable por página mediante `jsonLd`).
+- Las páginas de proyecto deben aportar `BreadcrumbList` + `SoftwareSourceCode` via `jsonLd`.
+- Actualiza `public/og.png` o imágenes OG por idioma sólo cuando sea intencional.
+
 
 ### File/Folder Discipline
 - Place new icons under `src/components/icons/` and keep names descriptive.
 - Feature components live under `src/components/<feature>/`.
 - UI primitives go under `src/components/ui/`.
 - Avoid introducing unrelated files at repo root.
+
+- 404: páginas standalone (sin `Layout`), centradas vertical/horizontal, con `noindex` y CTA al home.
 
 ## Cursor/Copilot Rules
 - No `.cursor/rules`, `.cursorrules`, or `.github/copilot-instructions.md` files are present.

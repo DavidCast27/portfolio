@@ -1,0 +1,52 @@
+---
+import Button from "@/components/ui/Button.astro";
+import "@fontsource/onest";
+import "@/styles/global.css";
+
+const title = "404 · Page not found";
+const description =
+  "The requested page was not found. Choose a language to continue.";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta id="meta-theme-color" name="theme-color" content="#0b0b0c" />
+    <script is:inline>
+      const stored =
+        typeof localStorage !== "undefined"
+          ? localStorage.getItem("theme")
+          : null;
+      const theme = stored ?? "dark";
+      if (theme === "dark") document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
+      try {
+        const meta = document.getElementById("meta-theme-color");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#0b0b0c" : "#fafafe",
+          );
+      } catch {}
+      try {
+        localStorage.setItem("theme", theme);
+      } catch {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="bg-background text-foreground min-h-dvh flex items-center justify-center px-6">
+      <main class="text-center space-y-6">
+        <h1 class="text-6xl md:text-7xl font-extrabold text-primary">404</h1>
+        <p class="text-foreground/80 text-lg">{description}</p>
+        <div class="flex items-center justify-center gap-3">
+          <Button href="/es" variant="outline">ES</Button>
+          <Button href="/en" variant="outline">EN</Button>
+        </div>
+      </main>
+  </body>
+</html>

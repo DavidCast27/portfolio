@@ -19,36 +19,125 @@ const stripped = knownLocales.includes(maybeLocale)
   : pathname;
 // En raíz, no añadimos "/" para que el href quede exactamente "/en" o "/es"
 const currentPath = stripped === "/" ? "" : stripped;
+
+// ID único por instancia (el componente se usa en desktop y mobile)
+const uid = Math.random().toString(36).slice(2, 9);
+const btnId = `lang-btn-${uid}`;
+const menuId = `lang-menu-${uid}`;
 ---
 
-<div class="relative inline-block text-left">
-  <div
-    class="group rounded text-sm font-semibold transition-all hover:bg-accent/20 border-2 border-border"
+<div class="relative inline-block text-left" data-lang-selector>
+  <button
+    id={btnId}
+    type="button"
+    class="rounded text-sm font-semibold transition-all hover:bg-accent/20 border-2 border-border inline-flex items-center gap-x-2 px-3 py-2"
+    aria-haspopup="menu"
+    aria-expanded="false"
+    aria-controls={menuId}
   >
-    <button
-      type="button"
-      class="inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
-      aria-expanded="true"
-      aria-haspopup="true"
-    >
-      {currentLocaleData.name}
-      <ChevronIcon class="size-4 -mr-1" />
-    </button>
-    <ul
-      class="group-hover:block group-hover:animate-fade-down group-hover:animate-duration-200 hidden absolute w-full"
-    >
-      {
-        otherLocales.map((locale) => (
-          <li class="">
-            <a
-              class="rounded hover:bg-accent/20 border-2 -mx-0.5 border-border whitespace-no-wrap inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
-              href={`${locale.href}${currentPath}`}
-            >
-              {locale.name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+    {currentLocaleData.name}
+    <ChevronIcon class="size-4 -mr-0.5" />
+  </button>
+  <ul
+    id={menuId}
+    role="menu"
+    aria-labelledby={btnId}
+    class="absolute z-10 mt-1 w-full hidden rounded bg-background border-2 border-border shadow"
+  >
+    {
+      otherLocales.map((locale) => (
+        <li>
+          <a
+            role="menuitem"
+            tabindex="-1"
+            class="rounded hover:bg-accent/20 focus:bg-accent/20 outline-none -mx-0.5 whitespace-no-wrap inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
+            href={`${locale.href}${currentPath}`}
+          >
+            {locale.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const roots = Array.from(document.querySelectorAll('[data-lang-selector]')) as HTMLElement[];
+    if (!roots.length) return;
+
+    roots.forEach((root) => {
+      const btn = root.querySelector('button[aria-haspopup="menu"]') as HTMLButtonElement | null;
+      const menu = root.querySelector('ul[role="menu"]') as HTMLElement | null;
+      if (!btn || !menu) return;
+
+      const items = Array.from(menu.querySelectorAll('a[role="menuitem"]')) as HTMLAnchorElement[];
+      let open = false;
+
+      function setOpen(next) {
+        open = next;
+        if (open) {
+          menu.classList.remove('hidden');
+          menu.classList.add('block');
+          btn.setAttribute('aria-expanded', 'true');
+          items[0]?.focus();
+        } else {
+          menu.classList.add('hidden');
+          menu.classList.remove('block');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      function onDocClick(e) {
+        if (!open) return;
+        const target = e.target;
+        if (!btn.contains(target) && !menu.contains(target)) setOpen(false);
+      }
+
+      function onBtnKey(e) {
+        if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setOpen(true);
+        }
+        if (e.key === 'Escape' && open) {
+          e.preventDefault();
+          setOpen(false);
+          btn.focus();
+        }
+      }
+
+      function onMenuKey(e) {
+        const idx = items.findIndex((el) => el === document.activeElement);
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          setOpen(false);
+          btn.focus();
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = (idx + 1) % items.length;
+          items[next]?.focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = (idx - 1 + items.length) % items.length;
+          items[prev]?.focus();
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          items[0]?.focus();
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          items[items.length - 1]?.focus();
+        }
+      }
+
+      btn.addEventListener('click', () => setOpen(!open));
+      btn.addEventListener('keydown', onBtnKey);
+      menu.addEventListener('keydown', onMenuKey);
+      document.addEventListener('mousedown', onDocClick);
+
+      // Cleanup on hot-reload
+      document.addEventListener('astro:before-swap', () => {
+        document.removeEventListener('mousedown', onDocClick);
+      });
+    });
+  });
+</script>

@@ -1,0 +1,138 @@
+---
+import { SUPPORTED, type Lang } from "@/lib/lang";
+
+const placeholderImage = "/og.png";
+
+interface Alternate {
+  lang: Lang | 'x-default'
+  href: string
+}
+
+interface Props {
+  title: string
+  description?: string
+  lang: Lang
+  canonical?: string
+  noindex?: boolean
+  ogImage?: string
+  ogType?: 'website' | 'article'
+  twitter?: { site?: string; creator?: string }
+  alternates?: Alternate[]
+  jsonLd?: any | any[]
+}
+
+const {
+  title,
+  description,
+  lang,
+  canonical,
+  noindex = false,
+  ogImage,
+  ogType = 'website',
+  twitter = {},
+  alternates,
+  jsonLd,
+} = Astro.props as Props
+
+const origin = Astro.url.origin
+const pathname = Astro.url.pathname
+
+function normalizePath(p: string) {
+  return p
+}
+
+function computeCanonical() {
+  try {
+    if (canonical) return canonical
+    const url = new URL(normalizePath(pathname), origin)
+    return url.toString()
+  } catch {
+    return `${origin}${normalizePath(pathname)}`
+  }
+}
+
+function computeAlternates(): Alternate[] {
+  if (alternates && alternates.length) return alternates
+  const parts = pathname.split('/')
+  const currentPrefix = parts[1]
+  const hasPrefix = (SUPPORTED as readonly string[]).includes(currentPrefix as any)
+  const result: Alternate[] = []
+  for (const l of SUPPORTED) {
+    const p = [...parts]
+    if (hasPrefix) p[1] = l
+    else p.splice(1, 0, l)
+    const href = `${origin}${normalizePath(p.join('/'))}`
+    result.push({ lang: l, href })
+  }
+  const enAlt = result.find((r) => r.lang === 'en' as Lang)?.href
+  const fallback = `${origin}/${SUPPORTED[0]}`
+  const xDefault = enAlt || fallback
+  result.push({ lang: 'x-default', href: xDefault })
+  return result
+}
+
+const canonicalUrl = computeCanonical()
+const hrefAlternates = computeAlternates()
+const robots = noindex ? 'noindex, nofollow' : 'index, follow'
+
+function mapOgLocale(l: Lang): string {
+  if (l === 'en') return 'en_CA'
+  if ((l as any) === 'fr') return 'fr_CA'
+  return 'es_ES'
+}
+const ogLocale = mapOgLocale(lang)
+
+let ogImageUrl: string | undefined = undefined
+if (ogImage) {
+  try {
+    new URL(ogImage)
+    ogImageUrl = ogImage
+  } catch {
+    ogImageUrl = new URL(ogImage, origin).toString()
+  }
+} else {
+  const rel = typeof placeholderImage === 'string' ? placeholderImage : ((placeholderImage as any)?.src || '/favicon.svg')
+  ogImageUrl = new URL(rel, origin).toString()
+}
+const hasImage = Boolean(ogImageUrl)
+---
+
+<Fragment>
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content={robots} />
+
+  {
+    hrefAlternates.map((a) => (
+      <link rel="alternate" hreflang={a.lang} href={a.href} />
+    ))
+  }
+
+  <meta property="og:title" content={title} />
+  {description && <meta property="og:description" content={description} />}
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:locale" content={ogLocale} />
+  {hasImage && <meta property="og:image" content={ogImageUrl} />}
+  {hasImage && <meta property="og:image:width" content="1200" />}
+  {hasImage && <meta property="og:image:height" content="630" />}
+
+  <meta name="twitter:card" content={hasImage ? 'summary_large_image' : 'summary'} />
+  {twitter.site && <meta name="twitter:site" content={twitter.site} />} 
+  {twitter.creator && <meta name="twitter:creator" content={twitter.creator} />}
+  <meta name="twitter:title" content={title} />
+  {description && <meta name="twitter:description" content={description} />}
+  {hasImage && <meta name="twitter:image" content={ogImageUrl} />}
+
+  {
+    Array.isArray(jsonLd)
+      ? jsonLd.map((obj) => (
+          <script type="application/ld+json">{JSON.stringify(obj)}</script>
+        ))
+      : jsonLd
+      ? (<script type="application/ld+json">{JSON.stringify(jsonLd)}</script>)
+      : null
+  }
+</Fragment>
+

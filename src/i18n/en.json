@@ -65,5 +65,10 @@
       "main": "Main navigation",
       "social": "Social links"
     }
+  },
+  "not_found": {
+    "title": "Page not found · David Castrillón",
+    "description": "The page you are looking for doesn't exist or was moved.",
+    "back_home": "Back to home"
   }
 }

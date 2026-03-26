@@ -65,5 +65,10 @@
       "main": "Navegación principal",
       "social": "Enlaces sociales"
     }
+  },
+  "not_found": {
+    "title": "Página no encontrada · David Castrillón",
+    "description": "La página que buscas no existe o fue movida.",
+    "back_home": "Volver al inicio"
   }
 }

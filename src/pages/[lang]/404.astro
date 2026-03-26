@@ -1,0 +1,60 @@
+---
+import Button from "@/components/ui/Button.astro";
+import { getI18N } from "@/i18n";
+import { staticPathsForLang, type Lang } from "@/lib/lang";
+import "@fontsource/onest";
+import "@/styles/global.css";
+
+export function getStaticPaths() {
+  return staticPathsForLang();
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const i18n = getI18N({ currentLocale: lang });
+const title = i18n.not_found.title;
+const description = i18n.not_found.description;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta id="meta-theme-color" name="theme-color" content="#0b0b0c" />
+    <script is:inline>
+      const stored =
+        typeof localStorage !== "undefined"
+          ? localStorage.getItem("theme")
+          : null;
+      const theme = stored ?? "dark";
+      if (theme === "dark") document.documentElement.classList.add("dark");
+      else document.documentElement.classList.remove("dark");
+      try {
+        const meta = document.getElementById("meta-theme-color");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#0b0b0c" : "#fafafe",
+          );
+      } catch {}
+      try {
+        localStorage.setItem("theme", theme);
+      } catch {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="bg-background text-foreground min-h-dvh flex items-center justify-center px-6">
+      <main class="text-center space-y-6">
+        <h1 class="text-6xl md:text-7xl font-extrabold text-primary">404</h1>
+        <p class="text-foreground/80 text-lg">{description}</p>
+        <div class="flex justify-center">
+          <Button href={`/${lang}`} variant="outline"
+            >{i18n.not_found.back_home}</Button
+          >
+        </div>
+      </main>
+  </body>
+</html>

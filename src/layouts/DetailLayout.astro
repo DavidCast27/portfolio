@@ -1,5 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
+import SEO from "@/components/SEO.astro";
+import { getI18N } from "@/i18n";
 import "@fontsource/onest";
 import "../styles/global.css";
 
@@ -7,11 +9,37 @@ interface Props {
   title: string;
   description: string;
   currentLocale: string;
+  canonical?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  twitter?: { site?: string; creator?: string };
+  alternates?: Array<{ lang: import("@/lib/lang").Lang | 'x-default'; href: string }>;
+  jsonLd?: any | any[];
 }
 
-const { title, description, currentLocale } = Astro.props as Props;
+const { title, description, currentLocale, canonical, noindex, ogImage, ogType, twitter, alternates, jsonLd } = Astro.props as Props;
 const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : Astro.url.origin;
-const pageUrl = `${baseUrl}${Astro.url.pathname}`;
+const i18n = getI18N({ currentLocale });
+
+// JSON-LD por defecto (Person) también en DetailLayout
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: i18n.home.name,
+  jobTitle: i18n.home.role,
+  url: baseUrl,
+  sameAs: [
+    "https://github.com/DavidCast27",
+    "https://www.linkedin.com/in/davidcastrillongonzales/",
+    "mailto:david.cast27@gmail.com"
+  ]
+};
+
+let jsonLdToUse: any | any[] = personJsonLd;
+if (typeof jsonLd !== 'undefined') {
+  jsonLdToUse = Array.isArray(jsonLd) ? [personJsonLd, ...jsonLd] : [personJsonLd, jsonLd];
+}
 ---
 
 <!doctype html>
@@ -41,37 +69,22 @@ const pageUrl = `${baseUrl}${Astro.url.pathname}`;
       } catch {}
     </script>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="google-adsense-account" content="ca-pub-4053310127194983" />
-    <title>{title}</title>
-    <link rel="canonical" href={pageUrl} />
-    <link rel="alternate" hreflang="x-default" href={pageUrl.replace(`/${currentLocale}`, "/es")} />
-    <link rel="alternate" hreflang="es" href={pageUrl.replace(`/${currentLocale}`, "/es")} />
-    <link rel="alternate" hreflang="en" href={pageUrl.replace(`/${currentLocale}`, "/en")} />
-
-    <!-- Open Graph -->
-    <meta property="og:url" content={pageUrl} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <!-- OG/Twitter image (PNG for compatibility) -->
-    <meta property="og:image" content={`${baseUrl}/og.png`} />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={title} />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="castri.dev" />
-    <meta property="twitter:url" content={pageUrl} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${baseUrl}/og.png`} />
-    <meta name="twitter:image:alt" content={title} />
+    <SEO 
+      title={title}
+      description={description}
+      lang={(currentLocale as 'en' | 'es')}
+      canonical={canonical}
+      noindex={noindex}
+      ogImage={ogImage}
+      ogType={ogType}
+      twitter={twitter}
+      alternates={alternates}
+      jsonLd={jsonLdToUse}
+    />
     {
       import.meta.env.PROD && (
         <script

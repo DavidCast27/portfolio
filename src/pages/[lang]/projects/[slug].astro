@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   return staticPathsForSlugs(async (lang) => PROJECTS[lang]);
 }
 
-const { lang, slug } = Astro.params as { lang: string; slug: string };
+const { lang, slug } = Astro.params as { lang: "es" | "en"; slug: string };
 const i18n = getI18N({ currentLocale: lang });
 
 const project = PROJECTS[lang as "es" | "en"].find((p) => p.slug === slug);
@@ -25,17 +25,62 @@ if (!project) {
 
 const title = `${project.title} · ${i18n.seo.title}`;
 const description = project.summary;
+const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : Astro.url.origin;
+const canonical = `${baseUrl}${Astro.url.pathname}`;
+
+// OG image (absoluta para JSON-LD) y tags
+// project.image puede ser metadata con .src
+const ogImageAbs = new URL((project.image as any).src || (project.image as string), baseUrl).toString();
+const tagNames = project.tags?.map((t) => t.name) ?? [];
+const programmingLanguages = tagNames.filter((n) => [
+  'TypeScript','JavaScript','Astro','React.js','Preact','Next.js','Tailwind CSS'
+].includes(n));
 const breadcrumbItems = [
   { label: i18n.menu.home, href: `/${lang}` },
   { label: i18n.projects.detail.breadcrumb, href: `/${lang}#projects` },
   { label: project.title }
 ];
+
+// JSON-LD: BreadcrumbList + SoftwareSourceCode
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: i18n.menu.home, item: `${baseUrl}/${lang}` },
+    { "@type": "ListItem", position: 2, name: i18n.projects.detail.breadcrumb, item: `${baseUrl}/${lang}#projects` },
+    { "@type": "ListItem", position: 3, name: project.title, item: canonical },
+  ]
+};
+
+const softwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  name: project.title,
+  description: project.summary,
+  url: canonical,
+  codeRepository: project.codeURL,
+  inLanguage: lang,
+  programmingLanguage: programmingLanguages.join(', ') || undefined,
+  keywords: tagNames.join(', '),
+  image: ogImageAbs,
+  isAccessibleForFree: true,
+  author: {
+    "@type": "Person",
+    name: i18n.home.name,
+    url: baseUrl
+  }
+};
+
+const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
 ---
 
 <DetailLayout
   title={title}
   description={description}
   currentLocale={lang}
+  canonical={canonical}
+  ogImage={(project.image as any).src || (project.image as string)}
+  jsonLd={jsonLd}
 >
   <Breadcrumb items={breadcrumbItems} />
 
