@@ -1,10 +1,94 @@
 ---
 import { TAGS } from "../constants/tags.constants.astro";
 import ColombiaInfoImg from "@/assets/projects/colombia-info.webp";
-import DashboardExampleImg from "@/assets/projects/dashboard-example.webp";
-import PortfolioImg from "@/assets/projects/portfolio.webp";
+import LandingPageImg from "@/assets/projects/landing-page.webp";
+import GmfCalculadoraImg from "@/assets/projects/gmf-calculadora.webp";
+import JsonCvManagerImg from "@/assets/projects/json-cv-manager.webp";
 
 export const PROJECTS_ES = [
+	{
+		slug: "landing-page",
+		title: "Landing Page con CMS",
+		description:
+			"Landing page multilingüe (ES/EN/FR) con CMS integrado via Decap CMS, formulario de contacto con Resend y despliegue estático en Vercel. Sin suscripciones, 100% open source.",
+		summary: "Landing page estática construida con Astro y Tailwind CSS, con soporte multilingüe (ES/EN/FR) y gestión de contenido mediante Decap CMS (Git-based). Cualquier persona puede hacer fork, modificar la carpeta de contenido y tener su propia landing funcional. Incluye formulario de contacto con Resend, detección automática de idioma y modo oscuro sin flash.",
+		stack: [
+			{ name: "Astro", version: "5" },
+			{ name: "Tailwind CSS", version: "4" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Decap CMS", version: "" },
+			{ name: "Resend", version: "" },
+			{ name: "Vercel", version: "" },
+		],
+		features: [
+			"Multilingüe ES/EN/FR con rutas prefijadas",
+			"CMS Git-based con Decap CMS (sin costo)",
+			"Formulario de contacto via Resend",
+			"Detección automática de idioma preferido",
+			"Modo oscuro sin flash",
+			"SEO optimizado con sitemap y robots",
+			"100% open source y forkeable",
+		],
+		aiUsage: { used: true, description: "Asistencia con IA para desarrollo y revisión de código" },
+		role: "Desarrollador principal",
+		codeURL: "https://github.com/DavidCast27/landing-page",
+		webSiteURL: "https://landing-page-ten-indol-38.vercel.app/es/",
+		image: LandingPageImg,
+		tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.VERCEL],
+	},
+	{
+		slug: "gmf-calculator",
+		title: "Calculadora 4×1000",
+		description:
+			"Herramienta web para calcular el Gravamen a los Movimientos Financieros (GMF) en Colombia: calcula el cobro sobre una transacción o el abono necesario para no superar el tope exento.",
+		summary: "Aplicación web enfocada en utilidad real para usuarios colombianos. Ofrece dos modos de cálculo: cuánto GMF te cobrarán por una transacción, y cuánto debes abonar para que el 4×1000 no supere tu tope exento. Incluye sección FAQ con información sobre el impuesto y está optimizada para uso móvil.",
+		stack: [
+			{ name: "React", version: "18" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "Vite", version: "" },
+			{ name: "Shadcn/ui", version: "" },
+		],
+		features: [
+			"Calculadora de cobro de 4×1000",
+			"Calculadora de abono con tope exento",
+			"Sección FAQ sobre el GMF",
+			"Interfaz optimizada para móvil",
+			"Cálculo en tiempo real",
+		],
+		aiUsage: { used: true, description: "Asistencia con IA para desarrollo y revisión de código" },
+		role: "Desarrollador principal",
+		codeURL: "https://github.com/DavidCast27/GMF-calculator",
+		webSiteURL: "https://calculadora-4x1000.castri.dev/",
+		image: GmfCalculadoraImg,
+		tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.SHADCN],
+	},
+	{
+		slug: "json-cv-manager",
+		title: "JSON CV Manager",
+		description:
+			"Herramienta CLI para gestionar tu CV como código usando el esquema JSON Resume. Genera PDFs ATS-friendly, valida el contenido y permite crear variantes por postulación sin tocar Canva.",
+		summary: "Proyecto de consola que implementa el concepto de CV-as-code sobre el estándar JSON Resume. Permite mantener el CV versionado en Git, generar PDFs y HTML con una plantilla propia optimizada para sistemas ATS, validar el contenido y analizar compatibilidad con ofertas laborales. Ideal para quienes postulan frecuentemente y necesitan adaptar su CV sin perder tiempo en herramientas de diseño.",
+		stack: [
+			{ name: "Node.js", version: "" },
+			{ name: "JavaScript", version: "" },
+			{ name: "JSON Resume", version: "" },
+		],
+		features: [
+			"CV-as-code con JSON Resume schema",
+			"Generación de PDF y HTML ATS-friendly",
+			"Plantilla propia optimizada para ATS",
+			"Validación de contenido por idioma y plantilla",
+			"ATS checker con score e issues",
+			"Compatibilidad con ofertas laborales (URL o texto)",
+			"Soporte multi-idioma (EN/ES)",
+		],
+		aiUsage: { used: true, description: "Asistencia con IA para desarrollo y revisión de código" },
+		role: "Desarrollador principal",
+		codeURL: "https://github.com/DavidCast27/json-cv-manager",
+		image: JsonCvManagerImg,
+		tags: [TAGS.JAVASCRIPT],
+	},
 	{
 		slug: "info-colombia",
 		title: "Info Colombia",
@@ -27,71 +111,99 @@ export const PROJECTS_ES = [
 			"Optimización de rendimiento",
 			"Diseño accesible",
 		],
-		aiUsage: { used: false, description: "" },
+		aiUsage: { used: true, description: "Asistencia con IA para desarrollo y revisión de código" },
 		role: "Desarrollador principal",
 		codeURL: "https://github.com/DavidCast27/colombia-info",
 		webSiteURL: "https://colombia-info.vercel.app/",
 		image: ColombiaInfoImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL, TAGS.SHADCN],
 	},
-	{
-		slug: "acme-dashboard",
-		title: "Acme Dashboard - Curso de Next.js",
-		description:
-		  "Dashboard de ejemplo siguiendo el curso oficial de Next.js 14: enrutado por sistema de archivos, SSR y UI reutilizable con Tailwind CSS y TypeScript.",
-		summary: "Dashboard educativo basado en el curso oficial de Next.js 14. Implementa conceptos avanzados como enrutado por sistema de archivos, renderizado del lado del servidor (SSR), y componentes de UI reutilizables. Construido con TypeScript para mayor robustez y Tailwind CSS para el diseño.",
-		stack: [
-			{ name: "Next.js", version: "14" },
-			{ name: "React", version: "18" },
-			{ name: "TypeScript", version: "5" },
-			{ name: "Tailwind CSS", version: "3" },
-			{ name: "Vercel", version: "" },
-		],
-		features: [
-			"Enrutado por sistema de archivos",
-			"Renderizado SSR",
-			"Componentes UI reutilizables",
-			"TypeScript para tipado fuerte",
-			"Estilos con Tailwind CSS",
-			"Despliegue en Vercel",
-		],
-		aiUsage: { used: false, description: "" },
-		role: "Desarrollador principal",
-		codeURL: "https://github.com/DavidCast27/nextjs-dashboard",
-		webSiteURL: "https://dashboard-example-castri.vercel.app/",
-		image: DashboardExampleImg,
-		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL],
-	},
-	{
-		slug: "portfolio",
-		title: "Portfolio",
-		description:
-		  "Portfolio ligero y accesible construido con Astro y Tailwind CSS, con despliegue continuo en Netlify.",
-		summary: "Sitio web personal desarrollado con Astro para un rendimiento óptimo y Tailwind CSS para un diseño consistente. Incluye internacionalización (i18n) para soporte en español e inglés, y se despliega automáticamente en Netlify con integración continua.",
-		stack: [
-			{ name: "Astro", version: "5" },
-			{ name: "Preact", version: "10" },
-			{ name: "Tailwind CSS", version: "4" },
-			{ name: "TypeScript", version: "5" },
-			{ name: "Netlify", version: "" },
-		],
-		features: [
-			"Rendimiento optimizado con Astro",
-			"Internacionalización (i18n)",
-			"Diseño accesible",
-			"Despliegue continuo",
-			"Componentes reutilizables",
-			"SEO optimizado",
-		],
-		aiUsage: { used: false, description: "" },
-		role: "Desarrollador principal",
-		codeURL: "https://github.com/DavidCast27/portfolio",
-		image: PortfolioImg,
-		tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.NETLIFY, TAGS.PREACT],
-	},
 ];
 
 export const PROJECTS_EN = [
+	{
+		slug: "landing-page",
+		title: "Landing Page with CMS",
+		description:
+			"Multilingual landing page (ES/EN/FR) with integrated Decap CMS, contact form via Resend, and static deployment on Vercel. No subscriptions, 100% open source.",
+		summary: "Static landing page built with Astro and Tailwind CSS, with multilingual support (ES/EN/FR) and content management via Decap CMS (Git-based). Anyone can fork it, modify the content folder, and have a fully functional landing page. Includes a Resend-powered contact form, automatic language detection, and flash-free dark mode.",
+		stack: [
+			{ name: "Astro", version: "5" },
+			{ name: "Tailwind CSS", version: "4" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Decap CMS", version: "" },
+			{ name: "Resend", version: "" },
+			{ name: "Vercel", version: "" },
+		],
+		features: [
+			"Multilingual ES/EN/FR with prefixed routes",
+			"Git-based CMS with Decap CMS (free)",
+			"Contact form via Resend",
+			"Automatic preferred language detection",
+			"Flash-free dark mode",
+			"SEO optimized with sitemap and robots",
+			"100% open source and forkable",
+		],
+		aiUsage: { used: true, description: "AI-assisted development and code review" },
+		role: "Lead developer",
+		codeURL: "https://github.com/DavidCast27/landing-page",
+		webSiteURL: "https://landing-page-ten-indol-38.vercel.app/es/",
+		image: LandingPageImg,
+		tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.VERCEL],
+	},
+	{
+		slug: "gmf-calculator",
+		title: "4×1000 Tax Calculator",
+		description:
+			"Web tool to calculate Colombia's Financial Transactions Tax (GMF): compute the charge on a transaction or the deposit needed to stay within the tax-exempt threshold.",
+		summary: "Web application focused on real utility for Colombian users. Offers two calculation modes: how much GMF you'll be charged on a transaction, and how much you need to deposit so the 4×1000 doesn't exceed your exempt threshold. Includes an FAQ section about the tax and is optimized for mobile use.",
+		stack: [
+			{ name: "React", version: "18" },
+			{ name: "TypeScript", version: "5" },
+			{ name: "Tailwind CSS", version: "3" },
+			{ name: "Vite", version: "" },
+			{ name: "Shadcn/ui", version: "" },
+		],
+		features: [
+			"4×1000 charge calculator",
+			"Deposit calculator with exempt threshold",
+			"FAQ section about GMF",
+			"Mobile-optimized interface",
+			"Real-time calculation",
+		],
+		aiUsage: { used: true, description: "AI-assisted development and code review" },
+		role: "Lead developer",
+		codeURL: "https://github.com/DavidCast27/GMF-calculator",
+		webSiteURL: "https://calculadora-4x1000.castri.dev/",
+		image: GmfCalculadoraImg,
+		tags: [TAGS.REACT, TAGS.TYPESCRIPT, TAGS.TAILWIND, TAGS.SHADCN],
+	},
+	{
+		slug: "json-cv-manager",
+		title: "JSON CV Manager",
+		description:
+			"CLI tool to manage your CV as code using the JSON Resume schema. Generates ATS-friendly PDFs, validates content, and lets you create tailored variants per application without touching Canva.",
+		summary: "Console project implementing the CV-as-code concept on top of the JSON Resume standard. Keeps your CV versioned in Git, generates PDFs and HTML with a custom ATS-optimized template, validates content, and analyzes compatibility with job listings. Ideal for frequent applicants who need to adapt their CV without wasting time in design tools.",
+		stack: [
+			{ name: "Node.js", version: "" },
+			{ name: "JavaScript", version: "" },
+			{ name: "JSON Resume", version: "" },
+		],
+		features: [
+			"CV-as-code with JSON Resume schema",
+			"ATS-friendly PDF and HTML generation",
+			"Custom ATS-optimized template",
+			"Content validation by language and template",
+			"ATS checker with score and issues",
+			"Job listing compatibility (URL or text)",
+			"Multi-language support (EN/ES)",
+		],
+		aiUsage: { used: true, description: "AI-assisted development and code review" },
+		role: "Lead developer",
+		codeURL: "https://github.com/DavidCast27/json-cv-manager",
+		image: JsonCvManagerImg,
+		tags: [TAGS.JAVASCRIPT],
+	},
 	{
 		slug: "info-colombia",
 		title: "Info Colombia",
@@ -114,74 +226,19 @@ export const PROJECTS_EN = [
 			"Performance optimization",
 			"Accessible design",
 		],
-		aiUsage: { used: false, description: "" },
+		aiUsage: { used: true, description: "AI-assisted development and code review" },
 		role: "Lead developer",
 		codeURL: "https://github.com/DavidCast27/colombia-info",
 		webSiteURL: "https://colombia-info.vercel.app/",
 		image: ColombiaInfoImg,
 		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL, TAGS.SHADCN],
 	},
-	{
-		slug: "acme-dashboard",
-		title: "Acme Dashboard - Next.js Course",
-		description:
-		  "Example dashboard following the official Next.js 14 course: file-system routing, SSR, and reusable UI with Tailwind CSS and TypeScript.",
-		summary: "Educational dashboard based on the official Next.js 14 course. Implements advanced concepts like file-system routing, server-side rendering (SSR), and reusable UI components. Built with TypeScript for greater robustness and Tailwind CSS for styling.",
-		stack: [
-			{ name: "Next.js", version: "14" },
-			{ name: "React", version: "18" },
-			{ name: "TypeScript", version: "5" },
-			{ name: "Tailwind CSS", version: "3" },
-			{ name: "Vercel", version: "" },
-		],
-		features: [
-			"File-system routing",
-			"SSR rendering",
-			"Reusable UI components",
-			"Strong typing with TypeScript",
-			"Styling with Tailwind CSS",
-			"Deployment on Vercel",
-		],
-		aiUsage: { used: false, description: "" },
-		role: "Lead developer",
-		codeURL: "https://github.com/DavidCast27/nextjs-dashboard",
-		webSiteURL: "https://dashboard-example-castri.vercel.app/",
-		image: DashboardExampleImg,
-		tags: [TAGS.NEXT, TAGS.TAILWIND, TAGS.REACT, TAGS.TYPESCRIPT, TAGS.VERCEL],
-	},
-	{
-		slug: "portfolio",
-		title: "Portfolio",
-		description:
-		  "Lightweight, accessible portfolio built with Astro and Tailwind CSS, deployed with continuous delivery on Netlify.",
-		summary: "Personal website developed with Astro for optimal performance and Tailwind CSS for consistent design. Includes internationalization (i18n) for Spanish and English support, and automatically deploys to Netlify with continuous integration.",
-		stack: [
-			{ name: "Astro", version: "5" },
-			{ name: "Preact", version: "10" },
-			{ name: "Tailwind CSS", version: "4" },
-			{ name: "TypeScript", version: "5" },
-			{ name: "Netlify", version: "" },
-		],
-		features: [
-			"Optimized performance with Astro",
-			"Internationalization (i18n)",
-			"Accessible design",
-			"Continuous deployment",
-			"Reusable components",
-			"SEO optimization",
-		],
-		aiUsage: { used: false, description: "" },
-		role: "Lead developer",
-		codeURL: "https://github.com/DavidCast27/portfolio",
-		image: PortfolioImg,
-		tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT, TAGS.NETLIFY, TAGS.PREACT],
-	},
 ];
 
 export const PROJECTS = {
-   en: [...PROJECTS_EN],
-   es: [...PROJECTS_ES],
- };
+  en: [...PROJECTS_EN],
+  es: [...PROJECTS_ES],
+};
 
 // Helper to get project by slug and lang
 export function getProjectBySlug(slug: string, lang: "en" | "es") {
