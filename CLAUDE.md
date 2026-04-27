@@ -51,7 +51,6 @@ There is **no test framework, no ESLint, and no Prettier**. `astro check` is the
 
 ## Conventions worth knowing up front
 
-- Note the existing typo `src/components/experiencies/` alongside `src/components/experiences/` — both directories exist; check which is actually imported before editing.
 - Booleans use `is*` / `has*`, components are PascalCase, constants files end in `.constants.*`, and the codebase prefers `type` aliases over `interface`. Full style notes in `AGENTS.md`.
 - External links: always `rel="noopener noreferrer"` with `target="_blank"`.
 - Don't introduce new dependencies, formatters, or test tooling without checking with the user — `AGENTS.md` calls this out explicitly.
