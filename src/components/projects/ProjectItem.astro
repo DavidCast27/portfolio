@@ -1,16 +1,31 @@
 ---
+import { cva } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 import Pill from "../ui/Pill.astro";
 import BoxSeamIcon from "../icons/BoxSeamIcon.astro";
 import CodeIcon from "../icons/CodeIcon.astro";
 import Paragraph from "../ui/Paragraph.astro";
 import Button from "../ui/Button.astro";
-import ListItemHeader from "../ui/ListItemHeader.astro";
 import MediaFrame from "../ui/MediaFrame.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import TagList from "../ui/TagList.astro";
 import { getI18N } from "@/i18n";
 import { Image } from "astro:assets";
 import ChevronIcon from "../icons/ChevronIcon.astro";
+
+const articleVariants = cva("", {
+  variants: {
+    layout: {
+      featured:
+        "mb-12 md:mb-16 grid gap-6 md:gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:items-center",
+      supporting:
+        "mb-6 md:mb-8 grid gap-4 md:gap-6 md:grid-cols-[120px_minmax(0,1fr)] md:items-start",
+    },
+  },
+  defaultVariants: {
+    layout: "supporting",
+  },
+});
 
 interface Props {
   slug: string;
@@ -20,18 +35,66 @@ interface Props {
   image: any;
   codeURL: string;
   webSiteURL?: string;
+  featured?: boolean;
 }
-const { slug, title, description, tags, image, codeURL, webSiteURL } =
-  Astro.props;
+const {
+  slug,
+  title,
+  description,
+  tags,
+  image,
+  codeURL,
+  webSiteURL,
+  featured = false,
+} = Astro.props as Props;
+
+const layout = featured ? "featured" : "supporting";
 
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
-<article class="mb-6 md:mb-12">
-  <ListItemHeader class="mb-6">
+<article class={articleVariants({ layout })}>
+  <MediaFrame ratio={featured ? "video" : "square"}>
+    <Image
+      src={image}
+      alt={`${i18n.projects.image_alt_prefix} ${title}`}
+      widths={featured ? [480, 768, 1024, 1440] : [120, 240, 360]}
+      sizes={featured ? "(min-width: 1024px) 768px, 100vw" : "120px"}
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  </MediaFrame>
+
+  <div class={cn("flex flex-col", featured ? "gap-4" : "gap-3")}>
     <SectionHeading as="h3" intent="item">{title}</SectionHeading>
-    <nav class="flex gap-2 md:gap-4">
+
+    {featured ? (
+      <Paragraph intent="lead">{description}</Paragraph>
+    ) : (
+      <Paragraph intent="meta">{description}</Paragraph>
+    )}
+
+    <TagList density="compact">
+      {(featured ? tags : tags.slice(0, 3)).map(({ name, Icon, className }) => (
+        <Pill variant="tag" class={className}>
+          <Icon class="size-5" />
+          <span class="hidden md:inline text-xs">{name}</span>
+        </Pill>
+      ))}
+    </TagList>
+
+    <nav class="flex flex-wrap gap-2 mt-1">
+      <Button
+        href={`/${currentLocale}/projects/${slug}`}
+        variant={featured ? "default" : "outline"}
+        size="sm"
+        aria-label={`${i18n.projects.detail.view_more} ${title}`}
+      >
+        {i18n.projects.detail.view_more}
+        <ChevronIcon class="size-4 ml-2" />
+      </Button>
       <Button
         href={codeURL}
         variant="outline"
@@ -58,35 +121,6 @@ const i18n = getI18N({ currentLocale });
           </span>
         </Button>
       )}
-      <Button
-        href={`/${currentLocale}/projects/${slug}`}
-        variant="default"
-        size="sm"
-        aria-label={`${i18n.projects.detail.view_more} ${title}`}
-      >
-        {i18n.projects.detail.view_more}
-        <ChevronIcon class="size-4 ml-2" />
-      </Button>
     </nav>
-  </ListItemHeader>
-  <Paragraph>{description}</Paragraph>
-  <TagList>
-    {tags.map(({ name, Icon, className }) => (
-      <Pill variant="tag" class={className}>
-        <Icon class="size-5" />
-        <span class="hidden md:inline text-xs">{name}</span>
-      </Pill>
-    ))}
-  </TagList>
-  <MediaFrame>
-    <Image
-      src={image}
-      alt={`${i18n.projects.image_alt_prefix} ${title}`}
-      widths={[480, 768, 1024, 1440]}
-      sizes="(min-width: 1024px) 768px, 100vw"
-      class="absolute inset-0 h-full w-full object-cover"
-      loading="lazy"
-      decoding="async"
-    />
-  </MediaFrame>
+  </div>
 </article>

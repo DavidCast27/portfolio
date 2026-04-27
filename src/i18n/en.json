@@ -13,12 +13,11 @@
   "home": {
     "name": "David Castrillón Gonzales",
     "role": "Full-stack Developer",
+    "anchor": "8+ years building frontend interfaces, currently at <span class='text-primary font-semibold'>Yuno</span>.",
+    "lead": "I design and build fast, accessible, and maintainable interfaces with <span class='text-primary'>React and TypeScript</span>. I have worked in fintech and e-commerce with distributed teams, taking end-to-end ownership when the work touches Go, Node.js, or Java.",
     "status": {
-      "available": "Available"
+      "label": "Open to conversations about senior frontend or full-stack roles."
     },
-    "years_of_experience": "8+ years of experience",
-    "main_paragraph": "Full-stack developer specialized in frontend with <span class='text-primary'>React and TypeScript</span>. I design and build fast, accessible, and maintainable user interfaces.",
-    "second_paragraph": "Also experienced with <span class='text-primary'>Go, Node.js, and Java</span> and test automation using <span class='text-primary'>Selenium and Appium</span>, enabling end-to-end collaboration.",
     "social": {
       "github": "GitHub",
       "linkedin": "LinkedIn",
@@ -35,6 +34,7 @@
   },
   "projects": {
     "title": "Projects",
+    "supporting_label": "More projects",
     "links": {
       "code": "Code",
       "web": "Website"
@@ -55,9 +55,7 @@
   },
   "about": {
     "title": "About me",
-    "first_paragraph": "I am passionate about programming and continuous learning. I believe knowledge should be shared, and I enjoy learning with others and teaching what I learn.",
-    "second_paragraph": "I work well in teams, embrace challenges, and remain calm when making decisions to find effective solutions.",
-    "third_paragraph": "Committed to improving software quality and delivering real value to customers."
+    "body": "I work well when the problem is poorly defined and when the code I inherit is not mine. I have led test automation in banking, migrated applications to TypeScript in e-commerce, and built microfrontends in fintech. What stays consistent across those contexts: I read the code before writing my own, I prefer a small reviewable PR over a large explained one, and I review what I ship with the same attention I give to what lands in my queue."
   },
   "a11y": {
     "skip_to_content": "Skip to content",

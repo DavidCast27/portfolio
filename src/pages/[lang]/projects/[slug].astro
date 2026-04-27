@@ -85,41 +85,36 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
 >
   <Breadcrumb items={breadcrumbItems} />
 
-  <header class="mb-8">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <SectionHeading as="h1" intent="detail">{project.title}</SectionHeading>
-      <div class="flex gap-2">
+  <header class="mb-10 md:mb-12">
+    <SectionHeading as="h1" intent="detail" class="mb-4">{project.title}</SectionHeading>
+    <Paragraph intent="lead" class="mb-6">{project.summary}</Paragraph>
+    <div class="flex flex-wrap gap-2">
+      <Button
+        href={project.codeURL}
+        variant="default"
+        size="sm"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <CodeIcon class="size-4" />
+        <span>{i18n.projects.links.code}</span>
+      </Button>
+      {project.webSiteURL && (
         <Button
-          href={project.codeURL}
+          href={project.webSiteURL}
           variant="outline"
           size="sm"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <CodeIcon class="size-4" />
-          <span class="hidden sm:inline text-xs">
-            {i18n.projects.links.code}
-          </span>
+          <BoxSeamIcon class="size-4" />
+          <span>{i18n.projects.links.web}</span>
         </Button>
-        {project.webSiteURL && (
-          <Button
-            href={project.webSiteURL}
-            variant="outline"
-            size="sm"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <BoxSeamIcon class="size-4" />
-            <span class="hidden sm:inline text-xs">
-              {i18n.projects.links.web}
-            </span>
-          </Button>
-        )}
-      </div>
+      )}
     </div>
   </header>
 
-  <MediaFrame class="mb-8">
+  <MediaFrame class="mb-12 md:mb-16">
     <Image
       src={project.image}
       alt={`${i18n.projects.image_alt_prefix} ${project.title}`}
@@ -131,46 +126,46 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
     />
   </MediaFrame>
 
-  <section class="mb-8">
-    <Paragraph intent="lead">{project.summary}</Paragraph>
-  </section>
+  <div class="grid gap-10 md:gap-12 md:grid-cols-3">
+    <aside class="space-y-8">
+      <DetailSection title={i18n.projects.detail.role}>
+        <p class="text-foreground/80">{project.role}</p>
+      </DetailSection>
 
-  <div class="grid gap-8 md:grid-cols-2">
-    <DetailSection title={i18n.projects.detail.role}>
-      <p class="text-foreground/80">{project.role}</p>
-    </DetailSection>
+      <DetailSection title={i18n.projects.detail.stack}>
+        <ul class="space-y-2">
+          {project.stack.map(({ name, version }) => (
+            <li class="flex items-baseline gap-2 text-foreground/80">
+              <span class="font-medium">{name}</span>
+              {version && <span class="text-meta text-muted-foreground">v{version}</span>}
+            </li>
+          ))}
+        </ul>
+      </DetailSection>
 
-    <DetailSection title={i18n.projects.detail.stack}>
-      <ul class="space-y-2">
-        {project.stack.map(({ name, version }) => (
-          <li class="flex items-center gap-2 text-foreground/80">
-            <span class="font-medium">{name}</span>
-            {version && <span class="text-sm text-muted-foreground">v{version}</span>}
-          </li>
-        ))}
-      </ul>
-    </DetailSection>
+      <DetailSection title={i18n.projects.detail.ai_usage}>
+        <p class="text-foreground/80">
+          {project.aiUsage.used ? i18n.projects.detail.yes : i18n.projects.detail.no}
+          {project.aiUsage.description && (
+            <span class="block mt-2 text-meta">{project.aiUsage.description}</span>
+          )}
+        </p>
+      </DetailSection>
+    </aside>
 
-    <DetailSection title={i18n.projects.detail.features} span="full">
-      <ul class="grid gap-2 sm:grid-cols-2">
+    <DetailSection class="md:col-span-2" title={i18n.projects.detail.features}>
+      <ul class="space-y-3">
         {project.features.map((feature) => (
-          <li class="flex items-center gap-2">
-            <div class="size-2 rounded-full bg-primary shrink-0"></div>
-            <span class="text-foreground/80">{feature}</span>
+          <li class="flex items-start gap-3 text-foreground/90">
+            <span class="mt-2 size-1.5 rounded-full bg-foreground/40 shrink-0" aria-hidden="true"></span>
+            <span class="text-base md:text-lg leading-relaxed">{feature}</span>
           </li>
         ))}
       </ul>
     </DetailSection>
+  </div>
 
-    <DetailSection title={i18n.projects.detail.ai_usage}>
-      <p class="text-foreground/80">
-        {project.aiUsage.used ? i18n.projects.detail.yes : i18n.projects.detail.no}
-        {project.aiUsage.description && (
-          <span class="block mt-2 text-sm">{project.aiUsage.description}</span>
-        )}
-      </p>
-    </DetailSection>
-
+  <div class="mt-12 pt-8 border-t border-border/60">
     <DetailSection title={i18n.projects.detail.tags}>
       <TagList density="compact" class="my-2">
         {project.tags.map(({ name, Icon, className }) => (
@@ -183,9 +178,9 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
     </DetailSection>
   </div>
 
-  <div class="mt-12 pt-8 border-t border-border">
+  <div class="mt-12 pt-8 border-t border-border/60">
     <Button href={`/${lang}#projects`} variant="outline">
-      <svg class="size-4 rotate-180 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="size-4 rotate-180 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
       </svg>
       {i18n.projects.detail.back_to_projects}

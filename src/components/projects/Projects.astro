@@ -1,11 +1,26 @@
 ---
 import { PROJECTS } from "@/data/projects.data.astro";
 import ProjectItem from "./ProjectItem.astro";
+import { getI18N } from "@/i18n";
+
 const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+const list = PROJECTS[currentLocale as "es" | "en"];
+const featured = list.find(
+  (p) => (p as { featured?: boolean }).featured === true,
+);
+const supporting = list.filter(
+  (p) => !(p as { featured?: boolean }).featured,
+);
 ---
 
-{
-  PROJECTS[currentLocale as "es" | "en"].map((project) => (
-    <ProjectItem {...project} />
-  ))
-}
+{featured && <ProjectItem {...featured} featured />}
+
+{supporting.length > 0 && (
+  <div class="mt-8 md:mt-12 pt-8 md:pt-12 border-t border-border/60">
+    <h3 class="text-meta uppercase tracking-wide text-muted-foreground mb-6">
+      {i18n.projects.supporting_label}
+    </h3>
+    {supporting.map((p) => <ProjectItem {...p} />)}
+  </div>
+)}

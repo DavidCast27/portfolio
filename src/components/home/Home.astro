@@ -3,7 +3,7 @@ import DownloadIcon from "../icons/DownloadIcon.astro";
 import GitHubIcon from "../icons/GitHubIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
 import MailIcon from "../icons/MailIcon.astro";
-import Badge from "../ui/Badge.astro";
+import Paragraph from "../ui/Paragraph.astro";
 import Pill from "../ui/Pill.astro";
 import { getI18N } from "@/i18n";
 
@@ -14,9 +14,8 @@ const i18n = getI18N({ currentLocale });
 <section
   id="home"
   aria-labelledby="home-title"
-  class="scroll-mt-20 pb-12 md:pb-16 flex flex-col gap-y-6 md:gap-y-8"
+  class="scroll-mt-20 pt-8 pb-16 md:pt-12 md:pb-24 flex flex-col gap-y-8 md:gap-y-10"
 >
-  <!-- Header: avatar, name, role, status -->
   <div
     class="flex flex-col items-center gap-4 md:flex-row md:items-center md:gap-6"
   >
@@ -32,55 +31,41 @@ const i18n = getI18N({ currentLocale });
     />
 
     <div
-      class="flex flex-col items-center text-center md:items-start md:text-left gap-2"
+      class="flex flex-col items-center text-center md:items-start md:text-left gap-3"
     >
       <h1
         id="home-title"
-        class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance"
+        class="text-display font-bold leading-tight text-balance"
       >
         {i18n.home.name}
       </h1>
-      <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
-        <h2
-          class="text-lg md:text-2xl lg:text-3xl opacity-90 leading-snug text-pretty"
-        >
-          {i18n.home.role}
-        </h2>
-        <a
-          href="https://www.linkedin.com/in/davidcastrillongonzales/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn — {i18n.home.status.available}"
-        >
-          <Badge color="green">{i18n.home.status.available}</Badge>
-        </a>
-      </div>
+      <p class="text-h2 font-medium text-foreground/85 text-pretty">
+        <Fragment set:html={i18n.home.anchor} />
+      </p>
     </div>
   </div>
 
-  <!-- Description -->
-  <div class="mx-auto md:mx-0 space-y-3">
-    <p class="text-primary/90 text-sm md:text-base lg:text-lg text-pretty">
-      <strong>{i18n.home.years_of_experience}</strong>
-    </p>
-    <p class="text-sm md:text-base lg:text-lg text-pretty text-foreground/95">
-      <Fragment set:html={i18n.home.main_paragraph} />
-    </p>
-    <p class="text-xs md:text-sm lg:text-base text-pretty opacity-90">
-      <Fragment set:html={i18n.home.second_paragraph} />
-    </p>
-  </div>
+  <Paragraph intent="lead">
+    <Fragment set:html={i18n.home.lead} />
+  </Paragraph>
 
-  <!-- Social links -->
-  <nav aria-label={i18n.a11y.nav.social} class="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-start">
+  <p class="flex items-center gap-2 text-meta text-foreground/70">
+    <span class="size-2 rounded-full bg-success" aria-hidden="true"></span>
+    {i18n.home.status.label}
+  </p>
+
+  <nav
+    aria-label={i18n.a11y.nav.social}
+    class="flex flex-wrap gap-2 justify-center md:justify-start"
+  >
     <Pill
       variant="social"
       href="https://github.com/DavidCast27"
       title="GitHub"
       aria-label="GitHub"
     >
-      <GitHubIcon class="size-4 lg:size-6" />
-      <span class="hidden md:inline text-xs">{i18n.home.social.github}</span>
+      <GitHubIcon class="size-4" />
+      <span class="hidden md:inline">{i18n.home.social.github}</span>
     </Pill>
     <Pill
       variant="social"
@@ -88,8 +73,8 @@ const i18n = getI18N({ currentLocale });
       title="LinkedIn"
       aria-label="LinkedIn"
     >
-      <LinkedInIcon class="size-4 lg:size-6" />
-      <span class="hidden md:inline text-xs">{i18n.home.social.linkedin}</span>
+      <LinkedInIcon class="size-4" />
+      <span class="hidden md:inline">{i18n.home.social.linkedin}</span>
     </Pill>
     <Pill
       variant="social"
@@ -97,20 +82,18 @@ const i18n = getI18N({ currentLocale });
       title="email"
       aria-label="Email"
     >
-      <MailIcon class="size-4 lg:size-6" />
-      <span class="hidden md:inline text-xs">{i18n.home.social.mail}</span>
+      <MailIcon class="size-4" />
+      <span class="hidden md:inline">{i18n.home.social.mail}</span>
     </Pill>
     <Pill
       variant="social"
       href="/CV-ES-david-castrillon.pdf"
       title="DownLoadCV"
       download
-      aria-label="Descargar CV"
+      aria-label={i18n.home.social.download_cv}
     >
-      <DownloadIcon class="size-4 lg:size-6" />
-      <span class="hidden md:inline text-xs"
-        >{i18n.home.social.download_cv}</span
-      >
+      <DownloadIcon class="size-4" />
+      <span class="hidden md:inline">{i18n.home.social.download_cv}</span>
     </Pill>
   </nav>
 </section>

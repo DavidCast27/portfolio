@@ -6,13 +6,6 @@ const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
-<Paragraph>
-  {i18n.about.first_paragraph}
-</Paragraph>
-<Paragraph>
-  {i18n.about.second_paragraph}
-</Paragraph>
-
-<Paragraph>
-  {i18n.about.third_paragraph}
+<Paragraph intent="lead">
+  {i18n.about.body}
 </Paragraph>

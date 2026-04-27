@@ -1,5 +1,6 @@
 ---
 import { getI18N } from "@/i18n";
+import { cn } from "@/lib/utils";
 import Badge from "../ui/Badge.astro";
 import ListItemHeader from "../ui/ListItemHeader.astro";
 import Paragraph from "../ui/Paragraph.astro";
@@ -10,22 +11,37 @@ interface Props {
   description: string;
   date: string;
   actual: boolean;
+  outcome?: string;
 }
-const { title, description, date, actual } = Astro.props;
+const { title, description, date, actual, outcome } = Astro.props as Props;
 
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
 ---
 
 <div
-  class="absolute size-3 rounded-full mt-1.5 -start-1.5 border border-border bg-foreground"
+  class={cn(
+    "absolute size-3 rounded-full mt-1.5 -start-1.5 border border-border",
+    actual ? "bg-primary" : "bg-foreground",
+  )}
 >
 </div>
 <ListItemHeader>
-  <SectionHeading as="h3" intent="item">{title}</SectionHeading>
-  {actual && <Badge color="yellow">{i18n.experience.status.current}</Badge>}
+  <SectionHeading
+    as="h3"
+    intent="item"
+    class={cn(!actual && "!text-foreground")}
+  >
+    {title}
+  </SectionHeading>
+  {actual && <Badge color="green">{i18n.experience.status.current}</Badge>}
 </ListItemHeader>
 <time class="block mb-2 text-sm md:text-base lg:text-lg leading-none text-foreground/80">
   {date}
 </time>
 <Paragraph>{description}</Paragraph>
+{outcome && (
+  <p class="mt-2 text-meta text-foreground/70 italic">
+    {outcome}
+  </p>
+)}
