@@ -1,0 +1,24 @@
+---
+// Inline anti-flash theme script. Imported into every layout and standalone
+// page (404s) so the .dark class and theme-color meta are set before paint.
+---
+
+<script is:inline>
+  const stored =
+    typeof localStorage !== "undefined"
+      ? localStorage.getItem("theme")
+      : null;
+  const theme = stored ?? "dark";
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+  try {
+    const meta = document.getElementById("meta-theme-color");
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#0b0b0c" : "#fafafe");
+  } catch {}
+  try {
+    localStorage.setItem("theme", theme);
+  } catch {}
+</script>

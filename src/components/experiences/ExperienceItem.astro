@@ -1,7 +1,10 @@
 ---
 import { getI18N } from "@/i18n";
 import Badge from "../ui/Badge.astro";
+import ListItemHeader from "../ui/ListItemHeader.astro";
 import Paragraph from "../ui/Paragraph.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
 interface Props {
   title: string;
   description: string;
@@ -18,19 +21,11 @@ const i18n = getI18N({ currentLocale });
   class="absolute size-3 rounded-full mt-1.5 -start-1.5 border border-border bg-foreground"
 >
 </div>
-<header
-  class="flex flex-col gap-2 items-start sm:flex-row sm:items-center sm:gap-4 mb-4"
->
-  <h3
-    class="text-lg md:text-xl font-semibold text-primary gap-4"
-  >
-    {title}
-  </h3>
-  {actual && <Badge color="yellow"> {i18n.experience.status.current}</Badge>}
-</header>
-<time
-  class="block mb-2 text-sm md:text-base lg:text-lg leading-none text-foreground/80"
->
+<ListItemHeader>
+  <SectionHeading as="h3" intent="item">{title}</SectionHeading>
+  {actual && <Badge color="yellow">{i18n.experience.status.current}</Badge>}
+</ListItemHeader>
+<time class="block mb-2 text-sm md:text-base lg:text-lg leading-none text-foreground/80">
   {date}
 </time>
 <Paragraph>{description}</Paragraph>

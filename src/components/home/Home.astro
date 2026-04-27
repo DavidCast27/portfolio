@@ -4,7 +4,7 @@ import GitHubIcon from "../icons/GitHubIcon.astro";
 import LinkedInIcon from "../icons/LinkedInIcon.astro";
 import MailIcon from "../icons/MailIcon.astro";
 import Badge from "../ui/Badge.astro";
-import SocialPill from "../ui/SocialPill.astro";
+import Pill from "../ui/Pill.astro";
 import { getI18N } from "@/i18n";
 
 const { currentLocale } = Astro;
@@ -73,31 +73,35 @@ const i18n = getI18N({ currentLocale });
 
   <!-- Social links -->
   <nav aria-label={i18n.a11y.nav.social} class="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-start">
-    <SocialPill
+    <Pill
+      variant="social"
       href="https://github.com/DavidCast27"
       title="GitHub"
       aria-label="GitHub"
     >
       <GitHubIcon class="size-4 lg:size-6" />
       <span class="hidden md:inline text-xs">{i18n.home.social.github}</span>
-    </SocialPill>
-    <SocialPill
+    </Pill>
+    <Pill
+      variant="social"
       href="https://www.linkedin.com/in/davidcastrillongonzales/"
       title="LinkedIn"
       aria-label="LinkedIn"
     >
       <LinkedInIcon class="size-4 lg:size-6" />
       <span class="hidden md:inline text-xs">{i18n.home.social.linkedin}</span>
-    </SocialPill>
-    <SocialPill
+    </Pill>
+    <Pill
+      variant="social"
       href="mailto:david.cast27@gmail.com"
       title="email"
       aria-label="Email"
     >
       <MailIcon class="size-4 lg:size-6" />
       <span class="hidden md:inline text-xs">{i18n.home.social.mail}</span>
-    </SocialPill>
-    <SocialPill
+    </Pill>
+    <Pill
+      variant="social"
       href="/CV-ES-david-castrillon.pdf"
       title="DownLoadCV"
       download
@@ -107,6 +111,6 @@ const i18n = getI18N({ currentLocale });
       <span class="hidden md:inline text-xs"
         >{i18n.home.social.download_cv}</span
       >
-    </SocialPill>
+    </Pill>
   </nav>
 </section>

@@ -1,5 +1,6 @@
 ---
 import ChevronIcon from "../icons/ChevronIcon.astro";
+import NavLink from "./NavLink.astro";
 import { DEFAULT_LANGUAGE, LOCALES } from "@/constants/i18n.constants.astro";
 
 const { currentLocale = DEFAULT_LANGUAGE, url } = Astro;
@@ -30,7 +31,7 @@ const menuId = `lang-menu-${uid}`;
   <button
     id={btnId}
     type="button"
-    class="rounded text-sm font-semibold transition-all hover:bg-accent/20 border-2 border-border inline-flex items-center gap-x-2 px-3 py-2"
+    class="inline-flex items-center gap-x-2 rounded border-2 border-border px-3 py-2 text-sm font-semibold transition hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     aria-haspopup="menu"
     aria-expanded="false"
     aria-controls={menuId}
@@ -42,19 +43,19 @@ const menuId = `lang-menu-${uid}`;
     id={menuId}
     role="menu"
     aria-labelledby={btnId}
-    class="absolute z-10 mt-1 w-full hidden rounded bg-background border-2 border-border shadow"
+    class="absolute z-10 mt-1 w-full hidden rounded border-2 border-border bg-background shadow-elevated"
   >
     {
       otherLocales.map((locale) => (
         <li>
-          <a
+          <NavLink
+            intent="menuitem"
+            href={`${locale.href}${currentPath}`}
             role="menuitem"
             tabindex="-1"
-            class="rounded hover:bg-accent/20 focus:bg-accent/20 outline-none -mx-0.5 whitespace-no-wrap inline-flex justify-start items-center w-full gap-x-2 px-3 py-2"
-            href={`${locale.href}${currentPath}`}
           >
             {locale.name}
-          </a>
+          </NavLink>
         </li>
       ))
     }

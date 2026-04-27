@@ -1,0 +1,17 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  title: string;
+  class?: string;
+  span?: "default" | "full";
+}
+
+const { title, class: className, span = "default" } = Astro.props as Props;
+---
+
+<section class={cn(span === "full" && "md:col-span-2", className)}>
+  <SectionHeading as="h2" intent="subsection">{title}</SectionHeading>
+  <slot />
+</section>

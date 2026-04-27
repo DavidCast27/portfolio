@@ -1,16 +1,22 @@
 ---
-const { class: className, id, title } = Astro.props;
+import SectionHeading from "./ui/SectionHeading.astro";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  id?: string;
+  title?: string;
+  class?: string;
+}
+
+const { id, title, class: className } = Astro.props as Props;
 ---
 
-<section id={id} class={`scroll-mt-20 pb-12 md:pb-16 ${className}`}>
-  {
-    title && (
-      <h2 class="text-2xl lg:text-3xl font-semibold mb-6 md:mb-8 flex flex-row gap-x-2 items-center">
-        <slot name="icon" />
-        {title}
-      </h2>
-    )
-  }
-
+<section id={id} class={cn("scroll-mt-20 pb-12 md:pb-16", className)}>
+  {title && (
+    <SectionHeading as="h2" intent="section">
+      <slot name="icon" />
+      {title}
+    </SectionHeading>
+  )}
   <slot />
 </section>

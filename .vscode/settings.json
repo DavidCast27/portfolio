@@ -1,3 +1,4 @@
 {
-  "editor.defaultFormatter": "astro-build.astro-vscode"
+  "editor.defaultFormatter": "astro-build.astro-vscode",
+  "kiroAgent.configureMCP": "Disabled"
 }

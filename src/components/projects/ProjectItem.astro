@@ -1,9 +1,13 @@
 ---
-import TagPill from "../ui/TagPill.astro";
+import Pill from "../ui/Pill.astro";
 import BoxSeamIcon from "../icons/BoxSeamIcon.astro";
 import CodeIcon from "../icons/CodeIcon.astro";
 import Paragraph from "../ui/Paragraph.astro";
 import Button from "../ui/Button.astro";
+import ListItemHeader from "../ui/ListItemHeader.astro";
+import MediaFrame from "../ui/MediaFrame.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import TagList from "../ui/TagList.astro";
 import { getI18N } from "@/i18n";
 import { Image } from "astro:assets";
 import ChevronIcon from "../icons/ChevronIcon.astro";
@@ -25,12 +29,8 @@ const i18n = getI18N({ currentLocale });
 ---
 
 <article class="mb-6 md:mb-12">
-  <header
-    class="flex flex-col gap-2 items-start sm:flex-row sm:items-center sm:gap-4 mb-6"
-  >
-    <h3 class="text-lg md:text-xl font-semibold text-primary">
-      {title}
-    </h3>
+  <ListItemHeader class="mb-6">
+    <SectionHeading as="h3" intent="item">{title}</SectionHeading>
     <nav class="flex gap-2 md:gap-4">
       <Button
         href={codeURL}
@@ -44,22 +44,20 @@ const i18n = getI18N({ currentLocale });
           {i18n.projects.links.code}
         </span>
       </Button>
-      {
-        webSiteURL && (
-          <Button
-            href={webSiteURL}
-            variant="outline"
-            size="sm"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <BoxSeamIcon class="size-4" />
-            <span class="hidden md:inline text-xs">
-              {i18n.projects.links.web}
-            </span>
-          </Button>
-        )
-      }
+      {webSiteURL && (
+        <Button
+          href={webSiteURL}
+          variant="outline"
+          size="sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <BoxSeamIcon class="size-4" />
+          <span class="hidden md:inline text-xs">
+            {i18n.projects.links.web}
+          </span>
+        </Button>
+      )}
       <Button
         href={`/${currentLocale}/projects/${slug}`}
         variant="default"
@@ -70,23 +68,17 @@ const i18n = getI18N({ currentLocale });
         <ChevronIcon class="size-4 ml-2" />
       </Button>
     </nav>
-  </header>
+  </ListItemHeader>
   <Paragraph>{description}</Paragraph>
-  <ul
-    class="flex gap-2 md:gap-4 flex-row my-4 md:my-8 flex-wrap justify-center lg:justify-start"
-  >
-    {
-      tags.map(({ name, Icon, className }) => (
-        <TagPill className={className}>
-          <Icon class="size-5" />
-          <span class="hidden md:inline text-xs">{name}</span>
-        </TagPill>
-      ))
-    }
-  </ul>
-  <div
-    class="relative rounded overflow-hidden shadow-2xl shadow-foreground/20 aspect-video"
-  >
+  <TagList>
+    {tags.map(({ name, Icon, className }) => (
+      <Pill variant="tag" class={className}>
+        <Icon class="size-5" />
+        <span class="hidden md:inline text-xs">{name}</span>
+      </Pill>
+    ))}
+  </TagList>
+  <MediaFrame>
     <Image
       src={image}
       alt={`${i18n.projects.image_alt_prefix} ${title}`}
@@ -96,5 +88,5 @@ const i18n = getI18N({ currentLocale });
       loading="lazy"
       decoding="async"
     />
-  </div>
+  </MediaFrame>
 </article>

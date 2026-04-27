@@ -50,6 +50,14 @@
   --sidebar-accent-foreground: oklch(0.28 0.03 285);
   --sidebar-border: oklch(0.9 0.01 290);
   --sidebar-ring: oklch(0.74 0.2 41);
+
+  /* Elevation: tinted toward foreground so dark mode reads correctly */
+  --shadow-card:
+    0 1px 2px 0 oklch(0.22 0.03 285 / 0.04),
+    0 8px 24px -8px oklch(0.22 0.03 285 / 0.18);
+  --shadow-elevated:
+    0 2px 4px 0 oklch(0.22 0.03 285 / 0.06),
+    0 16px 40px -12px oklch(0.22 0.03 285 / 0.28);
 }
 
 .dark {
@@ -94,6 +102,13 @@
   --sidebar-accent-foreground: oklch(0.98 0.01 290);
   --sidebar-border: oklch(1 0 0 / 13%);
   --sidebar-ring: oklch(0.6 0.22 41);
+
+  --shadow-card:
+    0 1px 2px 0 oklch(0 0 0 / 0.4),
+    0 8px 24px -8px oklch(0 0 0 / 0.55);
+  --shadow-elevated:
+    0 2px 4px 0 oklch(0 0 0 / 0.45),
+    0 16px 40px -12px oklch(0 0 0 / 0.7);
 }
 
 /* Tailwind v4 mapping to utilities */
@@ -144,6 +159,34 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Elevation utilities (shadow-card, shadow-elevated) */
+  --shadow-card: var(--shadow-card);
+  --shadow-elevated: var(--shadow-elevated);
+
+  /* Motion utilities (ease-out-quart, ease-out-expo, duration-fast/base/slow) */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+  --duration-slow: 400ms;
+
+  /* Semantic typography ramp. Fluid via clamp(); ratio ≥1.25 between steps. */
+  --text-meta: 0.875rem;
+  --text-meta--line-height: 1.5;
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-h3: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-h3--line-height: 1.4;
+  --text-h2: clamp(1.25rem, 1.1rem + 0.75vw, 1.875rem);
+  --text-h2--line-height: 1.2;
+  --text-h1: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --text-h1--line-height: 1.1;
+  --text-display: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --text-display--line-height: 1.05;
+
+  /* Reading measure helper */
+  --container-prose: 65ch;
 }
 :root {
   color-scheme: light dark;
@@ -158,5 +201,7 @@ body {
   min-height: 100vh;
 }
 @media (prefers-reduced-motion: reduce) {
-  scroll-behavior: auto;
+  html {
+    scroll-behavior: auto;
+  }
 }

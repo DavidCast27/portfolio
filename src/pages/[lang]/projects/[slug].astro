@@ -6,8 +6,12 @@ import { staticPathsForSlugs } from "@/lib/lang";
 import { getI18N } from "@/i18n";
 import { Image } from "astro:assets";
 import Button from "@/components/ui/Button.astro";
-import TagPill from "@/components/ui/TagPill.astro";
+import DetailSection from "@/components/ui/DetailSection.astro";
+import MediaFrame from "@/components/ui/MediaFrame.astro";
 import Paragraph from "@/components/ui/Paragraph.astro";
+import Pill from "@/components/ui/Pill.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import TagList from "@/components/ui/TagList.astro";
 import CodeIcon from "@/components/icons/CodeIcon.astro";
 import BoxSeamIcon from "@/components/icons/BoxSeamIcon.astro";
 
@@ -28,8 +32,6 @@ const description = project.summary;
 const baseUrl = import.meta.env.PROD ? 'https://castri.dev' : Astro.url.origin;
 const canonical = `${baseUrl}${Astro.url.pathname}`;
 
-// OG image (absoluta para JSON-LD) y tags
-// project.image puede ser metadata con .src
 const ogImageAbs = new URL((project.image as any).src || (project.image as string), baseUrl).toString();
 const tagNames = project.tags?.map((t) => t.name) ?? [];
 const programmingLanguages = tagNames.filter((n) => [
@@ -41,7 +43,6 @@ const breadcrumbItems = [
   { label: project.title }
 ];
 
-// JSON-LD: BreadcrumbList + SoftwareSourceCode
 const breadcrumbJsonLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -84,12 +85,9 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
 >
   <Breadcrumb items={breadcrumbItems} />
 
-  <!-- Header -->
   <header class="mb-8">
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <h1 class="text-3xl md:text-4xl font-bold text-primary">
-        {project.title}
-      </h1>
+      <SectionHeading as="h1" intent="detail">{project.title}</SectionHeading>
       <div class="flex gap-2">
         <Button
           href={project.codeURL}
@@ -103,28 +101,25 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
             {i18n.projects.links.code}
           </span>
         </Button>
-        {
-          project.webSiteURL && (
-            <Button
-              href={project.webSiteURL}
-              variant="outline"
-              size="sm"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <BoxSeamIcon class="size-4" />
-              <span class="hidden sm:inline text-xs">
-                {i18n.projects.links.web}
-              </span>
-            </Button>
-          )
-        }
+        {project.webSiteURL && (
+          <Button
+            href={project.webSiteURL}
+            variant="outline"
+            size="sm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <BoxSeamIcon class="size-4" />
+            <span class="hidden sm:inline text-xs">
+              {i18n.projects.links.web}
+            </span>
+          </Button>
+        )}
       </div>
     </div>
   </header>
 
-  <!-- Image -->
-  <div class="relative rounded overflow-hidden shadow-2xl shadow-foreground/20 aspect-video mb-8">
+  <MediaFrame class="mb-8">
     <Image
       src={project.image}
       alt={`${i18n.projects.image_alt_prefix} ${project.title}`}
@@ -134,30 +129,18 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
       loading="lazy"
       decoding="async"
     />
-  </div>
+  </MediaFrame>
 
-  <!-- Summary -->
   <section class="mb-8">
-    <Paragraph class="text-lg leading-relaxed">
-      {project.summary}
-    </Paragraph>
+    <Paragraph intent="lead">{project.summary}</Paragraph>
   </section>
 
-  <!-- Details Grid -->
   <div class="grid gap-8 md:grid-cols-2">
-    <!-- Role -->
-    <section>
-      <h2 class="text-xl font-semibold mb-4 text-primary">
-        {i18n.projects.detail.role}
-      </h2>
+    <DetailSection title={i18n.projects.detail.role}>
       <p class="text-foreground/80">{project.role}</p>
-    </section>
+    </DetailSection>
 
-    <!-- Tech Stack -->
-    <section>
-      <h2 class="text-xl font-semibold mb-4 text-primary">
-        {i18n.projects.detail.stack}
-      </h2>
+    <DetailSection title={i18n.projects.detail.stack}>
       <ul class="space-y-2">
         {project.stack.map(({ name, version }) => (
           <li class="flex items-center gap-2 text-foreground/80">
@@ -166,13 +149,9 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
           </li>
         ))}
       </ul>
-    </section>
+    </DetailSection>
 
-    <!-- Features -->
-    <section class="md:col-span-2">
-      <h2 class="text-xl font-semibold mb-4 text-primary">
-        {i18n.projects.detail.features}
-      </h2>
+    <DetailSection title={i18n.projects.detail.features} span="full">
       <ul class="grid gap-2 sm:grid-cols-2">
         {project.features.map((feature) => (
           <li class="flex items-center gap-2">
@@ -181,38 +160,29 @@ const jsonLd = [breadcrumbJsonLd, softwareJsonLd];
           </li>
         ))}
       </ul>
-    </section>
+    </DetailSection>
 
-    <!-- AI Usage -->
-    <section>
-      <h2 class="text-xl font-semibold mb-4 text-primary">
-        {i18n.projects.detail.ai_usage}
-      </h2>
+    <DetailSection title={i18n.projects.detail.ai_usage}>
       <p class="text-foreground/80">
         {project.aiUsage.used ? i18n.projects.detail.yes : i18n.projects.detail.no}
         {project.aiUsage.description && (
           <span class="block mt-2 text-sm">{project.aiUsage.description}</span>
         )}
       </p>
-    </section>
+    </DetailSection>
 
-    <!-- Tags -->
-    <section>
-      <h2 class="text-xl font-semibold mb-4 text-primary">
-        {i18n.projects.detail.tags}
-      </h2>
-      <div class="flex flex-wrap gap-2">
+    <DetailSection title={i18n.projects.detail.tags}>
+      <TagList density="compact" class="my-2">
         {project.tags.map(({ name, Icon, className }) => (
-          <TagPill className={className}>
+          <Pill variant="tag" class={className}>
             <Icon class="size-5" />
             <span class="hidden md:inline text-xs">{name}</span>
-          </TagPill>
+          </Pill>
         ))}
-      </div>
-    </section>
+      </TagList>
+    </DetailSection>
   </div>
 
-  <!-- Back Button -->
   <div class="mt-12 pt-8 border-t border-border">
     <Button href={`/${lang}#projects`} variant="outline">
       <svg class="size-4 rotate-180 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,0 +1,56 @@
+---
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const pillVariants = cva(
+  "inline-flex items-center transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+  {
+    variants: {
+      variant: {
+        social:
+          "rounded-full justify-center border-2 border-border bg-foreground/5 hover:bg-accent/20 hover:scale-110 cursor-pointer py-1 gap-0 md:gap-x-2 h-12 w-12 md:h-auto md:w-auto px-0 md:px-3",
+        tag: "rounded-full justify-start gap-2 text-sm py-1 px-1 md:py-1 md:px-3",
+      },
+    },
+    defaultVariants: {
+      variant: "tag",
+    },
+  }
+);
+
+type PillVariants = VariantProps<typeof pillVariants>;
+
+interface Props extends PillVariants {
+  href?: string;
+  class?: string;
+  download?: string | boolean;
+  target?: string;
+  rel?: string;
+  title?: string;
+  ["aria-label"]?: string;
+}
+
+const { variant, href, class: className, ...rest } = Astro.props as Props;
+const classes = cn(pillVariants({ variant }), className);
+const isSocial = variant === "social";
+---
+
+{href ? (
+  <a
+    class={classes}
+    href={href}
+    target={isSocial ? "_blank" : undefined}
+    rel={isSocial ? "noopener noreferrer" : undefined}
+    {...rest}
+  >
+    <slot />
+  </a>
+) : variant === "tag" ? (
+  <li class={classes} {...rest}>
+    <slot />
+  </li>
+) : (
+  <span class={classes} {...rest}>
+    <slot />
+  </span>
+)}

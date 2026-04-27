@@ -1,18 +1,40 @@
 ---
-interface Props { color?: "green" | "yellow" | "neutral" | "info" | "destructive" }
-const { color = "neutral" } = Astro.props;
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-const COLOR_MAP: Record<Required<Props>["color"], string> = {
-  green: "bg-success text-success-foreground border-transparent dark:border-border",
-  yellow: "bg-warning text-warning-foreground border-transparent dark:border-border",
-  info: "bg-info text-info-foreground border-transparent dark:border-border",
-  destructive: "bg-destructive text-destructive-foreground border-transparent dark:border-border",
-  neutral: "bg-muted text-muted-foreground border-transparent dark:border-border",
-};
+const badgeVariants = cva(
+  "inline-flex items-center font-medium rounded border border-transparent dark:border-border",
+  {
+    variants: {
+      color: {
+        green: "bg-success text-success-foreground",
+        yellow: "bg-warning text-warning-foreground",
+        info: "bg-info text-info-foreground",
+        destructive: "bg-destructive text-destructive-foreground",
+        neutral: "bg-muted text-muted-foreground",
+      },
+      size: {
+        sm: "text-xs px-2 py-0.5",
+        md: "text-xs px-2.5 py-0.5",
+      },
+    },
+    defaultVariants: {
+      color: "neutral",
+      size: "md",
+    },
+  }
+);
 
-const className = `text-xs font-medium me-2 px-2.5 py-0.5 rounded border ${COLOR_MAP[color]}`;
+type BadgeVariants = VariantProps<typeof badgeVariants>;
+
+interface Props extends BadgeVariants {
+  class?: string;
+}
+
+const { color, size, class: className } = Astro.props as Props;
+const classes = cn(badgeVariants({ color, size }), className);
 ---
 
-<span class={className}>
+<span class={classes}>
   <slot />
 </span>

@@ -1,5 +1,6 @@
 ---
 import Button from "@/components/ui/Button.astro";
+import ThemeScript from "@/components/ThemeScript.astro";
 import { getI18N } from "@/i18n";
 import { staticPathsForLang, type Lang } from "@/lib/lang";
 import "@fontsource/onest";
@@ -22,26 +23,7 @@ const description = i18n.not_found.description;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta id="meta-theme-color" name="theme-color" content="#0b0b0c" />
-    <script is:inline>
-      const stored =
-        typeof localStorage !== "undefined"
-          ? localStorage.getItem("theme")
-          : null;
-      const theme = stored ?? "dark";
-      if (theme === "dark") document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
-      try {
-        const meta = document.getElementById("meta-theme-color");
-        if (meta)
-          meta.setAttribute(
-            "content",
-            theme === "dark" ? "#0b0b0c" : "#fafafe",
-          );
-      } catch {}
-      try {
-        localStorage.setItem("theme", theme);
-      } catch {}
-    </script>
+    <ThemeScript />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />

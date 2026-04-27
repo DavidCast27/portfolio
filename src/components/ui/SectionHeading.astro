@@ -1,0 +1,48 @@
+---
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const headingVariants = cva("flex flex-row items-center gap-x-2", {
+  variants: {
+    intent: {
+      section: "text-2xl lg:text-3xl font-semibold mb-6 md:mb-8",
+      subsection: "text-xl font-semibold text-primary mb-4",
+      detail: "text-3xl md:text-4xl font-bold text-primary",
+      item: "text-lg md:text-xl font-semibold text-primary",
+    },
+  },
+  defaultVariants: {
+    intent: "section",
+  },
+});
+
+type HeadingVariants = VariantProps<typeof headingVariants>;
+
+interface Props extends HeadingVariants {
+  as?: "h1" | "h2" | "h3";
+  class?: string;
+  id?: string;
+}
+
+const { as = "h2", intent, class: className, id, ...rest } = Astro.props as Props;
+const classes = cn(headingVariants({ intent }), className);
+---
+
+{as === "h1" && (
+  <h1 class={classes} id={id} {...rest}>
+    <slot name="icon" />
+    <slot />
+  </h1>
+)}
+{as === "h2" && (
+  <h2 class={classes} id={id} {...rest}>
+    <slot name="icon" />
+    <slot />
+  </h2>
+)}
+{as === "h3" && (
+  <h3 class={classes} id={id} {...rest}>
+    <slot name="icon" />
+    <slot />
+  </h3>
+)}

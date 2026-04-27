@@ -1,0 +1,19 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  class?: string;
+  density?: "loose" | "compact";
+  ["aria-label"]?: string;
+}
+
+const { class: className, density = "loose", ...rest } = Astro.props as Props;
+const densityClasses =
+  density === "compact"
+    ? "gap-2 my-0 justify-start"
+    : "gap-2 md:gap-4 my-4 md:my-8 justify-center lg:justify-start";
+---
+
+<ul class={cn("flex flex-wrap", densityClasses, className)} {...rest}>
+  <slot />
+</ul>

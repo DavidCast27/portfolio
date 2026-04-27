@@ -1,0 +1,34 @@
+---
+import { cn } from "@/lib/utils";
+import { iconButtonVariants, type IconButtonVariants } from "./icon-button.styles";
+
+interface Props extends IconButtonVariants {
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  class?: string;
+  id?: string;
+}
+
+const {
+  tone,
+  href,
+  type = "button",
+  disabled = false,
+  class: className,
+  id,
+  ...rest
+} = Astro.props as Props;
+
+const classes = cn(iconButtonVariants({ tone }), className);
+---
+
+{href ? (
+  <a class={classes} href={href} id={id} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} type={type} disabled={disabled} id={id} {...rest}>
+    <slot />
+  </button>
+)}

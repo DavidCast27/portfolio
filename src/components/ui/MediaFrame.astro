@@ -1,0 +1,15 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  class?: string;
+  ratio?: "video" | "square";
+}
+
+const { class: className, ratio = "video" } = Astro.props as Props;
+const aspect = ratio === "square" ? "aspect-square" : "aspect-video";
+---
+
+<div class={cn("relative overflow-hidden rounded shadow-card", aspect, className)}>
+  <slot />
+</div>

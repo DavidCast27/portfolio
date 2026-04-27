@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/Footer.astro";
 import SEO from "@/components/SEO.astro";
+import ThemeScript from "@/components/ThemeScript.astro";
 import { getI18N } from "@/i18n";
 import "@fontsource/onest";
 import "../styles/global.css";
@@ -46,28 +47,7 @@ if (typeof jsonLd !== 'undefined') {
 <html lang={currentLocale}>
   <head>
     <meta id="meta-theme-color" name="theme-color" content="#0b0b0c" />
-    <script is:inline>
-      // Set theme class ASAP to avoid flashes
-      const stored =
-        typeof localStorage !== "undefined"
-          ? localStorage.getItem("theme")
-          : null;
-      // Default to dark when no stored preference. User choice persists.
-      const theme = stored ?? "dark";
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-      // Update theme-color for address bar to match theme
-      try {
-        const meta = document.getElementById("meta-theme-color");
-        if (meta) meta.setAttribute("content", theme === "dark" ? "#0b0b0c" : "#fafafe");
-      } catch {}
-      try {
-        localStorage.setItem("theme", theme);
-      } catch {}
-    </script>
+    <ThemeScript />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -97,7 +77,7 @@ if (typeof jsonLd !== 'undefined') {
   </head>
   <body class="bg-background text-foreground w-full md:max-w-4xl mx-auto">
     <a href="#main-content" class="sr-only focus:not-sr-only fixed top-4 left-4 z-50 bg-background text-foreground border-2 border-border rounded px-3 py-2 shadow">
-      Saltar al contenido
+      {i18n.a11y.skip_to_content}
     </a>
 
     <main id="main-content" class="mt-8 mx-auto max-w-4xl px-6 md:px-8 w-full">
