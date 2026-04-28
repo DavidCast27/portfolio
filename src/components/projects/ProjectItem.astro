@@ -55,7 +55,10 @@ const i18n = getI18N({ currentLocale });
 ---
 
 <article class={articleVariants({ layout })}>
-  <MediaFrame ratio={featured ? "video" : "square"}>
+  <MediaFrame
+    ratio={featured ? "video" : "square"}
+    class={featured ? "" : "hidden md:block"}
+  >
     <Image
       src={image}
       alt={`${i18n.projects.image_alt_prefix} ${title}`}
